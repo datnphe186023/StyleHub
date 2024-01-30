@@ -3,16 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/4.SP24/PRJ301/Project/ShoesShop/src/java/model/customer/CustomerDAO.java</file>
-            <file>file:/D:/4.SP24/PRJ301/Project/ShoesShop/src/java/model/item/Item.java</file>
-            <file>file:/D:/4.SP24/PRJ301/Project/ShoesShop/src/java/model/product/Product.java</file>
-            <file>file:/D:/4.SP24/PRJ301/Project/ShoesShop/web/products.jsp</file>
+            <file>file:/D:/4.SP24/PRJ301/Project/ShoesShop/web/index.jsp</file>
+            <file>file:/D:/4.SP24/PRJ301/Project/ShoesShop/web/product-detail.jsp</file>
             <file>file:/D:/4.SP24/PRJ301/Project/ShoesShop/src/java/controller/BuyServlet.java</file>
-            <file>file:/D:/4.SP24/PRJ301/Project/ShoesShop/src/java/model/cart/Cart.java</file>
-            <file>file:/D:/4.SP24/PRJ301/Project/ShoesShop/web/css/stylesheet.css</file>
-            <file>file:/D:/4.SP24/PRJ301/Project/ShoesShop/src/java/controller/LoginServlet.java</file>
             <file>file:/D:/4.SP24/PRJ301/Project/ShoesShop/web/cart.jsp</file>
-            <file>file:/D:/4.SP24/PRJ301/Project/ShoesShop/src/java/model/product/ProductDAO.java</file>
         </group>
     </open-files>
 </project-private>

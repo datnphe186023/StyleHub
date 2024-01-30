@@ -24,7 +24,7 @@ public class LoginServlet extends HttpServlet {
             } else {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("account", customer);
-                request.getRequestDispatcher("products.jsp").forward(request, response);
+                request.getRequestDispatcher("product.jsp").forward(request, response);
             }
         }catch (Exception e){
             System.out.println(e);

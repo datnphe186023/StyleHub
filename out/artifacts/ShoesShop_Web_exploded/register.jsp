@@ -26,7 +26,7 @@
                 <label for="user">Số điện thoại</label> <br/>
                 <input type="text" name="user" id="user" placeholder="Nhập số điện thoại" required autofocus><br/>
                 <label for="user">Mật khẩu</label><br/>
-                <input type="text" name="pass" id="pass" placeholder="Nhập mật khẩu" required><br/>
+                <input type="password" name="pass" id="pass" placeholder="Nhập mật khẩu" required><br/>
 
                 <button type="submit">Đăng ký</button>
             </form>

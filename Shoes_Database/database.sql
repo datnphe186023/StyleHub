@@ -52,7 +52,7 @@ CREATE TABLE [products] (
   [title] nvarchar(255),
   [inPrice] money,
   [outPrice] money,
-  [description] nvarchar(255)
+  [description] nvarchar(max)
 )
 GO
 
@@ -93,6 +93,7 @@ GO
 CREATE TABLE [orderDetails] (
   [product_id] integer,
   [order_id] integer,
+  [size] integer,
   [amount] integer,
   [price] money,
   PRIMARY KEY ([product_id], [order_id])

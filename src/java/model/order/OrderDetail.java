@@ -5,21 +5,23 @@
 package model.order;
 
 /**
- *
  * @author datng
  */
 public class OrderDetail {
     private int productId;
     private int orderId;
+
+    private int size;
     private int amount;
     private double price;
 
     public OrderDetail() {
     }
 
-    public OrderDetail(int productId, int orderId, int amount, double price) {
+    public OrderDetail(int productId, int orderId, int size, int amount, double price) {
         this.productId = productId;
         this.orderId = orderId;
+        this.size = size;
         this.amount = amount;
         this.price = price;
     }
@@ -55,5 +57,12 @@ public class OrderDetail {
     public void setPrice(double price) {
         this.price = price;
     }
-    
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
 }

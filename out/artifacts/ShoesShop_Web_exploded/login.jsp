@@ -4,9 +4,8 @@
     Author     : datng
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -25,7 +24,7 @@
                 <label for="user">Số điện thoại/Email</label> <br/>
                 <input type="text" name="user" id="user" placeholder="Nhập số điện thoại hoặc email" required autofocus><br/>
                 <label for="pass">Mật khẩu</label><br/>
-                <input type="text" name="pass" id="pass" placeholder="Nhập mật khẩu" required>
+                <input type="password" name="pass" id="pass" placeholder="Nhập mật khẩu" required>
 
                 <div>
                     <input name="remember" value="1" type="checkbox">

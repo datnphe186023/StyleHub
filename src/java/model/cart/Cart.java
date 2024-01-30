@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author datng
  */
 public class Cart {
@@ -26,39 +25,37 @@ public class Cart {
     public void setItems(List<Item> items) {
         this.items = items;
     }
-    
-    public int getQuantityById(int id){
-        return getItemById(id).getQuantity();
+
+    public int getQuantity(int id, int size) {
+        return getItem(id, size).getQuantity();
     }
-    
-    private Item getItemById(int id){
+
+    private Item getItem(int id, int size) {
         for (Item item : items) {
-            if(item.getProduct().getId()==id)
-                return item;
+            if (item.getProduct().getId() == id && item.getSize() == size) return item;
         }
         return null;
     }
-    
-    public void addItem(Item t){
-        if(getItemById(t.getProduct().getId()) != null){
-            Item m = getItemById(t.getProduct().getId());
-            m.setQuantity(m.getQuantity()+t.getQuantity());
-        } 
-        else{
+
+    public void addItem(Item t) {
+        if (getItem(t.getProduct().getId(), t.getSize()) != null) {
+            Item m = getItem(t.getProduct().getId(), t.getSize());
+            m.setQuantity(m.getQuantity() + t.getQuantity());
+        } else {
             items.add(t);
         }
     }
-    
-    public void removeItem(int id){
-        if(getItemById(id)!=null){
-            items.remove(getItemById(id));
+
+    public void removeItem(int id, int size) {
+        if (getItem(id, size) != null) {
+            items.remove(getItem(id, size));
         }
     }
-    
-    public double getTotalMoney(){
+
+    public double getTotalMoney() {
         double t = 0;
         for (Item item : items) {
-            t+=(item.getQuantity()*item.getProduct().getOutPrice());
+            t += (item.getQuantity() * item.getProduct().getOutPrice());
         }
         return t;
     }
