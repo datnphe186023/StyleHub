@@ -4,6 +4,8 @@
  */
 package model.review;
 
+import model.customer.Customer;
+
 import java.util.Date;
 
 /**
@@ -12,7 +14,7 @@ import java.util.Date;
  */
 public class Review {
     private int id;
-    private int customerId;
+    private Customer customer;
     private int productId;
     private int review;
     private Date reviewDate;
@@ -21,9 +23,9 @@ public class Review {
     public Review() {
     }
 
-    public Review(int id, int customerId, int productId, int review, Date reviewDate, String detail) {
+    public Review(int id, Customer customer, int productId, int review, Date reviewDate, String detail) {
         this.id = id;
-        this.customerId = customerId;
+        this.customer = customer;
         this.productId = productId;
         this.review = review;
         this.reviewDate = reviewDate;
@@ -38,12 +40,12 @@ public class Review {
         this.id = id;
     }
 
-    public int getCustomerId() {
-        return customerId;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public int getProductId() {

@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.cart.Cart;
+import model.cart.CartDAO;
+import model.customer.Customer;
 import model.item.Item;
 import model.product.Product;
 import model.product.ProductDAO;
@@ -64,19 +66,6 @@ public class BuyServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("product.jsp").forward(request, response);
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request  servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException      if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(true);
         Cart cart = null;
         Object object = session.getAttribute("cart");
@@ -111,6 +100,19 @@ public class BuyServlet extends HttpServlet {
             session.setAttribute("size", 0);
         }
         response.sendRedirect("product?productId=" + productId_raw);
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request  servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException      if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
     }
 
     /**

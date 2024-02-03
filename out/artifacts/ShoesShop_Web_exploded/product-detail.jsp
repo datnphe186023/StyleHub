@@ -160,12 +160,14 @@
                                     <div class="block-26 mb-2">
                                         <h4>Size</h4>
                                         <c:set value="0" var="maxStock"/>
-                                            <select size="1" id="sizeSelect${product.id}">
-                                                <c:forEach items="${product.size}" var="psize">
-                                                    <option value="${psize.size}">${psize.size} - Stock: ${psize.stock}</option>
-                                                    <c:set var="maxStock" value="${psize.stock}"/>
-                                                </c:forEach>
-                                            </select>
+                                        <select size="1" id="sizeSelect${product.id}">
+                                            <c:forEach items="${product.size}" var="psize">
+                                                <option value="${psize.size}" data-stock="${psize.stock}">
+                                                        ${psize.size} - Stock :  ${psize.stock}
+                                                </option>
+                                            </c:forEach>
+                                        </select>
+
                                     </div>
                                 </div>
                                 <div class="input-group mb-4">
@@ -209,11 +211,6 @@
                                                    aria-expanded="true">Description</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" id="pills-manufacturer-tab" data-toggle="pill"
-                                                   href="#pills-manufacturer" role="tab" aria-controls="pills-manufacturer"
-                                                   aria-expanded="true">Manufacturer</a>
-                                            </li>
-                                            <li class="nav-item">
                                                 <a class="nav-link" id="pills-review-tab" data-toggle="pill"
                                                    href="#pills-review" role="tab" aria-controls="pills-review"
                                                    aria-expanded="true">Review</a>
@@ -223,114 +220,59 @@
                                         <div class="tab-content" id="pills-tabContent">
                                             <div class="tab-pane border fade show active" id="pills-description" role="tabpanel"
                                                  aria-labelledby="pills-description-tab">
-                                                <p>Even the all-powerful Pointing has no control about the blind texts it is an
-                                                    almost unorthographic life One day however a small line of blind text by the
-                                                    name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-                                                <p>When she reached the first hills of the Italic Mountains, she had a last view
-                                                    back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet
-                                                    Village and the subline of her own road, the Line Lane. Pityful a rethoric
-                                                    question ran over her cheek, then she continued her way.</p>
-                                                <ul>
-                                                    <li>The Big Oxmox advised her not to do so</li>
-                                                    <li>Because there were thousands of bad Commas</li>
-                                                    <li>Wild Question Marks and devious Semikoli</li>
-                                                    <li>She packed her seven versalia</li>
-                                                    <li>tial into the belt and made herself on the way.</li>
-                                                </ul>
-                                            </div>
-
-                                            <div class="tab-pane border fade" id="pills-manufacturer" role="tabpanel"
-                                                 aria-labelledby="pills-manufacturer-tab">
-                                                <p>Even the all-powerful Pointing has no control about the blind texts it is an
-                                                    almost unorthographic life One day however a small line of blind text by the
-                                                    name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-                                                <p>When she reached the first hills of the Italic Mountains, she had a last view
-                                                    back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet
-                                                    Village and the subline of her own road, the Line Lane. Pityful a rethoric
-                                                    question ran over her cheek, then she continued her way.</p>
+                                                ${product.description}
                                             </div>
 
                                             <div class="tab-pane border fade" id="pills-review" role="tabpanel"
                                                  aria-labelledby="pills-review-tab">
                                                 <div class="row">
                                                     <div class="col-md-8">
-                                                        <h3 class="head">23 Reviews</h3>
-                                                        <div class="review">
-                                                            <div class="user-img"
-                                                                 style="background-image: url(images/person1.jpg)"></div>
-                                                            <div class="desc">
-                                                                <h4>
-                                                                    <span class="text-left">Jacob Webb</span>
-                                                                    <span class="text-right">14 March 2018</span>
-                                                                </h4>
-                                                                <p class="star">
-                                                                    <span>
+                                                        <h3 class="head">${product.reviews.size()} Reviews</h3>
+                                                        <c:forEach items="${product.reviews}" var="review">
+                                                            <div class="review">
+                                                                <div class="user-img"
+                                                                     style="background-image: url(images/${review.customer.image})"></div>
+                                                                <div class="desc">
+                                                                    <h4>
+                                                                        <span class="text-left">${review.customer.fullName}</span>
+                                                                        <span class="text-right">${review.reviewDate}</span>
+                                                                    </h4>
+                                                                    <p class="star">
+                                                                    <span class="product-review-rate">
                                                                         <i class="icon-star-full"></i>
                                                                         <i class="icon-star-full"></i>
                                                                         <i class="icon-star-full"></i>
                                                                         <i class="icon-star-half"></i>
                                                                         <i class="icon-star-empty"></i>
                                                                     </span>
-                                                                    <span class="text-right"><a href="#" class="reply"><i
-                                                                                class="icon-reply"></i></a></span>
-                                                                </p>
-                                                                <p>When she reached the first hills of the Italic Mountains, she
-                                                                    had a last view back on the skyline of her hometown
-                                                                    Bookmarksgrov</p>
+                                                                        <script>
+                                                                            var review = ${review.review};
+                                                                            var fullStars = Math.floor(review);
+                                                                            var halfStar = (review % 1) >= 0.5;
+                                                                            var emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+                                                                            var starsHtml = '';
+                                                                            for (var i = 0; i < fullStars; i++) {
+                                                                                starsHtml += '<i class="icon-star-full"></i>';
+                                                                            }
+                                                                            if (halfStar) {
+                                                                                starsHtml += '<i class="icon-star-half"></i>';
+                                                                            }
+                                                                            for (var i = 0; i < emptyStars; i++) {
+                                                                                starsHtml += '<i class="icon-star-empty"></i>';
+                                                                            }
+                                                                            var finalHtml = starsHtml;
+                                                                            document.querySelector('.product-review-rate').innerHTML = finalHtml;
+                                                                        </script>
+                                                                    </p>
+                                                                    <p>${review.detail}</p>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="review">
-                                                            <div class="user-img"
-                                                                 style="background-image: url(images/person2.jpg)"></div>
-                                                            <div class="desc">
-                                                                <h4>
-                                                                    <span class="text-left">Jacob Webb</span>
-                                                                    <span class="text-right">14 March 2018</span>
-                                                                </h4>
-                                                                <p class="star">
-                                                                    <span>
-                                                                        <i class="icon-star-full"></i>
-                                                                        <i class="icon-star-full"></i>
-                                                                        <i class="icon-star-full"></i>
-                                                                        <i class="icon-star-half"></i>
-                                                                        <i class="icon-star-empty"></i>
-                                                                    </span>
-                                                                    <span class="text-right"><a href="#" class="reply"><i
-                                                                                class="icon-reply"></i></a></span>
-                                                                </p>
-                                                                <p>When she reached the first hills of the Italic Mountains, she
-                                                                    had a last view back on the skyline of her hometown
-                                                                    Bookmarksgrov</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="review">
-                                                            <div class="user-img"
-                                                                 style="background-image: url(images/person3.jpg)"></div>
-                                                            <div class="desc">
-                                                                <h4>
-                                                                    <span class="text-left">Jacob Webb</span>
-                                                                    <span class="text-right">14 March 2018</span>
-                                                                </h4>
-                                                                <p class="star">
-                                                                    <span>
-                                                                        <i class="icon-star-full"></i>
-                                                                        <i class="icon-star-full"></i>
-                                                                        <i class="icon-star-full"></i>
-                                                                        <i class="icon-star-half"></i>
-                                                                        <i class="icon-star-empty"></i>
-                                                                    </span>
-                                                                    <span class="text-right"><a href="#" class="reply"><i
-                                                                                class="icon-reply"></i></a></span>
-                                                                </p>
-                                                                <p>When she reached the first hills of the Italic Mountains, she
-                                                                    had a last view back on the skyline of her hometown
-                                                                    Bookmarksgrov</p>
-                                                            </div>
-                                                        </div>
+                                                        </c:forEach>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="rating-wrap">
-                                                            <h3 class="head">Give a Review</h3>
+                                                            <h3 class="head">Total Review</h3>
+                                                            <jsp:useBean id="review" class="model.review.ReviewDAO"/>
                                                             <div class="wrap">
                                                                 <p class="star">
                                                                     <span>
@@ -339,9 +281,8 @@
                                                                         <i class="icon-star-full"></i>
                                                                         <i class="icon-star-full"></i>
                                                                         <i class="icon-star-full"></i>
-                                                                        (98%)
                                                                     </span>
-                                                                    <span>20 Reviews</span>
+                                                                    <span>${review.getNumberReviews(5, product.id)} Reviews</span>
                                                                 </p>
                                                                 <p class="star">
                                                                     <span>
@@ -350,9 +291,8 @@
                                                                         <i class="icon-star-full"></i>
                                                                         <i class="icon-star-full"></i>
                                                                         <i class="icon-star-empty"></i>
-                                                                        (85%)
                                                                     </span>
-                                                                    <span>10 Reviews</span>
+                                                                    <span>${review.getNumberReviews(4, product.id)} Reviews</span>
                                                                 </p>
                                                                 <p class="star">
                                                                     <span>
@@ -361,9 +301,8 @@
                                                                         <i class="icon-star-full"></i>
                                                                         <i class="icon-star-empty"></i>
                                                                         <i class="icon-star-empty"></i>
-                                                                        (70%)
                                                                     </span>
-                                                                    <span>5 Reviews</span>
+                                                                    <span>${review.getNumberReviews(3, product.id)} Reviews</span>
                                                                 </p>
                                                                 <p class="star">
                                                                     <span>
@@ -372,9 +311,8 @@
                                                                         <i class="icon-star-empty"></i>
                                                                         <i class="icon-star-empty"></i>
                                                                         <i class="icon-star-empty"></i>
-                                                                        (10%)
                                                                     </span>
-                                                                    <span>0 Reviews</span>
+                                                                    <span>${review.getNumberReviews(2, product.id)} Reviews</span>
                                                                 </p>
                                                                 <p class="star">
                                                                     <span>
@@ -383,9 +321,8 @@
                                                                         <i class="icon-star-empty"></i>
                                                                         <i class="icon-star-empty"></i>
                                                                         <i class="icon-star-empty"></i>
-                                                                        (0%)
                                                                     </span>
-                                                                    <span>0 Reviews</span>
+                                                                    <span>${review.getNumberReviews(1, product.id)} Reviews</span>
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -495,12 +432,15 @@
     function buy(id, size) {
         var quantityInput = document.getElementById('quantity');
         var enteredQuantity = parseInt(quantityInput.value, 10);
-        var maxAllowed = ${maxStock};
-        if (isNaN(enteredQuantity) || enteredQuantity < 1 || enteredQuantity > maxAllowed) {
-            alert('Invalid quantity! Please enter a valid quantity between 1 and ' + maxAllowed);
+        var sizeSelect = document.getElementById('sizeSelect${product.id}');
+        var selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
+        var stockForSelectedSize = parseInt(selectedOption.getAttribute('data-stock'), 10);
+        if (enteredQuantity > stockForSelectedSize) {
+            alert('Quantity exceeds available stock for selected size!');
             return;
         }
-        document.f.action = "buy?id=" + id + "&psize=" + size;
+        document.f.action = "cart?id=" + id + "&psize=" + size;
         document.f.submit();
     }
+
 </script>

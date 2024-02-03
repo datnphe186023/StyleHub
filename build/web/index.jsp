@@ -49,7 +49,7 @@
         <div class="top-menu">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-7 col-md-9">
+                    <div class="col-sm-5 col-md-7">
                         <div id="colorlib-logo"><a href="index.jsp">Style Hub</a></div>
                     </div>
                     <div class="col-sm-5 col-md-3">
@@ -60,6 +60,20 @@
                                         class="icon-search"></i></button>
                             </div>
                         </form>
+                    </div>
+                    <div class="col-sm-2 col-md-2" style="font-weight: 400; font-family: 'Rokkitt', Georgia, serif; text-transform: uppercase; font-size: 15px; letter-spacing: 2px;">
+                        <%
+                            if (session.getAttribute("account") != null) {
+                        %>
+                        <a href="accountDetail.jsp">${sessionScope.account.fullName}</a>
+                        <%
+                            }else{
+                        %>
+                        <a href="login.jsp" style="margin-right: 10px;">Login</a>
+                        <a href="register.jsp">Register</a>
+                        <%
+                            }
+                        %>
                     </div>
                 </div>
                 <div class="row">

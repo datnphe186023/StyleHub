@@ -12,7 +12,9 @@ import java.util.List;
 
 import model.DAO;
 import model.category.Category;
+import model.customer.Customer;
 import model.review.Review;
+import model.review.ReviewDAO;
 import model.size.Size;
 import utils.DBContext;
 
@@ -41,8 +43,8 @@ public class ProductDAO extends DBContext implements DAO<Product> {
                 product.setCategories(categories);
                 List<String> images = getImagesListForProduct(product.getId());
                 product.setImages(images);
-                List<Review> reviews = getReviewsListForProduct(product.getId());
-                product.setReviews(reviews);
+                ReviewDAO reviewDAO = new ReviewDAO();
+                product.setReviews(reviewDAO.getReviewsForProduct(id));
                 return product;
             }
         } catch (SQLException e) {
@@ -72,8 +74,8 @@ public class ProductDAO extends DBContext implements DAO<Product> {
                 product.setCategories(categories);
                 List<String> images = getImagesListForProduct(product.getId());
                 product.setImages(images);
-                List<Review> reviews = getReviewsListForProduct(product.getId());
-                product.setReviews(reviews);
+                ReviewDAO reviewDAO = new ReviewDAO();
+                product.setReviews(reviewDAO.getReviewsForProduct(rs.getInt("id")));
                 list.add(product);
             }
         } catch (SQLException e) {
@@ -101,8 +103,8 @@ public class ProductDAO extends DBContext implements DAO<Product> {
                 product.setCategories(categories);
                 List<String> images = getImagesListForProduct(product.getId());
                 product.setImages(images);
-                List<Review> reviews = getReviewsListForProduct(product.getId());
-                product.setReviews(reviews);
+                ReviewDAO reviewDAO = new ReviewDAO();
+                product.setReviews(reviewDAO.getReviewsForProduct(rs.getInt("id")));
                 list.add(product);
             }
         } catch (SQLException e) {
@@ -147,8 +149,8 @@ public class ProductDAO extends DBContext implements DAO<Product> {
                 product.setCategories(categories);
                 List<String> images = getImagesListForProduct(product.getId());
                 product.setImages(images);
-                List<Review> reviews = getReviewsListForProduct(product.getId());
-                product.setReviews(reviews);
+                ReviewDAO reviewDAO = new ReviewDAO();
+                product.setReviews(reviewDAO.getReviewsForProduct(resultSet.getInt("id")));
                 productList.add(product);
             }
         } catch (Exception e){
@@ -191,29 +193,6 @@ public class ProductDAO extends DBContext implements DAO<Product> {
         return images;
     }
 
-    private List<Review> getReviewsListForProduct(int productId) throws SQLException {
-        List<Review> reviews = new ArrayList<>();
-        String sql = "SELECT * FROM reviews WHERE product_id = ?";
-
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, productId);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                while (resultSet.next()) {
-                    Review review = new Review();
-                    review.setId(resultSet.getInt("id"));
-                    review.setCustomerId(resultSet.getInt("customer_id"));
-                    review.setProductId(resultSet.getInt("product_id"));
-                    review.setReview(resultSet.getInt("review"));
-                    review.setReviewDate(resultSet.getDate("reviewDate"));
-                    review.setDetail(resultSet.getString("detail"));
-                    reviews.add(review);
-                }
-            }
-        }
-
-        return reviews;
-    }
-
     private List<Size> getSizeListForProduct(int productId) throws SQLException {
         List<Size> sizes = new ArrayList<>();
         String sql = "SELECT * FROM size WHERE product_id = ? and stock > 0";
@@ -235,7 +214,7 @@ public class ProductDAO extends DBContext implements DAO<Product> {
     }
 
     public List<Product> getByName(String name) {
-        String sql = "select * from [products] where name=?";
+        String sql = "select * from [products] where title=?";
         List<Product> productList = new ArrayList<>();
         try {
             PreparedStatement st = connection.prepareStatement(sql);
@@ -254,8 +233,8 @@ public class ProductDAO extends DBContext implements DAO<Product> {
                 product.setCategories(categories);
                 List<String> images = getImagesListForProduct(product.getId());
                 product.setImages(images);
-                List<Review> reviews = getReviewsListForProduct(product.getId());
-                product.setReviews(reviews);
+                ReviewDAO reviewDAO = new ReviewDAO();
+                product.setReviews(reviewDAO.getReviewsForProduct(rs.getInt("id")));
                 productList.add(product);
             }
             return productList;

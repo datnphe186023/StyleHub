@@ -132,6 +132,15 @@ CREATE TABLE [reviews] (
 )
 GO
 
+CREATE TABLE [items] (
+	[customer_id] integer foreign key references [customers] ([id]),
+	[product_id] integer foreign key references [products] ([id]),
+	[quantity] integer,
+	[size] integer,
+	[price] integer,
+	PRIMARY KEY ([customer_id], [product_id], [size])
+)
+
 ALTER TABLE [products_image] ADD FOREIGN KEY ([product_id]) REFERENCES [products] ([id])
 GO
 

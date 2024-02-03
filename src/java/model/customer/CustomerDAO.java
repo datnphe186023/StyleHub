@@ -48,8 +48,35 @@ public class CustomerDAO extends DBContext {
         }
         return null;
     }
+
+    public Customer getCustomerById(int id){
+        String sql = "select * from customers where id = ?";
+        try{
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next()){
+                Customer customer = new Customer();
+                customer.setId(resultSet.getInt("id"));
+                customer.setUsername(resultSet.getString("username"));
+                customer.setPassword(resultSet.getString("password"));
+                customer.setFullName(resultSet.getString("full_name"));
+                customer.setPhoneNumber(resultSet.getString("phone_number"));
+                customer.setEmail(resultSet.getString("email"));
+                customer.setGender(resultSet.getString("gender"));
+                customer.setBirthday(resultSet.getDate("birthday"));
+                customer.setImage(resultSet.getString("image"));
+                customer.setRole(resultSet.getShort("role"));
+                customer.setCustomerAddresses(getAddressesListForCustomer(customer.getId()));
+                return customer;
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return null;
+    }
     
-        public List<Review> getReviewsListForCustomer(int customerId) throws SQLException {
+        private List<Review> getReviewsListForCustomer(int customerId) throws SQLException {
         List<Review> reviews = new ArrayList<>();
         String sql = "SELECT * FROM reviews WHERE customer_id = ?";
 
@@ -59,7 +86,7 @@ public class CustomerDAO extends DBContext {
                 while (resultSet.next()) {
                     Review review = new Review();
                     review.setId(resultSet.getInt("id"));
-                    review.setCustomerId(resultSet.getInt("customer_id"));
+                    review.setCustomer(getCustomerById(resultSet.getInt("customer_id")));
                     review.setProductId(resultSet.getInt("product_id"));
                     review.setReview(resultSet.getInt("review"));
                     review.setReviewDate(resultSet.getDate("reviewDate"));

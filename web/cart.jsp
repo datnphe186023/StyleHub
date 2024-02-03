@@ -40,6 +40,12 @@
     </head>
     <body>
 
+        <%
+            if(session.getAttribute("account") == null){
+                response.sendRedirect("login.jsp");
+            }
+        %>
+
 
         <div class="colorlib-loader"></div>
 
@@ -156,11 +162,13 @@
                                 <div class="product-cart d-flex">
                                     <div class="one-forth">
                                         <c:set var="image" value="images/${i.product.images.get(0)}"/>
-                                        <img class="product-img" src="<c:url value="/images/${i.product.images.get(0)}"/>" class="img-fluid"
-                                             alt="${i.product.title}}">
-                                        <div class="display-tc">
-                                            <h3>${i.product.title}</h3>
-                                        </div>
+                                        <a href="${pageContext.request.contextPath}/product?productId=${i.product.id}">
+                                            <img class="product-img" src="<c:url value='/images/${i.product.images.get(0)}'/>" class="img-fluid" alt="${i.product.title}">
+                                            <div class="display-tc">
+                                                <h3>${i.product.title}</h3>
+                                            </div>
+                                        </a>
+
                                     </div>
                                     <div class="one-eight text-center">
                                         <div class="display-tc">
@@ -191,11 +199,6 @@
                                     </div>
                                 </div>
                             </c:forEach>
-                            <form action="process" method="get">
-                                <input type="hidden" name="id" value="${i.product.id}">
-                                <input type="submit" value="Return item">
-                            </form>
-
                         </div>
                     </div>
                     <div class="row row-pb-lg">
@@ -206,11 +209,6 @@
                                     </div>
                                     <div class="col-sm-4 text-center">
                                         <div class="total">
-                                            <div class="sub">
-                                                <p><span>Subtotal:</span> <span>${total}</span></p>
-                                                <p><span>Delivery:</span> <span>$0.00</span></p>
-                                                <p><span>Discount:</span> <span>$45.00</span></p>
-                                            </div>
                                             <div class="grand-total">
                                                 <p><span><strong>Total:</strong></span> <span>${total}</span></p>
                                             </div>

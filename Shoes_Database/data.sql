@@ -1,396 +1,396 @@
-﻿INSERT INTO [products] VALUES (N'Giày da unisex nam nữ The Focus Combat Chunky Boots August chính hãng bảo hành 24 tháng',725000,1450000,N'Chất liệu da: Da bò mộc 
-Chất liệu đế giày: Cao Su Cao Cấp 
-Lót Trong: Da cừu, vải canvas
+﻿INSERT INTO [products] VALUES (N'Giày da unisex nam nữ The Focus Combat Chunky Boots August chính hãng bảo hành 24 tháng',725000,1450000,N'Chất liệu da: Da bò mộc/
+Chất liệu đế giày: Cao Su Cao Cấp/
+Lót Trong: Da cừu, vải canvas/
 Size: 36->44'),
-	(N'Giày da unisex nam nữ The Focus Chunky Chelsea Boots',435000,1450000,N'Chất liệu da: Da bò mộc
-Chất liệu đế giày: Cao Su Cao Cấp
-Lót Trong: Da cừu, vải canvas 
+	(N'Giày da unisex nam nữ The Focus Chunky Chelsea Boots',435000,1450000,N'Chất liệu da: Da bò mộc/
+Chất liệu đế giày: Cao Su Cao Cấp/
+Lót Trong: Da cừu, vải canvas /
 Size: 36->44'),
-	(N'Chelsea boot Classic Ss2022',345000,1150000,N'Chất liệu da (upper): Da bò tấm
-Lót trong: Da cừu, vải canvas cao cấp
- Đế: gỗ nhập khẩu
-Màu: Đen 
-Size: 38 – 43 
+	(N'Chelsea boot Classic Ss2022',345000,1150000,N'Chất liệu da (upper): Da bò tấm/
+Lót trong: Da cừu, vải canvas cao cấp/
+ Đế: gỗ nhập khẩu/
+Màu: Đen /
+Size: 38 – 43 /
 Độ cao gót: 3cm'),
-	(N'August Classic Zipboot Ss2022',345000,1150000,N'Chất liệu da (upper): Da bò tấm 
-Lót trong: Da cừu, vải canvas cao cấp
-Đế: gỗ nhập khẩu
-Màu: Đen
-Size: 38 – 43
+	(N'August Classic Zipboot Ss2022',345000,1150000,N'Chất liệu da (upper): Da bò tấm /
+Lót trong: Da cừu, vải canvas cao cấp/
+Đế: gỗ nhập khẩu/
+Màu: Đen/
+Size: 38 – 43/
 Mẫu giày Zip boots thiết kế tại August với sự lịch lãm trẻ trung trên nền đế của các dòng giày tây, phối hợp với …'),
-	(N'The Hercules Chunky Combat boots',435000,1450000,N'Chất liệu: Da bò nhập khẩu 100%
-Đế giày: Cao su đặc đúc nguyên khối cao cấp
-Lót trong: Da bò mịn
+	(N'The Hercules Chunky Combat boots',435000,1450000,N'Chất liệu: Da bò nhập khẩu 100%/
+Đế giày: Cao su đặc đúc nguyên khối cao cấp/
+Lót trong: Da bò mịn/
 Chiều cao đế: 4,5 cm'),
-	(N'Chelsea boot Tan',495000,1650000,N'Chất liệu da: Da bò nhập khẩu 
-Chất liệu đế giày: Đế cao su cao cấp gót gỗ
-Lót Trong: Da bò 
+	(N'Chelsea boot Tan',495000,1650000,N'Chất liệu da: Da bò nhập khẩu /
+Chất liệu đế giày: Đế cao su cao cấp gót gỗ/
+Lót Trong: Da bò /
 Độ cao gót: 5 cm'),
-	(N'Zipboot Black Ss2023',585000,1950000,N'Màu sắc: Đen 
-Chất liệu da: Da bò nhập khẩu 
-Chất liệu đế giày: Đế fip 
-Lót Trong: Da bò 
+	(N'Zipboot Black Ss2023',585000,1950000,N'Màu sắc: Đen /
+Chất liệu da: Da bò nhập khẩu /
+Chất liệu đế giày: Đế fip /
+Lót Trong: Da bò /
 Độ cao gót: 5 cm'),
-	(N'Chelsea boots Black',1155000,1650000,N'Màu sắc: Đen 
-Chất liệu da: Da bò nhập khẩu 
-Chất liệu đế giày: Đế cao su cao cấp gót gỗ 
-Lót Trong: Da bò 
+	(N'Chelsea boots Black',1155000,1650000,N'Màu sắc: Đen /
+Chất liệu da: Da bò nhập khẩu /
+Chất liệu đế giày: Đế cao su cao cấp gót gỗ /
+Lót Trong: Da bò /
 Độ cao gót: 5 cm'),
-	(N'Chelsea boot Tobacco',1155000,1650000,N'Chất liệu da: Da bò nhập khẩu 
-Chất liệu đế giày: Đế cao su cao cấp gót gỗ 
-Lót Trong: Da bò 
+	(N'Chelsea boot Tobacco',1155000,1650000,N'Chất liệu da: Da bò nhập khẩu /
+Chất liệu đế giày: Đế cao su cao cấp gót gỗ /
+Lót Trong: Da bò /
 Độ cao gót: 5 cm'),
-	(N'Harness boot Tobacco',1505000,2150000,N'Chất liệu da: Da bò nhập khẩu 
-Chất liệu đế giày: Đế cao su cao cấp gót gỗ 
-Lót Trong: Da bò 
+	(N'Harness boot Tobacco',1505000,2150000,N'Chất liệu da: Da bò nhập khẩu /
+Chất liệu đế giày: Đế cao su cao cấp gót gỗ /
+Lót Trong: Da bò /
 Độ cao gót: 5 cm'),
-	(N'Harness boot Black with Silver chain',1505000,2150000,N'Màu sắc: Đen 
-Chất liệu da: Da bò nhập khẩu 
-Chất liệu đế giày: Đế cao su cao cấp gót gỗ 
-Lót Trong: Da bò 
+	(N'Harness boot Black with Silver chain',1505000,2150000,N'Màu sắc: Đen /
+Chất liệu da: Da bò nhập khẩu /
+Chất liệu đế giày: Đế cao su cao cấp gót gỗ /
+Lót Trong: Da bò /
 Độ cao gót: 5 cm'),
-	(N'Harness boot Black',1505000,2150000,N'Màu sắc: Đen 
-Chất liệu da: Da bò nhập khẩu 
-Chất liệu đế giày: Đế cao su cao cấp gót gỗ 
-Lót Trong: Da bò 
+	(N'Harness boot Black',1505000,2150000,N'Màu sắc: Đen /
+Chất liệu da: Da bò nhập khẩu /
+Chất liệu đế giày: Đế cao su cao cấp gót gỗ /
+Lót Trong: Da bò /
 Độ cao gót: 5 cm'),
-	(N'Chelsea boot Tobacco',805000,1150000,N'Chất liệu da (upper): Da bò lộn
-Lót trong: Da cừu, vải canvas cao cấp
-Đế: gỗ nhập khẩu
-Màu: Đen 
+	(N'Chelsea boot Tobacco',805000,1150000,N'Chất liệu da (upper): Da bò lộn/
+Lót trong: Da cừu, vải canvas cao cấp/
+Đế: gỗ nhập khẩu/
+Màu: Đen /
 Độ cao gót: 3cm'),
-	(N'Ankle High Boot',1015000,1450000,N'Chất liệu da: Da bò Nappa 
-Lót trong: Da cừu 
-Đế: Cao su cao cấp, gót gỗ 
+	(N'Ankle High Boot',1015000,1450000,N'Chất liệu da: Da bò Nappa /
+Lót trong: Da cừu /
+Đế: Cao su cao cấp, gót gỗ /
 Chiều cao gót: 3.5cm'),
-	(N'Chelsea boots mũi tròn',805000,1150000,N'Chất liệu da (upper): Da bò tấm
-Lót trong: Da cừu, vải canvas cao cấp
-Đế: gỗ nhập khẩu
-Màu: Đen
+	(N'Chelsea boots mũi tròn',805000,1150000,N'Chất liệu da (upper): Da bò tấm/
+Lót trong: Da cừu, vải canvas cao cấp/
+Đế: gỗ nhập khẩu/
+Màu: Đen/
 Size: 38 – 44'),
 	(N'Chelsea boot Black suede',632500,1150000,N'Chất liệu da (upper): Da bò lộn
 Lót trong: Da cừu, vải canvas cao cấp
 Đế: gỗ nhập khẩu 
 Màu: Đen
 Size: 38 – 43'),
-	(N'Chelsea boot in Tan',632500,1150000,N'Chất liệu da (upper): Da bò lộn
-Lót trong: Da cừu, vải canvas cao cấp 
-Đế: gỗ nhập khẩu
-Màu: Đen
+	(N'Chelsea boot in Tan',632500,1150000,N'Chất liệu da (upper): Da bò lộn/
+Lót trong: Da cừu, vải canvas cao cấp /
+Đế: gỗ nhập khẩu/
+Màu: Đen/
 Size: 38 – 43'),
-	(N'Giày da unisex nam nữ The Focus Chunky Derby August chính hãng bảo hành 24 tháng',742500,1350000,N'Chất liệu da: Da bò mộc 
-Chất liệu đế giày: Cao Su Cao Cấp 
-Lót Trong: Da cừu, vải canvas 
+	(N'Giày da unisex nam nữ The Focus Chunky Derby August chính hãng bảo hành 24 tháng',742500,1350000,N'Chất liệu da: Da bò mộc /
+Chất liệu đế giày: Cao Su Cao Cấp /
+Lót Trong: Da cừu, vải canvas /
 Size: 36->44'),
-	(N'Giày da unisex nam nữ The Focus Special Chunky Derby August chính hãng bảo hành 24 tháng',742500,1350000,N'Chất liệu da: Da bò mộc 
-Chất liệu đế giày: Cao Su Cao Cấp 
-Lót Trong: Da cừu, vải canvas 
+	(N'Giày da unisex nam nữ The Focus Special Chunky Derby August chính hãng bảo hành 24 tháng',742500,1350000,N'Chất liệu da: Da bò mộc /
+Chất liệu đế giày: Cao Su Cao Cấp /
+Lót Trong: Da cừu, vải canvas /
 Size: 36->44'),
-	(N'Giày da unisex nam nữ The Hawk Chunky Loafer August chính hãng bảo hành 24 tháng',742500,1350000,N'Chất liệu da: Da bò mộc 
-Chất liệu đế giày: Cao Su Cao Cấp 
-Lót Trong: Da cừu, vải canvas 
+	(N'Giày da unisex nam nữ The Hawk Chunky Loafer August chính hãng bảo hành 24 tháng',742500,1350000,N'Chất liệu da: Da bò mộc /
+Chất liệu đế giày: Cao Su Cao Cấp /
+Lót Trong: Da cừu, vải canvas /
 Size: 36->44'),
-	(N'Chunky Derby Black August',742500,1350000,N'Đế: Chunky 45 mm cao su đặc nguyên khối
-Bề mặt: Da bò Nappa nhập khẩu
+	(N'Chunky Derby Black August',742500,1350000,N'Đế: Chunky 45 mm cao su đặc nguyên khối/
+Bề mặt: Da bò Nappa nhập khẩu/
 Lót trong: Da bò mịn'),
-	(N'Chunky Derby Off-White August',742500,1350000,N'Đế: Chunky 45 mm cao su đặc nguyên khối
-Bề mặt: Da bò Nappa nhập khẩu
+	(N'Chunky Derby Off-White August',742500,1350000,N'Đế: Chunky 45 mm cao su đặc nguyên khối/
+Bề mặt: Da bò Nappa nhập khẩu/
 Lót trong: Da bò mịn'),
-	(N'Penny Loafer with Chains đế Chunky CK03X',742500,1350000,N'Đế: Chunky 45 mm cao su đặc nguyên khối
-Bề mặt: Da bò Nappa nhập khẩu
+	(N'Penny Loafer with Chains đế Chunky CK03X',742500,1350000,N'Đế: Chunky 45 mm cao su đặc nguyên khối/
+Bề mặt: Da bò Nappa nhập khẩu/
 Lót trong: Da bò mịn'),
-	(N'The Juno Chunky Derby August',742500,1350000,N'Đế: Chunky 45mm cao su đặc nguyên khối
-Bề mặt: Da bò Nappa nhập khẩu
+	(N'The Juno Chunky Derby August',742500,1350000,N'Đế: Chunky 45mm cao su đặc nguyên khối/
+Bề mặt: Da bò Nappa nhập khẩu/
 Lót trong: Da bò mịn'),
-	(N'The Ironic Chunky Derby.',742500,1350000,N'Đế: Cao su đặc đúc nguyên khối siêu đầm chân
-Bề mặt da: Nappa nhập khẩu
+	(N'The Ironic Chunky Derby.',742500,1350000,N'Đế: Cao su đặc đúc nguyên khối siêu đầm chân/
+Bề mặt da: Nappa nhập khẩu/
 Lót trong: Da bò mịn'),
-	(N'Wingtip Brogue Off-white',770500,1150000,N'Chất liệu da: Da bò Nappa Lót trong
+	(N'Wingtip Brogue Off-white',770500,1150000,N'Chất liệu da: Da bò Nappa Lót trong/
 Da cừu Đế: Cao su cao cấp, gót gỗ'),
-	(N'Wingtip Brogue Black',770500,1150000,N'Chất liệu da: Da bò Nappa 
-Lót trong: Da cừu 
+	(N'Wingtip Brogue Black',770500,1150000,N'Chất liệu da: Da bò Nappa /
+Lót trong: Da cừu /
 Đế: Cao su cao cấp, gót gỗ'),
-	(N'AGPM1',770500,1150000,N'Upper: Da bò tấm Nappa 
-Sole: Cao su gót gỗ 
-Midsole: Da cừu
+	(N'AGPM1',770500,1150000,N'Upper: Da bò tấm Nappa /
+Sole: Cao su gót gỗ /
+Midsole: Da cừu/
 Độ cao gót: 3.5cm'),
-	(N'Giày da unisex nam nữ The Focus Basic Chunky Penny Loafer August',904500,1350000,N'Chất liệu da: Da bò mộc 
-Chất liệu đế giày: Cao Su Cao Cấp 
-Lót Trong: Da cừu, vải canvas 
+	(N'Giày da unisex nam nữ The Focus Basic Chunky Penny Loafer August',904500,1350000,N'Chất liệu da: Da bò mộc /
+Chất liệu đế giày: Cao Su Cao Cấp /
+Lót Trong: Da cừu, vải canvas /
 Size: 36->44'),
-	(N'Giày da bò nhập khẩu The Focus Off-White Chunky Loafer August',904500,1350000,N'Chất liệu da: Da bò mộc
-Chất liệu đế giày: Cao Su Cao Cấp 
-Lót Trong: Da cừu, vải canvas 
+	(N'Giày da bò nhập khẩu The Focus Off-White Chunky Loafer August',904500,1350000,N'Chất liệu da: Da bò mộc/
+Chất liệu đế giày: Cao Su Cao Cấp /
+Lót Trong: Da cừu, vải canvas /
 Size: 36->44'),
-	(N'Giày da unisex nam nữ The Focus Black Chunky Loafer August chính hãng bảo hành 24 tháng',904500,1350000,N'Chất liệu da: Da bò mộc 
-Chất liệu đế giày: Cao Su Cao Cấp
-Lót Trong: Da cừu, vải canvas 
+	(N'Giày da unisex nam nữ The Focus Black Chunky Loafer August chính hãng bảo hành 24 tháng',904500,1350000,N'Chất liệu da: Da bò mộc /
+Chất liệu đế giày: Cao Su Cao Cấp/
+Lót Trong: Da cừu, vải canvas /
 Size: 36->44'),
-	(N'The Eros Chunky Penny Loafer',904500,1350000,N'Đế: Cao su đặc đúc nguyên khối siêu đầm chân
-Bề mặt da: Nappa nhập khẩu
+	(N'The Eros Chunky Penny Loafer',904500,1350000,N'Đế: Cao su đặc đúc nguyên khối siêu đầm chân/
+Bề mặt da: Nappa nhập khẩu/
 Lót trong: Da bò mịn'),
-	(N'Penny Loafer Black Leather',770500,1150000,N'Chất liệu da: Da bò Nappa 
-Lót trong: Da cừu 
+	(N'Penny Loafer Black Leather',770500,1150000,N'Chất liệu da: Da bò Nappa /
+Lót trong: Da cừu /
 Đế: Cao su cao cấp, gót gỗ'),
-	(N'Penny Loafer Off-White',770500,1150000,N'Chất liệu da: Da bò Nappa 
-Lót trong: Da cừu 
+	(N'Penny Loafer Off-White',770500,1150000,N'Chất liệu da: Da bò Nappa /
+Lót trong: Da cừu /
 Đế: Cao su cao cấp, gót gỗ'),
-	(N'THE LADY WOLF R&E MULE SANDAL - BLACK',675000,1350000,N'Màu sắc: đen láng. 
-Chất liệu da: da bò nhập khẩu. 
-Lót trong: vải canvas cao cấp. 
-Đế giữa: PU cao cấp được thiết kế độc quyền bởi THEWOLF. 
-Đế dưới: chất liệu IP có độ đàn hồi cao, được thiết kế độc quyền bởi THEWOLF. 
-Độ cao đế: 5.5cm. 
-Logo W Signature được may da thủ công trên quai giày. 
-Bộ khuôn đế được thiết kế và sản xuất theo thiết kế độc quyền của THEWOLF. 
+	(N'THE LADY WOLF R&E MULE SANDAL - BLACK',675000,1350000,N'Màu sắc: đen láng. /
+Chất liệu da: da bò nhập khẩu. /
+Lót trong: vải canvas cao cấp. /
+Đế giữa: PU cao cấp được thiết kế độc quyền bởi THEWOLF. /
+Đế dưới: chất liệu IP có độ đàn hồi cao, được thiết kế độc quyền bởi THEWOLF. /
+Độ cao đế: 5.5cm. /
+Logo W Signature được may da thủ công trên quai giày. /
+Bộ khuôn đế được thiết kế và sản xuất theo thiết kế độc quyền của THEWOLF. /
 Sản phẩm được THIẾT KẾ VÀ GIA CÔNG BỞI NGƯỜI VIỆT NAM.'),
-	(N'T_x001D_HE LADY WOLF R&E DERBY 4 EYELET - BLACK',900000,1800000,N'Màu sắc: Đen láng. 
-Chất liệu da: da bò nhập khẩu. 
-Chất liệu đế: cao su cao cấp, có độ bám dính cao. 
-Lót trong: da dê + vải canvas cao cấp. 
-Chất liệu chi tiết kim loại: hợp kim không gỉ. 
-Độ cao gót: 6cm. 
-Tag da Logo W Signature THEWOLF. 
-Bộ khuôn đế được thiết kế và sản xuất theo thiết kế độc quyền của THEWOLF. 
-Đường chỉ khâu thủ công phần mũi giày. 
+	(N'T_x001D_HE LADY WOLF R&E DERBY 4 EYELET - BLACK',900000,1800000,N'Màu sắc: Đen láng. /
+Chất liệu da: da bò nhập khẩu. /
+Chất liệu đế: cao su cao cấp, có độ bám dính cao. /
+Lót trong: da dê + vải canvas cao cấp. /
+Chất liệu chi tiết kim loại: hợp kim không gỉ. /
+Độ cao gót: 6cm. /
+Tag da Logo W Signature THEWOLF. /
+Bộ khuôn đế được thiết kế và sản xuất theo thiết kế độc quyền của THEWOLF. /
+Đường chỉ khâu thủ công phần mũi giày. /
 Sản phẩm được THIẾT KẾ VÀ GIA CÔNG BỞI NGƯỜI VIỆT NAM.'),
-	(N'THE LADY WOLF R&E DERBY 4 EYELET - TAN',900000,1800000,N'Màu sắc: Tan da lộn. 
-Chất liệu da: da bò nhập khẩu. 
-Chất liệu đế: cao su cao cấp, có độ bám dính cao. 
-Lót trong: da dê + vải canvas cao cấp. 
-Chất liệu chi tiết kim loại: hợp kim không gỉ. 
-Độ cao gót: 6cm. 
-Tag da Logo W Signature THEWOLF. 
-Bộ khuôn đế được thiết kế và sản xuất theo thiết kế độc quyền của THEWOLF. 
-Đường chỉ khâu thủ công phần mũi giày. 
+	(N'THE LADY WOLF R&E DERBY 4 EYELET - TAN',900000,1800000,N'Màu sắc: Tan da lộn. /
+Chất liệu da: da bò nhập khẩu. /
+Chất liệu đế: cao su cao cấp, có độ bám dính cao. /
+Lót trong: da dê + vải canvas cao cấp. /
+Chất liệu chi tiết kim loại: hợp kim không gỉ. /
+Độ cao gót: 6cm. /
+Tag da Logo W Signature THEWOLF. /
+Bộ khuôn đế được thiết kế và sản xuất theo thiết kế độc quyền của THEWOLF. /
+Đường chỉ khâu thủ công phần mũi giày. /
 Sản phẩm được THIẾT KẾ VÀ GIA CÔNG BỞI NGƯỜI VIỆT NAM.'),
-	(N'THE LADY WOLF R&E DERBY 4 EYELET - BLACK SUEDE',900000,1800000,N'Màu sắc: Đen da lộn. 
-Chất liệu da: da bò nhập khẩu. 
-Chất liệu đế: cao su cao cấp, có độ bám dính cao. 
-Lót trong: da dê + vải canvas cao cấp. 
-Chất liệu chi tiết kim loại: hợp kim không gỉ. 
-Độ cao gót: 6cm. 
-Tag da Logo W Signature THEWOLF. 
-Bộ khuôn đế được thiết kế và sản xuất theo thiết kế độc quyền của THEWOLF. 
-Đường chỉ khâu thủ công phần mũi giày. 
+	(N'THE LADY WOLF R&E DERBY 4 EYELET - BLACK SUEDE',900000,1800000,N'Màu sắc: Đen da lộn. /
+Chất liệu da: da bò nhập khẩu. /
+Chất liệu đế: cao su cao cấp, có độ bám dính cao. /
+Lót trong: da dê + vải canvas cao cấp. /
+Chất liệu chi tiết kim loại: hợp kim không gỉ. /
+Độ cao gót: 6cm. /
+Tag da Logo W Signature THEWOLF. /
+Bộ khuôn đế được thiết kế và sản xuất theo thiết kế độc quyền của THEWOLF. /
+Đường chỉ khâu thủ công phần mũi giày. /
 Sản phẩm được THIẾT KẾ VÀ GIA CÔNG BỞI NGƯỜI VIỆT NAM.'),
-	(N'THE LADY WOLF R&E MULE SANDAL - TOBACCO',540000,1080000,N'Màu sắc: tobacco da lộn. 
-Chất liệu da: da bò nhập khẩu. 
-Lót trong: vải canvas cao cấp. 
-Đế giữa: PU cao cấp được thiết kế độc quyền bởi THEWOLF. 
-Đế dưới: chất liệu IP có độ đàn hồi cao, được thiết kế độc quyền bởi THEWOLF. 
-Độ cao đế: 5.5cm. 
-Logo W Signature được may da thủ công trên quai giày. 
-Bộ khuôn đế được thiết kế và sản xuất theo thiết kế độc quyền của THEWOLF. 
+	(N'THE LADY WOLF R&E MULE SANDAL - TOBACCO',540000,1080000,N'Màu sắc: tobacco da lộn. /
+Chất liệu da: da bò nhập khẩu. /
+Lót trong: vải canvas cao cấp. /
+Đế giữa: PU cao cấp được thiết kế độc quyền bởi THEWOLF. /
+Đế dưới: chất liệu IP có độ đàn hồi cao, được thiết kế độc quyền bởi THEWOLF. /
+Độ cao đế: 5.5cm. /
+Logo W Signature được may da thủ công trên quai giày. /
+Bộ khuôn đế được thiết kế và sản xuất theo thiết kế độc quyền của THEWOLF. /
 Sản phẩm được THIẾT KẾ VÀ GIA CÔNG BỞI NGƯỜI VIỆT NAM.'),
-	(N'THE LADY WOLF R&E MULE SANDAL - BLACK SUEDE',540000,1080000,N'Màu sắc: đen da lộn. 
-Chất liệu da: da bò nhập khẩu. 
-Lót trong: vải canvas cao cấp. 
-Đế giữa: PU cao cấp được thiết kế độc quyền bởi THEWOLF. 
-Đế dưới: chất liệu IP có độ đàn hồi cao, được thiết kế độc quyền bởi THEWOLF. 
-Độ cao đế: 5.5cm. 
-Logo W Signature được may da thủ công trên quai giày. 
-Bộ khuôn đế được thiết kế và sản xuất theo thiết kế độc quyền của THEWOLF. 
+	(N'THE LADY WOLF R&E MULE SANDAL - BLACK SUEDE',540000,1080000,N'Màu sắc: đen da lộn. /
+Chất liệu da: da bò nhập khẩu. /
+Lót trong: vải canvas cao cấp. /
+Đế giữa: PU cao cấp được thiết kế độc quyền bởi THEWOLF. /
+Đế dưới: chất liệu IP có độ đàn hồi cao, được thiết kế độc quyền bởi THEWOLF. /
+Độ cao đế: 5.5cm. /
+Logo W Signature được may da thủ công trên quai giày. /
+Bộ khuôn đế được thiết kế và sản xuất theo thiết kế độc quyền của THEWOLF. /
 Sản phẩm được THIẾT KẾ VÀ GIA CÔNG BỞI NGƯỜI VIỆT NAM.'),
-	(N'THE LADY WOLF R&E MULE SANDAL - TAN',540000,1080000,N'Màu sắc: tan da lộn.
-Chất liệu da: da bò nhập khẩu. 
-Lót trong: vải canvas cao cấp. 
-Đế giữa: PU cao cấp được thiết kế độc quyền bởi THEWOLF. 
-Đế dưới: chất liệu IP có độ đàn hồi cao, được thiết kế độc quyền bởi THEWOLF. 
-Độ cao đế: 5.5cm. 
-Logo W Signature được may da thủ công trên quai giày. 
-Bộ khuôn đế được thiết kế và sản xuất theo thiết kế độc quyền của THEWOLF. 
+	(N'THE LADY WOLF R&E MULE SANDAL - TAN',540000,1080000,N'Màu sắc: tan da lộn./
+Chất liệu da: da bò nhập khẩu. /
+Lót trong: vải canvas cao cấp. /
+Đế giữa: PU cao cấp được thiết kế độc quyền bởi THEWOLF. /
+Đế dưới: chất liệu IP có độ đàn hồi cao, được thiết kế độc quyền bởi THEWOLF. /
+Độ cao đế: 5.5cm. /
+Logo W Signature được may da thủ công trên quai giày. /
+Bộ khuôn đế được thiết kế và sản xuất theo thiết kế độc quyền của THEWOLF. /
 Sản phẩm được THIẾT KẾ VÀ GIA CÔNG BỞI NGƯỜI VIỆT NAM.'),
-	(N'THE LADY WOLF R&E DERBY 4 EYELET - TOBACCO',900000,1800000,N'Màu sắc: Tobacco da lộn. 
-Chất liệu da: da bò nhập khẩu. 
-Chất liệu đế: cao su cao cấp, có độ bám dính cao. 
-Lót trong: da dê + vải canvas cao cấp. 
-Chất liệu chi tiết kim loại: hợp kim không gỉ. 
-Độ cao gót: 6cm. 
-Tag da Logo W Signature THEWOLF. 
-Bộ khuôn đế được thiết kế và sản xuất theo thiết kế độc quyền của THEWOLF. 
-Đường chỉ khâu thủ công phần mũi giày. 
+	(N'THE LADY WOLF R&E DERBY 4 EYELET - TOBACCO',900000,1800000,N'Màu sắc: Tobacco da lộn. /
+Chất liệu da: da bò nhập khẩu. /
+Chất liệu đế: cao su cao cấp, có độ bám dính cao. /
+Lót trong: da dê + vải canvas cao cấp. /
+Chất liệu chi tiết kim loại: hợp kim không gỉ. /
+Độ cao gót: 6cm. /
+Tag da Logo W Signature THEWOLF. /
+Bộ khuôn đế được thiết kế và sản xuất theo thiết kế độc quyền của THEWOLF. /
+Đường chỉ khâu thủ công phần mũi giày. /
 Sản phẩm được THIẾT KẾ VÀ GIA CÔNG BỞI NGƯỜI VIỆT NAM.'),
-	(N'THE LADY WOLF CHUNKY TASSEL LOAFER - BROWN',750000,1500000,N'Màu sắc: Nâu. 
-Chất liệu da: Da bò. 
-Chất liệu da lót: da dê. 
-Chất liệu lót giày: trấu có độ thông thoáng và thấm hút mồ hôi tốt. 
-Chất liệu đế: cao su cao cấp. 
-Độ cao gót: 5,5cm. 
+	(N'THE LADY WOLF CHUNKY TASSEL LOAFER - BROWN',750000,1500000,N'Màu sắc: Nâu. /
+Chất liệu da: Da bò. /
+Chất liệu da lót: da dê. /
+Chất liệu lót giày: trấu có độ thông thoáng và thấm hút mồ hôi tốt. /
+Chất liệu đế: cao su cao cấp. /
+Độ cao gót: 5,5cm. /
 Tassel được THEWOLF gia công thủ công.'),
-	(N'THE LADY WOLF CHUNKY TASSEL LOAFER - TAN',750000,1500000,N'Màu sắc: Tan. 
-Chất liệu da: Da bò. 
-Chất liệu da lót: da dê. 
-Chất liệu lót giày: trấu có độ thông thoáng và thấm hút mồ hôi tốt. 
-Chất liệu đế: cao su cao cấp. 
-Độ cao gót: 5,5cm. 
+	(N'THE LADY WOLF CHUNKY TASSEL LOAFER - TAN',750000,1500000,N'Màu sắc: Tan. /
+Chất liệu da: Da bò. /
+Chất liệu da lót: da dê. /
+Chất liệu lót giày: trấu có độ thông thoáng và thấm hút mồ hôi tốt. /
+Chất liệu đế: cao su cao cấp. /
+Độ cao gót: 5,5cm. /
 Tassel được THEWOLF gia công thủ công.'),
-	(N'THE LADY WOLF CHUNKY TASSEL LOAFER - BLACK',750000,1500000,N'Màu sắc: Đen. 
-Chất liệu da: Da bò. 
-Chất liệu da lót: da dê. 
-Chất liệu lót giày: trấu có độ thông thoáng và thấm hút mồ hôi tốt. 
-Chất liệu đế: cao su cao cấp. 
-Độ cao gót: 5,5cm. 
+	(N'THE LADY WOLF CHUNKY TASSEL LOAFER - BLACK',750000,1500000,N'Màu sắc: Đen. /
+Chất liệu da: Da bò. /
+Chất liệu da lót: da dê. /
+Chất liệu lót giày: trấu có độ thông thoáng và thấm hút mồ hôi tốt. /
+Chất liệu đế: cao su cao cấp. /
+Độ cao gót: 5,5cm. /
 Tassel được THEWOLF gia công thủ công.'),
-	(N'THE QUEEN WOLF FLIP FLOP - BLACK',247500,495000,N'Màu sắc: Đen. 
-Chất liệu da: Micro fiber. 
-Chất liệu lót: microfiber + canvas + mút 6mm. 
-Chất liệu đế: PU cao cấp có độ bền cao. 
-Logo hợp kim thiết kế độc quyền. 
-Lót dép mút 5mm, có kết cấu EVA êm ái và đàn hồi cao. 
+	(N'THE QUEEN WOLF FLIP FLOP - BLACK',247500,495000,N'Màu sắc: Đen. /
+Chất liệu da: Micro fiber. /
+Chất liệu lót: microfiber + canvas + mút 6mm. /
+Chất liệu đế: PU cao cấp có độ bền cao. /
+Logo hợp kim thiết kế độc quyền. /
+Lót dép mút 5mm, có kết cấu EVA êm ái và đàn hồi cao. /
 Độ cao gót: 8 cm.'),
-	(N'THE QUEEN WOLF MULE SANDAL - CREAM WHITE',247500,495000,N'Màu sắc: Trắng Kem. 
-Chất liệu da: Micro fiber. 
-Chất liệu lót: microfiber + canvas + mút 6mm. 
-Chất liệu đế: PU cao cấp có độ bền cao. 
-Logo hợp kim thiết kế độc quyền. 
-Lót dép mút 5mm, có kết cấu EVA êm ái và đàn hồi cao. 
+	(N'THE QUEEN WOLF MULE SANDAL - CREAM WHITE',247500,495000,N'Màu sắc: Trắng Kem. /
+Chất liệu da: Micro fiber. /
+Chất liệu lót: microfiber + canvas + mút 6mm. /
+Chất liệu đế: PU cao cấp có độ bền cao. /
+Logo hợp kim thiết kế độc quyền. /
+Lót dép mút 5mm, có kết cấu EVA êm ái và đàn hồi cao. /
 Độ cao gót: 8 cm.'),
-	(N'THE QUEEN WOLF CAGE SANDAL - CREAM WHITE',247500,495000,N'Màu sắc: Trắng Kem. 
-Chất liệu da: Micro fiber. 
-Chất liệu lót: microfiber + canvas + mút 6mm. 
-Chất liệu đế: PU cao cấp có độ bền cao. 
-Logo hợp kim thiết kế độc quyền. 
-Lót dép mút 5mm, có kết cấu EVA êm ái và đàn hồi cao. 
+	(N'THE QUEEN WOLF CAGE SANDAL - CREAM WHITE',247500,495000,N'Màu sắc: Trắng Kem. /
+Chất liệu da: Micro fiber. /
+Chất liệu lót: microfiber + canvas + mút 6mm. /
+Chất liệu đế: PU cao cấp có độ bền cao. /
+Logo hợp kim thiết kế độc quyền. /
+Lót dép mút 5mm, có kết cấu EVA êm ái và đàn hồi cao. /
 Độ cao gót: 8 cm.'),
-	(N'THE QUEEN WOLF CAGE SANDAL - BLACK',247500,495000,N'Màu sắc: Đen. 
-Chất liệu da: Micro fiber. 
-Chất liệu lót: microfiber + canvas + mút 6mm. 
-Chất liệu đế: PU cao cấp có độ bền cao. 
-Logo hợp kim thiết kế độc quyền. 
-Lót dép mút 5mm, có kết cấu EVA êm ái và đàn hồi cao. 
+	(N'THE QUEEN WOLF CAGE SANDAL - BLACK',247500,495000,N'Màu sắc: Đen. /
+Chất liệu da: Micro fiber. /
+Chất liệu lót: microfiber + canvas + mút 6mm. /
+Chất liệu đế: PU cao cấp có độ bền cao. /
+Logo hợp kim thiết kế độc quyền. /
+Lót dép mút 5mm, có kết cấu EVA êm ái và đàn hồi cao. /
 Độ cao gót: 8 cm.'),
-	(N'THE QUEEN WOLF FLIP FLOP - CREAM WHITE',346500,495000,N'Màu sắc: Trắng Kem. 
-Chất liệu da: Micro fiber. 
-Chất liệu lót: microfiber + canvas + mút 6mm. 
-Chất liệu đế: PU cao cấp có độ bền cao. 
-Logo hợp kim thiết kế độc quyền. 
-Lót dép mút 5mm, có kết cấu EVA êm ái và đàn hồi cao. 
+	(N'THE QUEEN WOLF FLIP FLOP - CREAM WHITE',346500,495000,N'Màu sắc: Trắng Kem. /
+Chất liệu da: Micro fiber. /
+Chất liệu lót: microfiber + canvas + mút 6mm. /
+Chất liệu đế: PU cao cấp có độ bền cao. /
+Logo hợp kim thiết kế độc quyền. /
+Lót dép mút 5mm, có kết cấu EVA êm ái và đàn hồi cao. /
 Độ cao gót: 8 cm.'),
-	(N'THE QUEEN WOLF MULE SANDAL - BLACK',346500,495000,N'Màu sắc: Đen. 
-Chất liệu da: Micro fiber. 
-Chất liệu lót: microfiber + canvas + mút 6mm. 
-Chất liệu đế: PU cao cấp có độ bền cao. 
-Logo hợp kim thiết kế độc quyền. 
-Lót dép mút 5mm, có kết cấu EVA êm ái và đàn hồi cao. 
+	(N'THE QUEEN WOLF MULE SANDAL - BLACK',346500,495000,N'Màu sắc: Đen. /
+Chất liệu da: Micro fiber. /
+Chất liệu lót: microfiber + canvas + mút 6mm. /
+Chất liệu đế: PU cao cấp có độ bền cao. /
+Logo hợp kim thiết kế độc quyền. /
+Lót dép mút 5mm, có kết cấu EVA êm ái và đàn hồi cao. /
 Độ cao gót: 8 cm.'),
-	(N'THE SEAN LADY WOLF PENNY LOAFER - NAVY BLUE & OFF WHITE',892500,1275000,N'Màu sắc: Xanh Navy và Kem. 
-Chất liệu da: da bò. 
-Chất liệu da lót: da dê + da nhân tạo + canvas. 
-Chất liệu đế: cao su cao cấp có độ mềm và đàn hồi tốt. 
-Phần lưỡi gà bóp viền giúp giữ form tốt khi mang. 
-Đường chỉ khâu thủ công phần mũi giày. 
-Lót giày 4mm, có kết cấu EVA độ đàn hồi cao. 
+	(N'THE SEAN LADY WOLF PENNY LOAFER - NAVY BLUE & OFF WHITE',892500,1275000,N'Màu sắc: Xanh Navy và Kem. /
+Chất liệu da: da bò. /
+Chất liệu da lót: da dê + da nhân tạo + canvas. /
+Chất liệu đế: cao su cao cấp có độ mềm và đàn hồi tốt. /
+Phần lưỡi gà bóp viền giúp giữ form tốt khi mang. /
+Đường chỉ khâu thủ công phần mũi giày. /
+Lót giày 4mm, có kết cấu EVA độ đàn hồi cao. /
 Độ cao gót: 3,5cm.'),
-	(N'THE SEAN LADY WOLF PENNY LOAFER - BROWN & OFF-WHITE',892500,1275000,N'Màu sắc: Nâu và Kem. 
-Chất liệu da: da bò. 
-Chất liệu da lót: da dê + da nhân tạo + canvas. 
-Chất liệu đế: cao su cao cấp có độ mềm và đàn hồi tốt. 
-Phần lưỡi gà bóp viền giúp giữ form tốt khi mang. 
-Đường chỉ khâu thủ công phần mũi giày. 
-Lót giày 4mm, có kết cấu EVA độ đàn hồi cao. 
+	(N'THE SEAN LADY WOLF PENNY LOAFER - BROWN & OFF-WHITE',892500,1275000,N'Màu sắc: Nâu và Kem. /
+Chất liệu da: da bò. /
+Chất liệu da lót: da dê + da nhân tạo + canvas. /
+Chất liệu đế: cao su cao cấp có độ mềm và đàn hồi tốt. /
+Phần lưỡi gà bóp viền giúp giữ form tốt khi mang. /
+Đường chỉ khâu thủ công phần mũi giày. /
+Lót giày 4mm, có kết cấu EVA độ đàn hồi cao. /
 Độ cao gót: 3,5cm.'),
-	(N'THE SEAN LADY WOLF PENNY LOAFER - SHINY BLACK',892500,1275000,N'Màu sắc: Đen bóng kiếng. 
-Chất liệu da: da bò. 
-Chất liệu da lót: da dê + da nhân tạo + canvas. 
-Chất liệu đế: cao su cao cấp có độ mềm và đàn hồi tốt. 
-Phần lưỡi gà bóp viền giúp giữ form tốt khi mang. 
-Đường chỉ khâu thủ công phần mũi giày. 
-Lót giày 4mm, có kết cấu EVA độ đàn hồi cao. 
+	(N'THE SEAN LADY WOLF PENNY LOAFER - SHINY BLACK',892500,1275000,N'Màu sắc: Đen bóng kiếng. /
+Chất liệu da: da bò. /
+Chất liệu da lót: da dê + da nhân tạo + canvas. /
+Chất liệu đế: cao su cao cấp có độ mềm và đàn hồi tốt. /
+Phần lưỡi gà bóp viền giúp giữ form tốt khi mang. /
+Đường chỉ khâu thủ công phần mũi giày. /
+Lót giày 4mm, có kết cấu EVA độ đàn hồi cao. /
 Độ cao gót: 3,5cm.'),
-	(N'THE SEAN LADY WOLF PENNY LOAFER - BLACK',892500,1275000,N'Màu sắc: Đen. 
-Chất liệu da: da bò. 
-Chất liệu da lót: da dê + da nhân tạo + canvas. 
-Chất liệu đế: cao su cao cấp có độ mềm và đàn hồi tốt. 
-Phần lưỡi gà bóp viền giúp giữ form tốt khi mang. 
-Đường chỉ khâu thủ công phần mũi giày. 
-Lót giày 4mm, có kết cấu EVA độ đàn hồi cao. 
+	(N'THE SEAN LADY WOLF PENNY LOAFER - BLACK',892500,1275000,N'Màu sắc: Đen. /
+Chất liệu da: da bò. /
+Chất liệu da lót: da dê + da nhân tạo + canvas. /
+Chất liệu đế: cao su cao cấp có độ mềm và đàn hồi tốt. /
+Phần lưỡi gà bóp viền giúp giữ form tốt khi mang. /
+Đường chỉ khâu thủ công phần mũi giày. /
+Lót giày 4mm, có kết cấu EVA độ đàn hồi cao. /
 Độ cao gót: 3,5cm.'),
-	(N'THE SEAN LADY WOLF PENNY LOAFER - BLACK OFF WHITE',892500,1275000,N'Màu sắc: Đen + Kem. 
-Chất liệu da: da bò. 
-Chất liệu da lót: da dê + da nhân tạo + canvas. 
-Chất liệu đế: cao su cao cấp có độ mềm và đàn hồi tốt. 
-Phần lưỡi gà bóp viền giúp giữ form tốt khi mang. 
-Đường chỉ khâu thủ công phần mũi giày. 
-Lót giày 4mm, có kết cấu EVA độ đàn hồi cao. 
+	(N'THE SEAN LADY WOLF PENNY LOAFER - BLACK OFF WHITE',892500,1275000,N'Màu sắc: Đen + Kem. /
+Chất liệu da: da bò. /
+Chất liệu da lót: da dê + da nhân tạo + canvas. /
+Chất liệu đế: cao su cao cấp có độ mềm và đàn hồi tốt. /
+Phần lưỡi gà bóp viền giúp giữ form tốt khi mang. /
+Đường chỉ khâu thủ công phần mũi giày. /
+Lót giày 4mm, có kết cấu EVA độ đàn hồi cao. /
 Độ cao gót: 3,5cm.'),
-	(N'THE SEAN LADY WOLF DERBY - BLACK',840000,1200000,N'Màu sắc: Đen. 
-Chất liệu da: da bò. 
-Chất liệu da lót: da dê + da nhân tạo + canvas. 
-Chất liệu đế: cao su cao cấp có độ mềm và đàn hồi tốt. 
-Gót giày có một lớp mút giảm độ cấn khi mang. 
-Lót giày 4mm, có kết cấu EVA độ đàn hồi cao. 
+	(N'THE SEAN LADY WOLF DERBY - BLACK',840000,1200000,N'Màu sắc: Đen. /
+Chất liệu da: da bò. /
+Chất liệu da lót: da dê + da nhân tạo + canvas. /
+Chất liệu đế: cao su cao cấp có độ mềm và đàn hồi tốt. /
+Gót giày có một lớp mút giảm độ cấn khi mang. /
+Lót giày 4mm, có kết cấu EVA độ đàn hồi cao. /
 Độ cao gót: 3,5cm.'),
-	(N'THE LADY WOLF MARBE CHUNKY CHELSEA BOOT - BEIGE',560000,800000,N'Màu sắc: Beige. 
-Chất liệu da: Da bò nhập khẩu. 
-Chất liệu đế giày: Cao su cao cấp. 
-Lót Trong: Vải canvas cao cấp, da dê. 
-Độ cao gót: 5,5 cm. 
-Chi tiết: Dấu X được may thủ công sau gót, đôi giày sẽ có 2 pulltab giúp việc xỏ chân trở nên dễ dàng hơn. 
+	(N'THE LADY WOLF MARBE CHUNKY CHELSEA BOOT - BEIGE',560000,800000,N'Màu sắc: Beige./ 
+Chất liệu da: Da bò nhập khẩu. /
+Chất liệu đế giày: Cao su cao cấp. /
+Lót Trong: Vải canvas cao cấp, da dê. /
+Độ cao gót: 5,5 cm. /
+Chi tiết: Dấu X được may thủ công sau gót, đôi giày sẽ có 2 pulltab giúp việc xỏ chân trở nên dễ dàng hơn. /
 Sản phẩm được THIẾT KẾ VÀ GIA CÔNG BỞI NGƯỜI VIỆT NAM.'),
-	(N'THE LADY WOLF MARBE CHUNKY COMBAT BOOT - BEIGE',560000,800000,N'Màu sắc: Beige. 
-Chất liệu da: Da bò nhập khẩu. 
-Chất liệu đế giày: Cao su cao cấp. 
-Lót Trong: Vải canvas cao cấp, da dê. 
-Độ cao gót: 5,5 cm. 
-Chi tiết: Dấu X được may thủ công sau gót, đầu cột dây làm bằng thép không gỉ, phần lưỡi gà có may logo THEWOLF. 
+	(N'THE LADY WOLF MARBE CHUNKY COMBAT BOOT - BEIGE',560000,800000,N'Màu sắc: Beige. /
+Chất liệu da: Da bò nhập khẩu. /
+Chất liệu đế giày: Cao su cao cấp. /
+Lót Trong: Vải canvas cao cấp, da dê. /
+Độ cao gót: 5,5 cm. /
+Chi tiết: Dấu X được may thủ công sau gót, đầu cột dây làm bằng thép không gỉ, phần lưỡi gà có may logo THEWOLF. /
 Sản phẩm được THIẾT KẾ VÀ GIA CÔNG BỞI NGƯỜI VIỆT NAM.'),
-	(N'THE LADY WOLF MODERN S SLIPPER - BLACK',833000,1190000,N'Màu sắc: Đen láng. 
-Chất liệu da: da bò đen láng + da bò hột đen láng. 
-Chất liệu đế: cao su nguyên chất. 
-Lót trong: da dê + vải canvas cao cấp. 
-Độ cao gót đế: 4,5cm. 
-Chỉ giày to và được may đồng đều. 
-Sử dụng kỹ thuật bóp viền, một kĩ thuật đòi hỏi kĩ năng của người thợ làm giày. 
+	(N'THE LADY WOLF MODERN S SLIPPER - BLACK',833000,1190000,N'Màu sắc: Đen láng. /
+Chất liệu da: da bò đen láng + da bò hột đen láng. /
+Chất liệu đế: cao su nguyên chất. /
+Lót trong: da dê + vải canvas cao cấp. /
+Độ cao gót đế: 4,5cm. /
+Chỉ giày to và được may đồng đều. /
+Sử dụng kỹ thuật bóp viền, một kĩ thuật đòi hỏi kĩ năng của người thợ làm giày. /
 Sản phẩm được THIẾT KẾ VÀ GIA CÔNG BỞI NGƯỜI VIỆT NAM.'),
-	(N'THE LADY WOLF CHUNKY DERBY 4 EYELET - BLACK',560000,800000,N'Màu sắc: Đen láng. 
-Chất liệu da: Da bò nhập khẩu. 
-Chất liệu đế giày: Cao su cao cấp. 
-Lót Trong: Vải canvas cao cấp, da dê. 
-Độ cao gót: 5,5 cm. 
+	(N'THE LADY WOLF CHUNKY DERBY 4 EYELET - BLACK',560000,800000,N'Màu sắc: Đen láng. /
+Chất liệu da: Da bò nhập khẩu. /
+Chất liệu đế giày: Cao su cao cấp. /
+Lót Trong: Vải canvas cao cấp, da dê. /
+Độ cao gót: 5,5 cm. /
 Sản phẩm được THIẾT KẾ VÀ GIA CÔNG BỞI NGƯỜI VIỆT NAM.'),
-	(N'THE LADY WOLF SLIPPER - BLACK',472500,1050000,N'Màu sắc: Đen. 
-Chất liệu da: Da bò nhập khẩu. 
-Chất liệu đế giày: Cao su cao cấp. 
-Lót Trong: Da dê. 
+	(N'THE LADY WOLF SLIPPER - BLACK',472500,1050000,N'Màu sắc: Đen. /
+Chất liệu da: Da bò nhập khẩu. /
+Chất liệu đế giày: Cao su cao cấp. /
+Lót Trong: Da dê. /
 Độ cao gót: 3,5 cm.'),
-	(N'THE MARS LADY WOLF HIGH COMBAT BOOT - BLACK',978750,2175000,N'Màu sắc: đen láng + đen hột. 
-Chất liệu da: da bò nhập khẩu. 
-Chất liệu đế: cao su cao cấp, có độ bám dính cao. 
-Lót trong: da dê + vải canvas cao cấp. 
-Thun: có độ co giản tốt, bền theo thời gian. 
-Chất liệu chi tiết kim loại: hợp kim không gỉ. 
-Độ cao gót: 6cm. 
-Tag da Logo Signature THEWOLF. 
-Bộ khuôn đế được thiết kế và sản xuất theo thiết kế độc quyền của THEWOLF. 
-Kĩ thuật bóp viền thủ công trong ngành giày. 
+	(N'THE MARS LADY WOLF HIGH COMBAT BOOT - BLACK',978750,2175000,N'Màu sắc: đen láng + đen hột. /
+Chất liệu da: da bò nhập khẩu. /
+Chất liệu đế: cao su cao cấp, có độ bám dính cao. /
+Lót trong: da dê + vải canvas cao cấp. /
+Thun: có độ co giản tốt, bền theo thời gian. /
+Chất liệu chi tiết kim loại: hợp kim không gỉ. /
+Độ cao gót: 6cm. /
+Tag da Logo Signature THEWOLF. /
+Bộ khuôn đế được thiết kế và sản xuất theo thiết kế độc quyền của THEWOLF. /
+Kĩ thuật bóp viền thủ công trong ngành giày. /
 Sản phẩm được THIẾT KẾ VÀ GIA CÔNG BỞI NGƯỜI VIỆT NAM.'),
-	(N'THE MARS LADY WOLF CHELSEA BOOT - BLACK',810000,1800000,N'Màu sắc: đen láng. 
-Chất liệu da: da bò nhập khẩu. 
-Chất liệu đế: cao su cao cấp, có độ bám dính cao. 
-Lót trong: da dê + vải canvas cao cấp. 
-Thun: có độ co giản tốt, bền theo thời gian. 
-Độ cao gót: 6cm. 
-Logo Signature được dập chìm trên phần cổ bên ngoài đôi giày. 
-Bộ khuôn đế được thiết kế và sản xuất theo thiết kế độc quyền của THEWOLF. 
+	(N'THE MARS LADY WOLF CHELSEA BOOT - BLACK',810000,1800000,N'Màu sắc: đen láng. /
+Chất liệu da: da bò nhập khẩu. /
+Chất liệu đế: cao su cao cấp, có độ bám dính cao. /
+Lót trong: da dê + vải canvas cao cấp. /
+Thun: có độ co giản tốt, bền theo thời gian. /
+Độ cao gót: 6cm. /
+Logo Signature được dập chìm trên phần cổ bên ngoài đôi giày. /
+Bộ khuôn đế được thiết kế và sản xuất theo thiết kế độc quyền của THEWOLF. /
 Sản phẩm được THIẾT KẾ VÀ GIA CÔNG BỞI NGƯỜI VIỆT NAM.'),
-	(N'THE MARS LADY WOLF MID COMBAT BOOT - BLACK',945000,2100000,N'Màu sắc: đen láng + đen hột. 
-Chất liệu da: da bò nhập khẩu. 
-Chất liệu đế: cao su cao cấp, có độ bám dính cao. 
-Lót trong: da dê + vải canvas cao cấp. 
-Thun: có độ co giản tốt, bền theo thời gian. 
-Chất liệu chi tiết kim loại: hợp kim không gỉ. 
-Độ cao gót: 6cm. 
-Tag da Logo Signature THEWOLF. 
-Bộ khuôn đế được thiết kế và sản xuất theo thiết kế độc quyền của THEWOLF. 
-Kĩ thuật bóp viền thủ công trong ngành giày. 
+	(N'THE MARS LADY WOLF MID COMBAT BOOT - BLACK',945000,2100000,N'Màu sắc: đen láng + đen hột. /
+Chất liệu da: da bò nhập khẩu. /
+Chất liệu đế: cao su cao cấp, có độ bám dính cao. /
+Lót trong: da dê + vải canvas cao cấp. /
+Thun: có độ co giản tốt, bền theo thời gian. /
+Chất liệu chi tiết kim loại: hợp kim không gỉ. /
+Độ cao gót: 6cm. /
+Tag da Logo Signature THEWOLF. /
+Bộ khuôn đế được thiết kế và sản xuất theo thiết kế độc quyền của THEWOLF. /
+Kĩ thuật bóp viền thủ công trong ngành giày. /
 Sản phẩm được THIẾT KẾ VÀ GIA CÔNG BỞI NGƯỜI VIỆT NAM.'),
-	(N'THE LADY WOLF CHUNKY COMBAT BOOT - BLACK',693000,1540000,N'Màu sắc: Đen láng. 
-Chất liệu da: Da bò nhập khẩu. 
-Chất liệu đế giày: Cao su cao cấp. 
-Lót Trong: Vải canvas cao cấp, da dê. 
-Độ cao gót: 5,5 cm. 
-Chi tiết: Dấu X được may thủ công sau gót, đầu cột dây làm bằng thép không gỉ, phần lưỡi gà có may logo THEWOLF. 
+	(N'THE LADY WOLF CHUNKY COMBAT BOOT - BLACK',693000,1540000,N'Màu sắc: Đen láng. /
+Chất liệu da: Da bò nhập khẩu. /
+Chất liệu đế giày: Cao su cao cấp. /
+Lót Trong: Vải canvas cao cấp, da dê. /
+Độ cao gót: 5,5 cm. /
+Chi tiết: Dấu X được may thủ công sau gót, đầu cột dây làm bằng thép không gỉ, phần lưỡi gà có may logo THEWOLF. /
 Sản phẩm được THIẾT KẾ VÀ GIA CÔNG BỞI NGƯỜI VIỆT NAM.');
 
 

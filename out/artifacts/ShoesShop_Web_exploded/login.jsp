@@ -20,7 +20,7 @@
             <h1><a href="<c:url value="/register.jsp"/>">Đăng ký</a></h1>
             </div>
 
-            <form action="login">
+            <form action="login" method="post">
                 <label for="user">Số điện thoại/Email</label> <br/>
                 <input type="text" name="user" id="user" placeholder="Nhập số điện thoại hoặc email" required autofocus><br/>
                 <label for="pass">Mật khẩu</label><br/>

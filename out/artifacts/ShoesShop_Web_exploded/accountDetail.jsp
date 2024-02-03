@@ -12,8 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        
-        <%@include file="header.jsp" %>
         <div>
             <h1>THÔNG TIN TÀI KHOẢN</h1>
             <label for="last-name">Họ*</label>
@@ -50,6 +48,8 @@
         <div>
             <button type="submit">Lưu thay đổi</button>
         </div>
+            
+            <button><a href="login">Log Out</a></button>
         
         <script>
             function togglePasswordSection() {
@@ -59,7 +59,5 @@
         </script>
         
         </div>
-
-        <%@include file="footer.jsp" %>
     </body>
 </html>
