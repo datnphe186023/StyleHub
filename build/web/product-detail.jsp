@@ -439,7 +439,7 @@
             alert('Quantity exceeds available stock for selected size!');
             return;
         }
-        document.f.action = "buy?id=" + id + "&psize=" + size;
+        document.f.action = "cart?id=" + id + "&psize=" + size;
         document.f.submit();
     }
 

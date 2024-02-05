@@ -1,3 +1,4 @@
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -119,6 +120,7 @@
                 </div>
             </div>
             <div class="row row-pb-md">
+                <c:set var="page" value="${requestScope.numberOfPage}"/>
                 <c:set var="products" value="${requestScope.productList}"/>
                 <c:forEach items="${products}" var="product">
                     <div class="col-md-3 col-lg-3 mb-4 text-center">
@@ -134,6 +136,27 @@
                         </div>
                     </div>
                 </c:forEach>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="block-27">
+                        <ul>
+                            <li><a href="#"><i class="ion-ios-arrow-back"></i></a></li>
+                            <c:set var="collections" value="${requestScope.collections}"/>
+                            <c:forEach begin="${1}" end="${requestScope.numberOfPage}" var="i">
+                                <li>
+                                <a class="${i==page?"active":""}" href="?${collections}&page=${i}">${i}</a>
+                                </li>
+                            </c:forEach>
+<%--                            <li class="active"><span>1</span></li>--%>
+<%--                            <li><a href="#">2</a></li>--%>
+<%--                            <li><a href="#">3</a></li>--%>
+<%--                            <li><a href="#">4</a></li>--%>
+<%--                            <li><a href="#">5</a></li>--%>
+                            <li><a href="#"><i class="ion-ios-arrow-forward"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

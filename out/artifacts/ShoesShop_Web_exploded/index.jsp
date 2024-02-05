@@ -124,7 +124,7 @@
                                         <h1 class="head-1">The Focus</h1>
                                         <h2 class="head-3">Collection</h2>
                                         <p class="category"><span>New trending shoes</span></p>
-                                        <p><a href="the-focus.jsp" class="btn btn-primary">Shop Collection</a></p>
+                                        <p><a href="collections?categories=The Focus Project" class="btn btn-primary">Shop Collection</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -159,7 +159,7 @@
                                         <h1 class="head-1">New Collection</h1>
                                         <h2 class="head-2">The Upgrade</h2>
                                         <p class="category"><span>New stylish shoes</span></p>
-                                        <p><a href="the-upgrade.jsp" class="btn btn-primary">Shop Collection</a></p>
+                                        <p><a href="collections?categories=BST THE UPGRADE" class="btn btn-primary">Shop Collection</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -184,17 +184,17 @@
             <div class="row">
                 <div class="col-sm-6 text-center">
                     <div class="featured">
-                        <a href="men.jsp" class="featured-img" style="background-image: url(images/men.jpg);"></a>
+                        <a href="collections?categories=Men" class="featured-img" style="background-image: url(images/men.jpg);"></a>
                         <div class="desc">
-                            <h2><a href="men.jsp">Shop Men's Collection</a></h2>
+                            <h2><a href="collections?categories=Men">Shop Men's Collection</a></h2>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-6 text-center">
                     <div class="featured">
-                        <a href="women.jsp" class="featured-img" style="background-image: url(images/women.png);"></a>
+                        <a href="collections?categories=Women" class="featured-img" style="background-image: url(images/women.png);"></a>
                         <div class="desc">
-                            <h2><a href="women.jsp">Shop Women's Collection</a></h2>
+                            <h2><a href="collections?categories=Women">Shop Women's Collection</a></h2>
                         </div>
                     </div>
                 </div>
@@ -228,7 +228,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <p><a href="all-product.jsp" class="btn btn-primary btn-lg">Shop All Products</a></p>
+                    <p><a href="collections" class="btn btn-primary btn-lg">Shop All Products</a></p>
                 </div>
             </div>
         </div>

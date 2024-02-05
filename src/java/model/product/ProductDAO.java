@@ -93,14 +93,8 @@ public class ProductDAO extends DBContext implements DAO<Product> {
     }
 
     public List<Product> getProductByCategory(String[] categoryList){
-//        String sql = "SELECT p.id, p.title, p.inPrice, p.outPrice, p.description\n" +
-//                "FROM products p\n" +
-//                "         INNER JOIN products_categories pc ON p.id = pc.product_id\n" +
-//                "WHERE pc.category_title IN ('Men', 'Boot')\n" +
-//                "GROUP BY p.id, p.title, p.inPrice, p.outPrice, p.description\n" +
-//                "HAVING COUNT(DISTINCT pc.category_title) = 2";
         if (categoryList == null || categoryList.length == 0) {
-            throw new IllegalArgumentException("Categories array must not be empty or null");
+            return getAll();
         }
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT p.id, p.title, p.inPrice, p.outPrice, p.description FROM products p ");
@@ -228,6 +222,14 @@ public class ProductDAO extends DBContext implements DAO<Product> {
             System.out.println(e);
         }
         return null;
+    }
+
+    public List<Product> getProductListForPage(List<Product> productList, int start, int end){
+        List<Product> productListForPage = new ArrayList<>();
+        for (int i = start; i < end; i++){
+            productListForPage.add(productList.get(i));
+        }
+        return  productListForPage;
     }
 }
 
