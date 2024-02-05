@@ -29,14 +29,14 @@ public class ProductDAO extends DBContext implements DAO<Product> {
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, id);
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {
+            ResultSet resultSet = st.executeQuery();
+            while (resultSet.next()) {
                 Product product = new Product();
-                product.setId(rs.getInt("id"));
-                product.setTitle(rs.getString("title"));
-                product.setInPrice(rs.getDouble("inPrice"));
-                product.setOutPrice(rs.getDouble("outPrice"));
-                product.setDescription(rs.getString("description"));
+                product.setId(resultSet.getInt("id"));
+                product.setTitle(resultSet.getString("title"));
+                product.setInPrice(resultSet.getDouble("inPrice"));
+                product.setOutPrice(resultSet.getDouble("outPrice"));
+                product.setDescription(resultSet.getString("description"));
                 List<Size> sizes = getSizeListForProduct(product.getId());
                 product.setSize(sizes);
                 List<Category> categories = getCategoryListForProduct(product.getId());
@@ -53,90 +53,12 @@ public class ProductDAO extends DBContext implements DAO<Product> {
         return null;
     }
 
-
-    @Override
-    public List<Product> getAll() {
-        List<Product> list = new ArrayList<>();
-        String sql = "select * from [products]";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-                Product product = new Product();
-                product.setId(rs.getInt("id"));
-                product.setTitle(rs.getString("title"));
-                product.setInPrice(rs.getDouble("inPrice"));
-                product.setOutPrice(rs.getDouble("outPrice"));
-                product.setDescription(rs.getString("description"));
-                List<Size> sizes = getSizeListForProduct(product.getId());
-                product.setSize(sizes);
-                List<Category> categories = getCategoryListForProduct(product.getId());
-                product.setCategories(categories);
-                List<String> images = getImagesListForProduct(product.getId());
-                product.setImages(images);
-                ReviewDAO reviewDAO = new ReviewDAO();
-                product.setReviews(reviewDAO.getReviewsForProduct(rs.getInt("id")));
-                list.add(product);
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return list;
-    }
-
-    public List<Product> getBestSeller() {
-        List<Product> list = new ArrayList<>();
-        String sql = "SELECT TOP 8 p.*, SUM(amount) AS totalSold\n" + "FROM orderDetails od\n" + "JOIN products p ON od.product_id = p.id\n" + "GROUP BY p.id, p.title, p.description, p.inPrice, p.outPrice\n" + "ORDER BY totalSold DESC";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-                Product product = new Product();
-                product.setId(rs.getInt("id"));
-                product.setTitle(rs.getString("title"));
-                product.setInPrice(rs.getDouble("inPrice"));
-                product.setOutPrice(rs.getDouble("outPrice"));
-                product.setDescription(rs.getString("description"));
-                List<Size> sizes = getSizeListForProduct(product.getId());
-                product.setSize(sizes);
-                List<Category> categories = getCategoryListForProduct(product.getId());
-                product.setCategories(categories);
-                List<String> images = getImagesListForProduct(product.getId());
-                product.setImages(images);
-                ReviewDAO reviewDAO = new ReviewDAO();
-                product.setReviews(reviewDAO.getReviewsForProduct(rs.getInt("id")));
-                list.add(product);
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return list;
-    }
-
-    public List<Product> getCategory(List<String> categoryList){
+    private List<Product> getProductsFromDatabase(String sql){
         List<Product> productList = new ArrayList<>();
-        String sql = "SELECT p.id, p.title\n" +
-                "FROM products p\n" +
-                "WHERE EXISTS (\n" +
-                "    SELECT 1\n" +
-                "    FROM products_categories pc1\n" +
-                "    JOIN categories c1 ON pc1.category_title = c1.title\n" +
-                "    WHERE p.id = pc1.product_id AND c1.title = ?\n" +
-                ")\n" +
-                "AND EXISTS (\n" +
-                "    SELECT 1\n" +
-                "    FROM products_categories pc2\n" +
-                "    JOIN categories c2 ON pc2.category_title = c2.title\n" +
-                "    WHERE p.id = pc2.product_id AND c2.title = ?\n" +
-                ");";
-        try{
+        try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            ResultSet resultSet;
-            for(int i = 0 ; i < categoryList.size(); i++){
-                statement.setString(i+1, categoryList.get(i));
-            }
-            resultSet = statement.executeQuery();
-            while (resultSet.next()){
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
                 Product product = new Product();
                 product.setId(resultSet.getInt("id"));
                 product.setTitle(resultSet.getString("title"));
@@ -153,7 +75,71 @@ public class ProductDAO extends DBContext implements DAO<Product> {
                 product.setReviews(reviewDAO.getReviewsForProduct(resultSet.getInt("id")));
                 productList.add(product);
             }
-        } catch (Exception e){
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return productList;
+    }
+
+    @Override
+    public List<Product> getAll() {
+        String sql = "select * from [products]";
+        return getProductsFromDatabase(sql);
+    }
+
+    public List<Product> getBestSeller() {
+        String sql = "SELECT TOP 8 p.*, SUM(amount) AS totalSold\n" + "FROM orderDetails od\n" + "JOIN products p ON od.product_id = p.id\n" + "GROUP BY p.id, p.title, p.description, p.inPrice, p.outPrice\n" + "ORDER BY totalSold DESC";
+        return getProductsFromDatabase(sql);
+    }
+
+    public List<Product> getProductByCategory(String[] categoryList){
+//        String sql = "SELECT p.id, p.title, p.inPrice, p.outPrice, p.description\n" +
+//                "FROM products p\n" +
+//                "         INNER JOIN products_categories pc ON p.id = pc.product_id\n" +
+//                "WHERE pc.category_title IN ('Men', 'Boot')\n" +
+//                "GROUP BY p.id, p.title, p.inPrice, p.outPrice, p.description\n" +
+//                "HAVING COUNT(DISTINCT pc.category_title) = 2";
+        if (categoryList == null || categoryList.length == 0) {
+            throw new IllegalArgumentException("Categories array must not be empty or null");
+        }
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT p.id, p.title, p.inPrice, p.outPrice, p.description FROM products p ");
+        sql.append("INNER JOIN products_categories pc ON p.id = pc.product_id ");
+        sql.append("WHERE pc.category_title IN (");
+        for (int i = 0; i < categoryList.length; i++) {
+            sql.append("?");
+            if (i < categoryList.length - 1) {
+                sql.append(", ");
+            }
+        }
+        sql.append(") ");
+        sql.append("GROUP BY p.id, p.title, p.inPrice, p.outPrice, p.description ");
+        sql.append("HAVING COUNT(DISTINCT pc.category_title) = ").append(categoryList.length);
+        List<Product> productList = new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql.toString());
+            for (int i = 0; i < categoryList.length; i++) {
+                statement.setString(i + 1, categoryList[i]);
+            }
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Product product = new Product();
+                product.setId(resultSet.getInt("id"));
+                product.setTitle(resultSet.getString("title"));
+                product.setInPrice(resultSet.getDouble("inPrice"));
+                product.setOutPrice(resultSet.getDouble("outPrice"));
+                product.setDescription(resultSet.getString("description"));
+                List<Size> sizes = getSizeListForProduct(product.getId());
+                product.setSize(sizes);
+                List<Category> categories = getCategoryListForProduct(product.getId());
+                product.setCategories(categories);
+                List<String> images = getImagesListForProduct(product.getId());
+                product.setImages(images);
+                ReviewDAO reviewDAO = new ReviewDAO();
+                product.setReviews(reviewDAO.getReviewsForProduct(resultSet.getInt("id")));
+                productList.add(product);
+            }
+        } catch (SQLException e) {
             System.out.println(e);
         }
         return productList;
@@ -214,19 +200,19 @@ public class ProductDAO extends DBContext implements DAO<Product> {
     }
 
     public List<Product> getByName(String name) {
-        String sql = "select * from [products] where title=?";
+        String sql = "select * from [products] where title like ?";
         List<Product> productList = new ArrayList<>();
         try {
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, name);
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {
+            st.setString(1, "%" + name + "%");
+            ResultSet resultSet = st.executeQuery();
+            while (resultSet.next()) {
                 Product product = new Product();
-                product.setId(rs.getInt("id"));
-                product.setTitle(rs.getString("title"));
-                product.setInPrice(rs.getDouble("inPrice"));
-                product.setOutPrice(rs.getDouble("outPrice"));
-                product.setDescription(rs.getString("description"));
+                product.setId(resultSet.getInt("id"));
+                product.setTitle(resultSet.getString("title"));
+                product.setInPrice(resultSet.getDouble("inPrice"));
+                product.setOutPrice(resultSet.getDouble("outPrice"));
+                product.setDescription(resultSet.getString("description"));
                 List<Size> sizes = getSizeListForProduct(product.getId());
                 product.setSize(sizes);
                 List<Category> categories = getCategoryListForProduct(product.getId());
@@ -234,7 +220,7 @@ public class ProductDAO extends DBContext implements DAO<Product> {
                 List<String> images = getImagesListForProduct(product.getId());
                 product.setImages(images);
                 ReviewDAO reviewDAO = new ReviewDAO();
-                product.setReviews(reviewDAO.getReviewsForProduct(rs.getInt("id")));
+                product.setReviews(reviewDAO.getReviewsForProduct(resultSet.getInt("id")));
                 productList.add(product);
             }
             return productList;
@@ -244,3 +230,4 @@ public class ProductDAO extends DBContext implements DAO<Product> {
         return null;
     }
 }
+

@@ -89,6 +89,33 @@
         </div>
     </nav>
 
+    <c:set var="product" value="${requestScope.productList}"/>
+    <div class="colorlib-product">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2 text-center colorlib-heading">
+                    <h2>Search result</h2>
+                </div>
+            </div>
+            <div class="row row-pb-md">
+                <h5>${requestScope.error}</h5>
+                <c:forEach items="${product}" var="products">
+                    <div class="col-lg-3 mb-4 text-center">
+                        <div class="product-entry border">
+                            <a href="product?productId=${products.id}" class="prod-img">
+                                <img src="<c:url value="/images/${products.images.get(0)}"/>" class="img-fluid"
+                                     alt="${products.title}}">
+                            </a>
+                            <div class="desc">
+                                <h2><a href="product?productId=${products.id}">${products.title}</a></h2>
+                                <fmt:formatNumber value="${products.outPrice}" pattern="#,##0đ" var="outPrice"/>
+                                <span class="price">${outPrice}</span>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
+
     <footer id="colorlib-footer" role="contentinfo">
         <div class="container">
             <div class="row row-pb-md">

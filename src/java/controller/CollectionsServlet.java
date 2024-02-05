@@ -9,19 +9,15 @@ import model.product.ProductDAO;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "SearchServlet", value = "/search")
-public class SearchServlet extends HttpServlet {
+@WebServlet(name = "CategoryServlet", value = "/collections")
+public class CollectionsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String name = request.getParameter("name");
+        String[] categories = request.getParameterValues("categories");
         ProductDAO productDAO = new ProductDAO();
-        List<Product> productList = productDAO.getByName(name);
-        if (!productList.isEmpty()) {
-            request.setAttribute("productList", productList);
-        } else {
-            request.setAttribute("error", "No product has been found");
-        }
-        request.getRequestDispatcher("search.jsp").forward(request, response);
+        List<Product> productList = productDAO.getProductByCategory(categories);
+        request.setAttribute("productList", productList);
+        request.getRequestDispatcher("product-by-collections.jsp").forward(request,response);
     }
 
     @Override

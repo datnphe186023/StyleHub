@@ -23,7 +23,7 @@ public class CheckoutServlet extends HttpServlet {
         cartDAO.removeCart(customer.getId());
         session.removeAttribute("cart");
         session.setAttribute("size", 0);
-        response.sendRedirect("product.jsp");
+        response.sendRedirect("all-product.jsp");
     }
 
     @Override

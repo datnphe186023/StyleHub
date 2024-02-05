@@ -14,11 +14,11 @@ import java.io.PrintWriter;
 public class CartLoginCheck extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("hi");
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //when user add product to cart, force them to login first
         HttpSession session = request.getSession(true);
         if(session.getAttribute("account") == null){
             response.sendRedirect("login.jsp");

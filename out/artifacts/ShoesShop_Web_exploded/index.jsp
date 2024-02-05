@@ -81,26 +81,26 @@
                         <ul>
                             <li class="active"><a href="index.jsp">Home</a></li>
                             <li class="has-dropdown">
-                                <a href="men.jsp">Men</a>
+                                <a href="collections?categories=Men">Men</a>
                                 <ul class="dropdown">
-                                    <li><a href="men-boot.jsp">Boot</a></li>
-                                    <li><a href="men-derby.jsp">Derby</a></li>
-                                    <li><a href="men-loafer.jsp">Loafer</a></li>
+                                    <li><a href="collections?categories=Men&categories=Boot">Boot</a></li>
+                                    <li><a href="collections?categories=Men&categories=Derby">Derby</a></li>
+                                    <li><a href="collections?categories=Men&categories=Loafer">Loafer</a></li>
                                 </ul>
                             </li>
                             <li class="has-dropdown">
-                                <a href="women.jsp">Women</a>
+                                <a href="collections?categories=Women">Women</a>
                                 <ul class="dropdown">
-                                    <li><a href="women-boot.jsp">Boot</a></li>
-                                    <li><a href="women-derby.jsp">Derby</a></li>
-                                    <li><a href="women-loafer.jsp">loafer</a></li>
-                                    <li><a href="slipper.jsp">Slipper</a></li>
-                                    <li><a href="sandal.jsp">Sandal</a></li>
-                                    <li><a href="flip-flop.jsp">Flip Flop</a></li>
+                                    <li><a href="collections?categories=Women&categories=Boot">Boot</a></li>
+                                    <li><a href="collections?categories=Women&categories=Derby">Derby</a></li>
+                                    <li><a href="collections?categories=Women&categories=Loafer">loafer</a></li>
+                                    <li><a href="collections?categories=Women&categories=Slipper">Slipper</a></li>
+                                    <li><a href="collections?categories=Women&categories=Sandal">Sandal</a></li>
+                                    <li><a href="collections?categories=Women&categories=Flip Flop">Flip Flop</a></li>
                                 </ul>
                             </li>
-                            <li><a href="the-upgrade.jsp">BST The Upgrade</a></li>
-                            <li><a href="the-focus.jsp">The Focus Project</a></li>
+                            <li><a href="collections?categories=BST THE UPGRADE">BST The Upgrade</a></li>
+                            <li><a href="collections?categories=The Focus Project">The Focus Project</a></li>
                             <li><a href="about.html">About</a></li>
                             <li><a href="contact.html">Contact</a></li>
                             <li class="cart"><a href="cart.jsp"><i class="icon-shopping-cart"></i> Cart [${size}]</a>
@@ -228,7 +228,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <p><a href="product.jsp" class="btn btn-primary btn-lg">Shop All Products</a></p>
+                    <p><a href="all-product.jsp" class="btn btn-primary btn-lg">Shop All Products</a></p>
                 </div>
             </div>
         </div>

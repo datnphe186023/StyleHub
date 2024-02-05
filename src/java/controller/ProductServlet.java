@@ -13,7 +13,14 @@ import java.util.List;
 public class ProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //this is to get a specific product
+
         String productId_raw = request.getParameter("productId");
+        //store the product-detail url in session to redirect back when in need (login for example)
+        HttpSession session = request.getSession(true);
+        String originalURL = request.getRequestURI();
+        originalURL += "?productId=" + productId_raw;
+        session.setAttribute("originalURL", originalURL);
         int productId;
         try{
             ProductDAO productDAO = new ProductDAO();
