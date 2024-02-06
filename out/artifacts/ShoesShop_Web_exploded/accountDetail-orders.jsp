@@ -125,6 +125,52 @@
             font-weight: bold;
             font-size: 1.1em;
         }
+
+        .nav-tabs {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            border-bottom: none;
+        }
+
+        .nav-tabs li {
+            display: inline;
+            margin-right: 10px;
+        }
+
+        .nav-tabs li a {
+            text-decoration: none;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            color: #666;
+        }
+
+        .nav-tabs li a.active {
+            background-color: #f0f0f0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .search-bar {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .search-bar input[type="text"] {
+            padding: 8px;
+            width: 200px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        .search-bar input[type="submit"] {
+            padding: 8px 16px;
+            border-radius: 4px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
     </style>
 
 
@@ -216,6 +262,44 @@
             </div>
             <div class="col-md-9">
                 <div class="container">
+                    <div>
+                        <ul class="nav-tabs">
+                            <li><a href="account?action=order-list" id="allTab">All</a></li>
+                            <li><a href="account?action=order-list&status=pending" id="pendingTab">Processing</a></li>
+                            <li><a href="account?action=order-list&status=canceled" id="canceledTab">Canceled</a></li>
+                            <li><a href="account?action=order-list&status=delivered" id="deliveredTab">Delivered</a></li>
+                        </ul>
+                        <script>
+                            // Function to set active class based on current status parameter
+                            function setActiveTab() {
+                                // Get current status parameter from the URL
+                                const urlParams = new URLSearchParams(window.location.search);
+                                const status = urlParams.get('status');
+                                // Remove active class from all tabs
+                                const tabs = document.querySelectorAll('.nav-tabs a');
+                                tabs.forEach(tab => {
+                                    tab.classList.remove('active');
+                                });
+                                if (status === null) {
+                                    document.getElementById('allTab').classList.add('active');
+                                } else if (status === 'pending') {
+                                    document.getElementById('pendingTab').classList.add('active');
+                                } else if (status === 'canceled') {
+                                    document.getElementById('canceledTab').classList.add('active');
+                                } else if (status === 'delivered') {
+                                    document.getElementById('deliveredTab').classList.add('active');
+                                }
+                            }
+                            window.addEventListener('load', setActiveTab);
+                        </script>
+                        <div class="search-bar">
+                            <form action="account" method="get">
+                                <input type="text" name="search" placeholder="Search orders...">
+                                <input type="text" name="action" value="order-search" hidden="hidden">
+                                <input type="submit" value="Search">
+                            </form>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="container ml-md-3">
                             <h2 style="text-align: center">Danh sách đơn hàng</h2>

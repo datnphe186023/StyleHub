@@ -98,6 +98,50 @@ public class OrderDAO extends DBContext implements DAO<Order> {
         return orderList;
     }
 
+    public List<Order> getOrderForCustomer(int customerId, String status) {
+        List<Order> orderList = new ArrayList<>();
+        String sql = "select * from orders where customer_id = ? and status like ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, customerId);
+            statement.setString(2, "%" + status + "%");
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Order order = new Order(resultSet.getInt("id"), customerId, resultSet.getDate("created"),
+                        resultSet.getString("status"), resultSet.getDouble("total_price"));
+                orderList.add(order);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return orderList;
+    }
+
+    public List<Order> findOrderForCustomer(String keyword, int customerId){
+        List<Order> orderList = new ArrayList<>();
+        String sql = "SELECT distinct o.*\n" +
+                "FROM orders o\n" +
+                "         JOIN orderDetails od ON o.id = od.order_id\n" +
+                "         JOIN products p ON od.product_id = p.id\n" +
+                "WHERE o.customer_id = ?\n" +
+                "  AND (o.id LIKE ? OR p.title LIKE ?)\n";
+        try{
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, customerId);
+            statement.setString(2, "%" + keyword + "%");
+            statement.setString(3, "%" + keyword + "%");
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                Order order = new Order(resultSet.getInt("id"), customerId, resultSet.getDate("created"),
+                        resultSet.getString("status"), resultSet.getDouble("total_price"));
+                orderList.add(order);
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return orderList;
+    }
+
     public List<OrderDetail> getOrderDetailForOrder(int orderId) {
         List<OrderDetail> orderDetails = new ArrayList<>();
         String sql = "select * from orderDetails where order_id = ?";
@@ -115,6 +159,7 @@ public class OrderDAO extends DBContext implements DAO<Order> {
         }
         return orderDetails;
     }
+
 
     public void cancelOrderForUser(int orderId){
         String sql = "update orders set status = ? where id = ?";
