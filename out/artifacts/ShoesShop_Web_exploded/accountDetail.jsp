@@ -129,6 +129,7 @@
                 <ul class="list-group">
                     <li class="list-group-item"><a href="account">Thông tin tài khoản</a></li>
                     <li class="list-group-item"><a href="account?action=address-list">Danh sách địa chỉ</a></li>
+                    <li class="list-group-item"><a href="account?action=order-list">Danh sách đơn hàng</a></li>
                     <li class="list-group-item"><a href="login">Đăng xuất</a></li>
                 </ul>
             </div>

@@ -14,15 +14,17 @@ public class Order {
     private int id;
     private int customerId;
     private Date created;
+    private String status;
     private double totalPrice;
 
     public Order() {
     }
 
-    public Order(int id, int customerId, Date created, double totalPrice) {
+    public Order(int id, int customerId, Date created, String status, double totalPrice) {
         this.id = id;
         this.customerId = customerId;
         this.created = created;
+        this.status = status;
         this.totalPrice = totalPrice;
     }
     
@@ -58,5 +60,12 @@ public class Order {
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
-    
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

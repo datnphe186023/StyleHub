@@ -6,6 +6,7 @@ package model.order;
 
 import model.DAO;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.sql.SQLException;
 import java.sql.ResultSet;
@@ -27,11 +28,12 @@ public class OrderDAO extends DBContext implements DAO<Order> {
         LocalDate curDate = java.time.LocalDate.now();
         String date = curDate.toString();
         try {
-            String sql = "insert into [orders] values (?,?,?)";
+            String sql = "insert into [orders] values (?,?,?,?)";
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, customer.getId());
             st.setString(2, date);
-            st.setDouble(3, cart.getTotalMoney());
+            st.setString(3, "purchased-pending");
+            st.setDouble(4, cart.getTotalMoney());
             st.executeUpdate();
 
             String sql1 = "select top 1 id from [orders] order by id desc";
@@ -76,5 +78,53 @@ public class OrderDAO extends DBContext implements DAO<Order> {
     @Override
     public List<Order> getAll() {
         return null;
+    }
+
+    public List<Order> getOrderForCustomer(int customerId) {
+        List<Order> orderList = new ArrayList<>();
+        String sql = "select * from orders where customer_id = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, customerId);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Order order = new Order(resultSet.getInt("id"), customerId, resultSet.getDate("created"),
+                        resultSet.getString("status"), resultSet.getDouble("total_price"));
+                orderList.add(order);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return orderList;
+    }
+
+    public List<OrderDetail> getOrderDetailForOrder(int orderId) {
+        List<OrderDetail> orderDetails = new ArrayList<>();
+        String sql = "select * from orderDetails where order_id = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, orderId);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                OrderDetail orderDetail = new OrderDetail(resultSet.getInt("product_id"), orderId, resultSet.getInt("size"),
+                        resultSet.getInt("amount"), resultSet.getDouble("price"));
+                orderDetails.add(orderDetail);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return orderDetails;
+    }
+
+    public void cancelOrderForUser(int orderId){
+        String sql = "update orders set status = ? where id = ?";
+        try{
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, "cancel-pending");
+            statement.setInt(2, orderId);
+            statement.executeUpdate();
+        }catch (SQLException e){
+            System.out.println(e);
+        }
     }
 }

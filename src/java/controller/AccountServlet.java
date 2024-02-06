@@ -1,10 +1,14 @@
 package controller;
 
+import com.oracle.wls.shaded.org.apache.xpath.operations.Or;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import model.customer.Customer;
 import model.customer.CustomerDAO;
+import model.order.Order;
+import model.order.OrderDAO;
+import model.order.OrderDetail;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -104,6 +108,33 @@ public class AccountServlet extends HttpServlet {
                     }
                     request.getRequestDispatcher("accountDetail.jsp").forward(request, response);
                 } catch (Exception e){
+                    response.sendRedirect("account");
+                }
+            } else if (action.equals("order-list")) {
+                try{
+                    OrderDAO orderDAO = new OrderDAO();
+                    List<Order> orderList = orderDAO.getOrderForCustomer(customer.getId());
+                    List<OrderDetail>[] orderDetailList = new List[orderList.size()];
+                    for (int i = 0; i < orderList.size(); i++){
+                        orderDetailList[i] = orderDAO.getOrderDetailForOrder(orderList.get(i).getId());
+                    }
+                    request.setAttribute("orderDetail", orderDetailList);
+                    request.setAttribute("orders", orderList);
+                    request.getRequestDispatcher("accountDetail-orders.jsp").forward(request,response);
+                } catch (Exception e){
+                    System.out.println(e);
+                    response.sendRedirect("account");
+                }
+            } else if (action.equals("cancelOrder")) {
+                String orderIdRaw = request.getParameter("orderId");
+                int orderId;
+                try{
+                    orderId = Integer.parseInt(orderIdRaw);
+                    OrderDAO orderDAO = new OrderDAO();
+                    orderDAO.cancelOrderForUser(orderId);
+                    response.sendRedirect("account?action=order-list");
+                }catch (Exception e){
+                    System.out.println(e);
                     response.sendRedirect("account");
                 }
             }

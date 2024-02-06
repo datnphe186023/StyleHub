@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -38,12 +39,91 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
-        /* Specific and unique CSS classes */
         .account-center-heading {
             font-size: 36px;
             text-align: center;
             margin-top: 20px;
             margin-bottom: 20px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .order {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .order-header .order-id {
+            font-weight: bold;
+        }
+
+        .order-header .order-status {
+            font-weight: bold;
+        }
+
+        .order-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .order-product {
+            display: flex;
+            margin-bottom: 5px;
+        }
+
+        .product-img {
+            width: 80px;
+            height: 80px;
+            margin-right: 10px;
+        }
+
+        .product-details {
+            flex-grow: 1;
+        }
+
+        .product-name {
+            font-weight: bold;
+        }
+
+        .product-price,
+        .product-quantity {
+            margin-top: 5px;
+        }
+
+        .total-price {
+            margin-left: auto;
+        }
+        .cancel-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right; /* Align the button to the right */
+            margin-top: 10px; /* Add some top margin for spacing */
+        }
+
+        .cancel-btn:hover {
+            background-color: #c82333; /* Darken the background color on hover */
+        }
+
+        .bold {
+            font-weight: bold;
+            font-size: 1.1em;
         }
     </style>
 
@@ -52,6 +132,7 @@
 <body>
 <c:set var="size" value="${sessionScope.size}"/>
 <c:set var="account" value="${sessionScope.account}"/>
+<jsp:useBean id="database" class="model.product.ProductDAO"/>
 <div class="colorlib-loader"></div>
 
 <div id="page">
@@ -137,68 +218,53 @@
                 <div class="container">
                     <div class="row">
                         <div class="container ml-md-3">
-                            <form action="account" method="post">
-                                <div class="form-group">
-                                    <label for="full-name">Họ và tên</label>
-                                    <input type="text" class="form-control" name="full-name" id="full-name"
-                                           value="${account.fullName}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="phone">Số điện thoại</label>
-                                    <input type="text" class="form-control" name="phone" id="phone"
-                                           value="${account.phoneNumber}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control" name="email" id="email"
-                                           value="${account.email}">
-                                </div>
-                                <div class="form-group">
-                                    <label>Giới tính*</label>
-                                    <div class="form-check">
-                                        <input type="radio" class="form-check-input" name="gender" id="male"
-                                               value="Male" required>
-                                        <label class="form-check-label" for="male">Nam</label>
+                            <h2 style="text-align: center">Danh sách đơn hàng</h2>
+                            <c:set var="orders" value="${requestScope.orders}"/>
+                            <c:set var="orderDetails" value="${requestScope.orderDetail}"/>
+                            <c:set var="i" value="0"/>
+                            <c:forEach var="order" items="${orders}">
+                                <div class="order">
+                                    <div class="order-header">
+                                        <div class="order-id">Order ID: ${order.id}</div>
+                                        <div class="order-status">Status: ${order.status}</div>
                                     </div>
-                                    <div class="form-check">
-                                        <input type="radio" class="form-check-input" name="gender" id="female"
-                                               value="Female">
-                                        <label class="form-check-label" for="female">Nữ</label>
+                                    <div class="order-details">
+                                        <c:forEach var="orderDetailItem" items="${orderDetails[i]}">
+                                            <div class="order-product">
+                                                <img src="images/${database.get(orderDetailItem.productId).images.get(0)}"
+                                                     alt="Product Image" class="product-img">
+                                                <div class="product-details">
+                                                    <div class="product-name">${database.get(orderDetailItem.productId).title}</div>
+                                                    <div class="product-size">Size: ${orderDetailItem.size}</div>
+                                                    <div class="product-quantity">Quantity: ${orderDetailItem.amount}</div>
+                                                    <fmt:formatNumber value="${database.get(orderDetailItem.productId).outPrice}"
+                                                                      pattern="#,##0đ" var="outPrice"/>
+                                                    <div class="product-price">Price: <span class="bold">${outPrice}</span></div>
+                                                </div>
+                                            </div>
+                                        </c:forEach>
+                                        <fmt:formatNumber value="${order.totalPrice}" pattern="#,##0đ" var="totalPrice"/>
+                                        <div class="total-price">Total Price: <span class="bold">${totalPrice}</span></div>
+                                        <c:if test="${!order.status.equals('finished')}">
+                                            <form id="cancelForm_${order.id}" action="account" method="get">
+                                                <input type="hidden" name="orderId" value="${order.id}">
+                                                <input type="text" name="action" value="cancelOrder" hidden="hidden"/>
+                                                <input type="submit" value="Cancel Order" class="cancel-btn" onclick="return canCancel(${order.id}, '${order.status}');">
+                                            </form>
+                                        </c:if>
+                                        <script>
+                                            function canCancel(orderId, status) {
+                                                if (status !== 'purchased-pending') {
+                                                    alert('You cannot cancel this order at the moment.');
+                                                    return false;
+                                                }
+                                                return true;
+                                            }
+                                        </script>
                                     </div>
+                                    <c:set var="i" value="${i+1}"/>
                                 </div>
-                                <div class="form-group">
-                                    <label for="birthday">Birthday*</label>
-                                    <input type="date" class="form-control" id="birthday" name="birthday"
-                                           value="${account.birthday}">
-                                </div>
-                                <input type="text" name="action" value="updateInfo" hidden="hidden">
-                                <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
-                                ${requestScope.infoUpdateResult}
-                            </form>
-                            <h1>Change Password</h1>
-                            <form action="account" method="get">
-                                <div class="password-section">
-                                    <div class="form-group">
-                                        <label for="currentPassword">Mật khẩu hiện tại*</label>
-                                        <input type="password" class="form-control" id="currentPassword"
-                                               name="currentPassword" placeholder="Mật khẩu hiện tại*" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="newPassword">Mật khẩu mới*</label>
-                                        <input type="password" class="form-control" id="newPassword" name="newPassword"
-                                               placeholder="Mật khẩu mới*" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="confirmPassword">Nhập lại mật khẩu mới*</label>
-                                        <input type="password" class="form-control" id="confirmPassword"
-                                               name="confirmPassword" placeholder="Nhập lại mật khẩu mới*" required>
-                                    </div>
-                                    <input type="text" name="action" value="changePass" hidden="hidden">
-                                </div>
-                                <button type="submit" class="btn btn-primary">Change password</button>
-                            </form>
-                            ${requestScope.passChangeResult}
-                            <button class="btn btn-secondary"><a href="login" style="color: white;">Log Out</a></button>
+                            </c:forEach>
                         </div>
                     </div>
                 </div>

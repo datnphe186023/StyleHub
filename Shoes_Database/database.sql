@@ -86,6 +86,7 @@ CREATE TABLE [orders] (
   [id] integer PRIMARY KEY IDENTITY(1, 1),
   [customer_id] integer,
   [created] date,
+  [status] nvarchar(255),
   [total_price] money
 )
 GO
