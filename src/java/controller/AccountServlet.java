@@ -57,7 +57,7 @@ public class AccountServlet extends HttpServlet {
                         session.setAttribute("account", customer);
                         response.sendRedirect("account?action=address-list");
                     } catch (Exception e){
-                        request.getRequestDispatcher("404.jsp").forward(request,response);
+                        response.sendRedirect("account");
                     }
             } else if (action.equals("removeAddress")){
                 String addressIdRaw = request.getParameter("addressId");
@@ -70,7 +70,41 @@ public class AccountServlet extends HttpServlet {
                     response.sendRedirect("account?action=address-list");
                 } catch (Exception e){
                     System.out.println(e);
-                    request.getRequestDispatcher("404.jsp").forward(request,response);
+                    response.sendRedirect("account");
+                }
+            } else if (action.equals("changePass")) {
+                String currentPassword = request.getParameter("currentPassword");
+                String newPassword = request.getParameter("newPassword");
+                String confirmPassword = request.getParameter("confirmPassword");
+                try {
+                    boolean result = customerDAO.updatePassword(customer.getId(), currentPassword, newPassword, confirmPassword);
+                    if(result){
+                        request.setAttribute("passChangeResult", "Update Successful");
+                    } else {
+                        request.setAttribute("passChangeResult", "Update Failed");
+                    }
+                    request.getRequestDispatcher("accountDetail.jsp").forward(request,response);
+                }catch (Exception e){
+                    response.sendRedirect("account");
+                }
+            } else if (action.equals("updateInfo")) {
+                String newName = request.getParameter("full-name");
+                String newPhone = request.getParameter("phone");
+                String newEmail = request.getParameter("email");
+                String newGender = request.getParameter("gender");
+                String newBirthday = request.getParameter("birthday");
+                try {
+                    Boolean result = customerDAO.updateCustomer(customer.getId(), newName, newPhone, newEmail, newGender, newBirthday);
+                    Customer updatedCustomer = customerDAO.getCustomerById(customer.getId());
+                    session.setAttribute("account", updatedCustomer);
+                    if (result) {
+                        request.setAttribute("infoUpdateResult", "Update Successful");
+                    } else {
+                        request.setAttribute("infoUpdateResult", "Update Failed");
+                    }
+                    request.getRequestDispatcher("accountDetail.jsp").forward(request, response);
+                } catch (Exception e){
+                    response.sendRedirect("account");
                 }
             }
         }
@@ -79,26 +113,6 @@ public class AccountServlet extends HttpServlet {
     @Override
     //this is for updating account information
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String newName = request.getParameter("full-name");
-        String newPhone = request.getParameter("phone");
-        String newEmail = request.getParameter("email");
-        String newGender = request.getParameter("gender");
-        String newBirthday = request.getParameter("birthday");
-        CustomerDAO customerDAO = new CustomerDAO();
-        HttpSession session = request.getSession(true);
-        try {
-            Customer customer = (Customer) session.getAttribute("account");
-            Boolean result = customerDAO.updateCustomer(customer.getId(), newName, newPhone, newEmail, newGender, newBirthday);
-            Customer updatedCustomer = customerDAO.getCustomerById(customer.getId());
-            session.setAttribute("account", updatedCustomer);
-            if (result) {
-                request.setAttribute("result", "Update Successful");
-            } else {
-                request.setAttribute("result", "Update Failed");
-            }
-            request.getRequestDispatcher("accountDetail.jsp").forward(request, response);
-        } catch (Exception e){
-            response.sendRedirect("404.jsp");
-        }
+
     }
 }

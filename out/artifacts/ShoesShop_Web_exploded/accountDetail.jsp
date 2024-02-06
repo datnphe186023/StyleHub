@@ -170,10 +170,33 @@
                                     <input type="date" class="form-control" id="birthday" name="birthday"
                                            value="${account.birthday}">
                                 </div>
+                                <input type="text" name="action" value="updateInfo" hidden="hidden">
                                 <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
-                                ${requestScope.result}
+                                ${requestScope.infoUpdateResult}
                             </form>
-                            <button class="btn btn-secondary"><a href="password" style="color: white;">Change password</a></button>
+                            <h1>Change Password</h1>
+                            <form action="account" method="get">
+                                <div class="password-section">
+                                    <div class="form-group">
+                                        <label for="currentPassword">Mật khẩu hiện tại*</label>
+                                        <input type="password" class="form-control" id="currentPassword"
+                                               name="currentPassword" placeholder="Mật khẩu hiện tại*" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="newPassword">Mật khẩu mới*</label>
+                                        <input type="password" class="form-control" id="newPassword" name="newPassword"
+                                               placeholder="Mật khẩu mới*" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="confirmPassword">Nhập lại mật khẩu mới*</label>
+                                        <input type="password" class="form-control" id="confirmPassword"
+                                               name="confirmPassword" placeholder="Nhập lại mật khẩu mới*" required>
+                                    </div>
+                                    <input type="text" name="action" value="changePass" hidden="hidden">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Change password</button>
+                            </form>
+                            ${requestScope.passChangeResult}
                             <button class="btn btn-secondary"><a href="login" style="color: white;">Log Out</a></button>
                         </div>
                     </div>
