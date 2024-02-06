@@ -65,11 +65,11 @@
                         <%
                             if (session.getAttribute("account") != null) {
                         %>
-                        <a href="accountDetail.jsp">${sessionScope.account.fullName}</a>
+                        <a href="account">${sessionScope.account.fullName}</a>
                         <%
                             }else{
                         %>
-                        <a href="login.jsp" style="margin-right: 10px;">Login</a>
+                        <a href="account" style="margin-right: 10px;">Login</a>
                         <a href="register.jsp">Register</a>
                         <%
                             }
@@ -228,7 +228,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <p><a href="all-product.jsp" class="btn btn-primary btn-lg">Shop All Products</a></p>
+                    <p><a href="collections" class="btn btn-primary btn-lg">Shop All Products</a></p>
                 </div>
             </div>
         </div>

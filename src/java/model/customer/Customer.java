@@ -141,7 +141,10 @@ public class Customer {
         this.customerAddresses = customerAddresses;
     }
 
-    
+    public boolean isAdmin(){
+        if (role == 1) return false;
+        return true;
+    }
     
     
 }

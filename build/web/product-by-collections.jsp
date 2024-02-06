@@ -69,7 +69,7 @@
                         <%
                         }else{
                         %>
-                        <a href="login.jsp" style="margin-right: 10px;">Login</a>
+                        <a href="account" style="margin-right: 10px;">Login</a>
                         <a href="register.jsp">Register</a>
                         <%
                             }
@@ -142,9 +142,10 @@
                     <div class="block-27">
                         <ul>
                             <li><a href="#"><i class="ion-ios-arrow-back"></i></a></li>
+                            <c:set var="collections" value="${requestScope.collections}"/>
                             <c:forEach begin="${1}" end="${requestScope.numberOfPage}" var="i">
                                 <li>
-                                <a class="${i==page?"active":""}" href="first?page=${i}">${i}</a>
+                                <a class="${i==page?"active":""}" href="?${collections}&page=${i}">${i}</a>
                                 </li>
                             </c:forEach>
 <%--                            <li class="active"><span>1</span></li>--%>

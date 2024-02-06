@@ -21,7 +21,7 @@ public class CartLoginCheck extends HttpServlet {
         //when user add product to cart, force them to login first
         HttpSession session = request.getSession(true);
         if(session.getAttribute("account") == null){
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("account");
         } else {
             String amount_raw = request.getParameter("quantity");
             String productId_raw = request.getParameter("id");

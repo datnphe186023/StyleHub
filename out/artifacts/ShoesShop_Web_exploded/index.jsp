@@ -65,11 +65,11 @@
                         <%
                             if (session.getAttribute("account") != null) {
                         %>
-                        <a href="accountDetail.jsp">${sessionScope.account.fullName}</a>
+                        <a href="account">${sessionScope.account.fullName}</a>
                         <%
                             }else{
                         %>
-                        <a href="login.jsp" style="margin-right: 10px;">Login</a>
+                        <a href="account" style="margin-right: 10px;">Login</a>
                         <a href="register.jsp">Register</a>
                         <%
                             }

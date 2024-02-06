@@ -128,57 +128,21 @@
             <div class="col-md-3">
                 <ul class="list-group">
                     <li class="list-group-item"><a href="account">Thông tin tài khoản</a></li>
-                    <li class="list-group-item"><a href="account?action=address-list">Danh sách địa chỉ</a></li>
+                    <li class="list-group-item"><a href="account?action=addresses">Danh sách địa chỉ</a></li>
                     <li class="list-group-item"><a href="login">Đăng xuất</a></li>
                 </ul>
             </div>
-            <div class="col-md-9">
-                <div class="container">
-                    <div class="row">
-                        <div class="container ml-md-3">
-                            <form action="account" method="post">
-                                <div class="form-group">
-                                    <label for="full-name">Họ và tên</label>
-                                    <input type="text" class="form-control" name="full-name" id="full-name"
-                                           value="${account.fullName}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="phone">Số điện thoại</label>
-                                    <input type="text" class="form-control" name="phone" id="phone"
-                                           value="${account.phoneNumber}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control" name="email" id="email"
-                                           value="${account.email}">
-                                </div>
-                                <div class="form-group">
-                                    <label>Giới tính*</label>
-                                    <div class="form-check">
-                                        <input type="radio" class="form-check-input" name="gender" id="male"
-                                               value="Male" required>
-                                        <label class="form-check-label" for="male">Nam</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input type="radio" class="form-check-input" name="gender" id="female"
-                                               value="Female">
-                                        <label class="form-check-label" for="female">Nữ</label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="birthday">Birthday*</label>
-                                    <input type="date" class="form-control" id="birthday" name="birthday"
-                                           value="${account.birthday}">
-                                </div>
-                                <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
-                            </form>
-                            <button class="btn btn-secondary"><a href="login" style="color: white;">Log Out</a></button>
-                        </div>
-                    </div>
-                </div>
 
-            </div>
         </div>
+
+
+        <script>
+            function togglePasswordSection() {
+                var passwordSection = document.querySelector('.password-section');
+                passwordSection.style.display = document.getElementById('changePassword').checked ? 'block' : 'none';
+            }
+        </script>
+
     </div>
     <footer id="colorlib-footer" role="contentinfo">
         <div class="container">

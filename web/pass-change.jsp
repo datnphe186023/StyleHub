@@ -136,43 +136,27 @@
                 <div class="container">
                     <div class="row">
                         <div class="container ml-md-3">
-                            <form action="account" method="post">
-                                <div class="form-group">
-                                    <label for="full-name">Họ và tên</label>
-                                    <input type="text" class="form-control" name="full-name" id="full-name"
-                                           value="${account.fullName}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="phone">Số điện thoại</label>
-                                    <input type="text" class="form-control" name="phone" id="phone"
-                                           value="${account.phoneNumber}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control" name="email" id="email"
-                                           value="${account.email}">
-                                </div>
-                                <div class="form-group">
-                                    <label>Giới tính*</label>
-                                    <div class="form-check">
-                                        <input type="radio" class="form-check-input" name="gender" id="male"
-                                               value="Male" required>
-                                        <label class="form-check-label" for="male">Nam</label>
+                            <form action="password" method="post">
+                                <div class="password-section">
+                                    <div class="form-group">
+                                        <label for="currentPassword">Mật khẩu hiện tại*</label>
+                                        <input type="password" class="form-control" id="currentPassword"
+                                               name="currentPassword" placeholder="Mật khẩu hiện tại*" required>
                                     </div>
-                                    <div class="form-check">
-                                        <input type="radio" class="form-check-input" name="gender" id="female"
-                                               value="Female">
-                                        <label class="form-check-label" for="female">Nữ</label>
+                                    <div class="form-group">
+                                        <label for="newPassword">Mật khẩu mới*</label>
+                                        <input type="password" class="form-control" id="newPassword" name="newPassword"
+                                               placeholder="Mật khẩu mới*" required>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="birthday">Birthday*</label>
-                                    <input type="date" class="form-control" id="birthday" name="birthday"
-                                           value="${account.birthday}">
+                                    <div class="form-group">
+                                        <label for="confirmPassword">Nhập lại mật khẩu mới*</label>
+                                        <input type="password" class="form-control" id="confirmPassword"
+                                               name="confirmPassword" placeholder="Nhập lại mật khẩu mới*" required>
+                                    </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
                             </form>
-                            <button class="btn btn-secondary"><a href="login" style="color: white;">Log Out</a></button>
+                            <h5 style="color: red">${requestScope.result}</h5>
                         </div>
                     </div>
                 </div>

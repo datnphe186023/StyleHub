@@ -42,7 +42,7 @@
 
         <%
             if(session.getAttribute("account") == null){
-                response.sendRedirect("login.jsp");
+                response.sendRedirect("account");
             }
         %>
 

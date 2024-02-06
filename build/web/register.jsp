@@ -13,13 +13,12 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <%@include file="header.jsp" %>
 
         <div>
 
             <div>
                 <h1>Đăng ký</h1>
-                <h1><a href="<c:url value="/login.jsp"/>">Đăng nhập</a></h1>
+                <h1><a href="<c:url value="/account"/>">Đăng nhập</a></h1>
             </div>
 
             <form>
@@ -33,6 +32,5 @@
 
         </div>
 
-        <%@include file="footer.jsp" %>
     </body>
 </html>

@@ -10,12 +10,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import model.address.Address;
 import model.review.Review;
 import utils.DBContext;
 
 /**
- *
  * @author datng
  */
 public class CustomerDAO extends DBContext {
@@ -49,13 +49,13 @@ public class CustomerDAO extends DBContext {
         return null;
     }
 
-    public Customer getCustomerById(int id){
+    public Customer getCustomerById(int id) {
         String sql = "select * from customers where id = ?";
-        try{
+        try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
-            if(resultSet.next()){
+            if (resultSet.next()) {
                 Customer customer = new Customer();
                 customer.setId(resultSet.getInt("id"));
                 customer.setUsername(resultSet.getString("username"));
@@ -70,13 +70,13 @@ public class CustomerDAO extends DBContext {
                 customer.setCustomerAddresses(getAddressesListForCustomer(customer.getId()));
                 return customer;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
         return null;
     }
-    
-        private List<Review> getReviewsListForCustomer(int customerId) throws SQLException {
+
+    private List<Review> getReviewsListForCustomer(int customerId) throws SQLException {
         List<Review> reviews = new ArrayList<>();
         String sql = "SELECT * FROM reviews WHERE customer_id = ?";
 
@@ -117,5 +117,45 @@ public class CustomerDAO extends DBContext {
         }
 
         return addresses;
+    }
+
+    public boolean updateCustomer(int customerId, String newName, String newPhone, String newEmail, String newGender, String newBirthday) {
+        String sql = "UPDATE customers set full_name = ?, phone_number = ?, email = ?, gender = ?, birthday = ? " +
+                "where customers.id = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            Customer customer = getCustomerById(customerId);
+            statement.setString(1, newName);
+            statement.setString(2, newPhone);
+            statement.setString(3, newEmail);
+            statement.setString(4, newGender);
+            statement.setString(5, newBirthday);
+            statement.setInt(6, customerId);
+            statement.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return false;
+    }
+
+    public boolean updatePassword(int customerId, String currentPassword, String newPassword, String confirmPassword) {
+        Customer customer = getCustomerById(customerId);
+        if (!customer.getPassword().equals(currentPassword)) {
+            return false;
+        }
+        if (!newPassword.equals(confirmPassword)) {
+            return false;
+        }
+        String sql = "Update customers set password = ? where id = ?";
+        try{
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(2, customerId);
+            statement.setString(1, newPassword);
+            statement.executeUpdate();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return true;
     }
 }
