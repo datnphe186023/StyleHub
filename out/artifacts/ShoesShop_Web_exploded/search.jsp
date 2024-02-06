@@ -51,37 +51,62 @@
         <div class="top-menu">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-7 col-md-9">
-                        <div id="colorlib-logo"><a href="index.html">Footwear</a></div>
+                    <div class="col-sm-5 col-md-7">
+                        <div id="colorlib-logo"><a href="index.jsp">Style Hub</a></div>
                     </div>
                     <div class="col-sm-5 col-md-3">
-                        <form action="#" class="search-wrap">
+                        <form action="search" class="search-wrap">
                             <div class="form-group">
-                                <input type="search" class="form-control search" placeholder="Search">
+                                <input type="search" name="name" class="form-control search" placeholder="Search">
                                 <button class="btn btn-primary submit-search text-center" type="submit"><i
                                         class="icon-search"></i></button>
                             </div>
                         </form>
                     </div>
+                    <div class="col-sm-2 col-md-2" style="font-weight: 400; font-family: 'Rokkitt', Georgia, serif; text-transform: uppercase; font-size: 15px; letter-spacing: 2px;">
+                        <%
+                            if (session.getAttribute("account") != null) {
+                        %>
+                        <a href="accountDetail.jsp">${sessionScope.account.fullName}</a>
+                        <%
+                        }else{
+                        %>
+                        <a href="account" style="margin-right: 10px;">Login</a>
+                        <a href="register.jsp">Register</a>
+                        <%
+                            }
+                        %>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 text-left menu-1">
                         <ul>
-                            <li class="active"><a href="index.html">Home</a></li>
+                            <li class="active"><a href="index.jsp">Home</a></li>
                             <li class="has-dropdown">
-                                <a href="men.html">Men</a>
+                                <a href="collections?categories=Men">Men</a>
                                 <ul class="dropdown">
-                                    <li><a href="product-detail.html">Product Detail</a></li>
-                                    <li><a href="cart.html">Shopping Cart</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
-                                    <li><a href="order-complete.html">Order Complete</a></li>
-                                    <li><a href="add-to-wishlist.html">Wishlist</a></li>
+                                    <li><a href="collections?categories=Men&categories=Boot">Boot</a></li>
+                                    <li><a href="collections?categories=Men&categories=Derby">Derby</a></li>
+                                    <li><a href="collections?categories=Men&categories=Loafer">Loafer</a></li>
                                 </ul>
                             </li>
-                            <li><a href="women.html">Women</a></li>
+                            <li class="has-dropdown">
+                                <a href="collections?categories=Women">Women</a>
+                                <ul class="dropdown">
+                                    <li><a href="collections?categories=Women&categories=Boot">Boot</a></li>
+                                    <li><a href="collections?categories=Women&categories=Derby">Derby</a></li>
+                                    <li><a href="collections?categories=Women&categories=Loafer">loafer</a></li>
+                                    <li><a href="collections?categories=Women&categories=Slipper">Slipper</a></li>
+                                    <li><a href="collections?categories=Women&categories=Sandal">Sandal</a></li>
+                                    <li><a href="collections?categories=Women&categories=Flip Flop">Flip Flop</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="collections?categories=BST THE UPGRADE">BST The Upgrade</a></li>
+                            <li><a href="collections?categories=The Focus Project">The Focus Project</a></li>
                             <li><a href="about.html">About</a></li>
                             <li><a href="contact.html">Contact</a></li>
-                            <li class="cart"><a href="cart.html"><i class="icon-shopping-cart"></i> Cart [0]</a></li>
+                            <li class="cart"><a href="cart.jsp"><i class="icon-shopping-cart"></i> Cart [${size}]</a>
+                            </li>
                         </ul>
                     </div>
                 </div>

@@ -11,7 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.address.Address;
 import model.review.Review;
 import utils.DBContext;
 
@@ -99,19 +98,15 @@ public class CustomerDAO extends DBContext {
         return reviews;
     }
 
-    private List<Address> getAddressesListForCustomer(int customerId) throws SQLException {
-        List<Address> addresses = new ArrayList<>();
+    private List<String> getAddressesListForCustomer(int customerId) throws SQLException {
+        List<String> addresses = new ArrayList<>();
         String sql = "SELECT * FROM customerAddress WHERE customer_id = ?";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, customerId);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Address address = new Address();
-                    address.setId(resultSet.getInt("id"));
-                    address.setCustomerId(resultSet.getInt("customer_id"));
-                    address.setAddress(resultSet.getString("address"));
-                    addresses.add(address);
+                    addresses.add(resultSet.getInt("id") + "%" + resultSet.getString("address"));
                 }
             }
         }
@@ -157,5 +152,29 @@ public class CustomerDAO extends DBContext {
             System.out.println(e);
         }
         return true;
+    }
+
+    public void addAddress(int customerId, String address){
+        Customer customer = getCustomerById(customerId);
+        String sql = "Insert into customerAddress values (?,?)";
+        try{
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, customerId);
+            statement.setString(2, address);
+            statement.executeUpdate();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void removeAddress(int id){
+        String sql = "Delete from customerAddress where id = ?";
+        try{
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 }

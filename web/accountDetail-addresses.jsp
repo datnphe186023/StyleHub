@@ -38,7 +38,6 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
-        /* Specific and unique CSS classes */
         .account-center-heading {
             font-size: 36px;
             text-align: center;
@@ -128,21 +127,48 @@
             <div class="col-md-3">
                 <ul class="list-group">
                     <li class="list-group-item"><a href="account">Thông tin tài khoản</a></li>
-                    <li class="list-group-item"><a href="account?action=addresses">Danh sách địa chỉ</a></li>
+                    <li class="list-group-item"><a href="account?action=address-list">Danh sách địa chỉ</a></li>
                     <li class="list-group-item"><a href="login">Đăng xuất</a></li>
                 </ul>
             </div>
+            <div class="col-md-9">
+                <div class="container">
+                    <div class="row">
+                        <div class="container ml-md-3">
+                            <div class="row">
+                                <c:forEach items="${requestScope.addressList}" var="address">
+                                    <div class="col-md-8">
+                                        <ul class="list-group">
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                <div>
+                                                    Họ và tên người nhận: ${address[1]}<br>
+                                                    Số điện thoại: ${address[2]}<br>
+                                                    Địa chỉ : ${address[3]}
+                                                </div>
+                                                <a href="account?action=removeAddress&addressId=${address[0]}" class="btn btn-sm">X</a>
+                                            </li>
 
+                                        </ul>
+                                    </div>
+                                </c:forEach>
+                            </div>
+                            <h2>Thêm địa chỉ</h2>
+                            <form method="get" action="account">
+                                <label for="receiver-name">Họ và tên người nhận</label> <br/>
+                                <input type="text" name="receiver-name" id="receiver-name" class="form-control" placeholder="Nhập tên người nhận" required autofocus><br/>
+                                <label for="receiver-phone">Số điện thoại</label><br/>
+                                <input type="text" name="receiver-phone" id="receiver-phone" class="form-control" placeholder="Nhập số điện thoại" required>
+                                <label for="address">Số điện thoại</label><br/>
+                                <input type="text" name="address" id="address" class="form-control" placeholder="Nhập địa chỉ" required>
+                                <input type="text" name="action" value="addAddress" hidden="hidden"/>
+                                <button type="submit" class="btn btn-primary" style="margin-top: 16px">Add address</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
-
-
-        <script>
-            function togglePasswordSection() {
-                var passwordSection = document.querySelector('.password-section');
-                passwordSection.style.display = document.getElementById('changePassword').checked ? 'block' : 'none';
-            }
-        </script>
-
     </div>
     <footer id="colorlib-footer" role="contentinfo">
         <div class="container">

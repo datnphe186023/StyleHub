@@ -6,7 +6,6 @@ package model.customer;
 
 import java.util.Date;
 import java.util.List;
-import model.address.Address;
 import model.review.Review;
 
 /**
@@ -25,9 +24,9 @@ public class Customer {
     private String image;
     private short role;
     private List<Review> reviews;
-    private List<Address> customerAddresses;
+    private List<String> customerAddresses;
 
-    public Customer(int id, String username, String password, String fullName, String phoneNumber, String email, String gender, Date birthday, String image, short role, List<Review> reviews, List<Address> customerAddresses) {
+    public Customer(int id, String username, String password, String fullName, String phoneNumber, String email, String gender, Date birthday, String image, short role, List<Review> reviews, List<String> customerAddresses) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -133,11 +132,11 @@ public class Customer {
         this.reviews = reviews;
     }
 
-    public List<Address> getCustomerAddresses() {
+    public List<String> getCustomerAddresses() {
         return customerAddresses;
     }
 
-    public void setCustomerAddresses(List<Address> customerAddresses) {
+    public void setCustomerAddresses(List<String> customerAddresses) {
         this.customerAddresses = customerAddresses;
     }
 
