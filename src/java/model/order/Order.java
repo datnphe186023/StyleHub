@@ -16,18 +16,27 @@ public class Order {
     private Date created;
     private String status;
     private double totalPrice;
+    private int address;
 
     public Order() {
     }
 
-    public Order(int id, int customerId, Date created, String status, double totalPrice) {
+    public Order(int id, int customerId, Date created, String status, double totalPrice, int address) {
         this.id = id;
         this.customerId = customerId;
         this.created = created;
         this.status = status;
         this.totalPrice = totalPrice;
+        this.address = address;
     }
-    
+
+    public int getAddress() {
+        return address;
+    }
+
+    public void setAddress(int address) {
+        this.address = address;
+    }
 
     public int getId() {
         return id;

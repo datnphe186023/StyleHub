@@ -23,16 +23,12 @@ public class AccountServlet extends HttpServlet {
         CustomerDAO customerDAO = new CustomerDAO();
         Customer customer = null;
         if (session.getAttribute("account") == null) {
-            if (action == "register") {
-
-            } else {
-                request.getRequestDispatcher("login.jsp").forward(request, response);
-            }
+            request.getRequestDispatcher("login.jsp").forward(request, response);
         } else {
             customer = (Customer) session.getAttribute("account");
             if (customer.isAdmin()) {
-                request.setAttribute("action", action);
-                request.getRequestDispatcher("admin").forward(request, response);
+                response.sendRedirect("admin");
+                return;
             }
             if (action == null) {
                 request.getRequestDispatcher("accountDetail.jsp").forward(request, response);
@@ -98,7 +94,7 @@ public class AccountServlet extends HttpServlet {
                 String newGender = request.getParameter("gender");
                 String newBirthday = request.getParameter("birthday");
                 try {
-                    Boolean result = customerDAO.updateCustomer(customer.getId(), newName, newPhone, newEmail, newGender, newBirthday);
+                    boolean result = customerDAO.updateCustomer(customer.getId(), newName, newPhone, newEmail, newGender, newBirthday);
                     Customer updatedCustomer = customerDAO.getCustomerById(customer.getId());
                     session.setAttribute("account", updatedCustomer);
                     if (result) {
@@ -145,7 +141,7 @@ public class AccountServlet extends HttpServlet {
                 }
             } else if (action.equals("order-search")) {
                 String keyword = request.getParameter("search");
-                try{
+                try {
                     OrderDAO orderDAO = new OrderDAO();
                     List<Order> orderList = orderDAO.findOrderForCustomer(keyword, customer.getId());
                     List<OrderDetail>[] orderDetailList = new List[orderList.size()];
@@ -155,7 +151,7 @@ public class AccountServlet extends HttpServlet {
                     request.setAttribute("orderDetail", orderDetailList);
                     request.setAttribute("orders", orderList);
                     request.getRequestDispatcher("accountDetail-orders.jsp").forward(request, response);
-                }catch (Exception e){
+                } catch (Exception e) {
                     System.out.println(e);
                     response.sendRedirect("account");
                 }

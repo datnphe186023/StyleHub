@@ -8,11 +8,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import model.DAO;
 import model.category.Category;
 import model.customer.Customer;
+import model.order.Order;
 import model.review.Review;
 import model.review.ReviewDAO;
 import model.size.Size;
@@ -231,5 +233,38 @@ public class ProductDAO extends DBContext implements DAO<Product> {
         }
         return  productListForPage;
     }
+
+    public int countLowStockProduct(){
+        int count = 0;
+        String sql = "SELECT COUNT(*) as 'count'\n"
+                + "  FROM products join dbo.size s on products.id = s.product_id where stock < 10";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                count = resultSet.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println("countLowStock " + e);
+        }
+        return count;
+    }
+
+    public int countTotalProduct(){
+        int count = 0;
+        String sql = "SELECT COUNT(*) as 'count'\n"
+                + "  FROM products join dbo.size s on products.id = s.product_id";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                count = resultSet.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println("countLowStock " + e);
+        }
+        return count;
+    }
+
 }
 

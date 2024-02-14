@@ -18,12 +18,19 @@ public class CheckoutServlet extends HttpServlet {
         Cart cart = (Cart) session.getAttribute("cart");
         Customer customer = (Customer) session.getAttribute("account");
         OrderDAO orderDAO = new OrderDAO();
-        orderDAO.addOrder(customer, cart);
-        CartDAO cartDAO = new CartDAO();
-        cartDAO.removeCart(customer.getId());
-        session.removeAttribute("cart");
-        session.setAttribute("size", 0);
-        response.sendRedirect("collections");
+        String addressRaw = request.getParameter("addressId");
+        int addressId;
+        try{
+            addressId = Integer.parseInt(addressRaw);
+            orderDAO.addOrder(customer, cart, addressId);
+            CartDAO cartDAO = new CartDAO();
+            cartDAO.removeCart(customer.getId());
+            session.removeAttribute("cart");
+            session.setAttribute("size", 0);
+            response.sendRedirect("collections");
+        }catch (NumberFormatException e){
+            System.out.println("check out " + e);
+        }
     }
 
     @Override

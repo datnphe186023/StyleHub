@@ -82,15 +82,6 @@ CREATE TABLE [categories] (
 )
 GO
 
-CREATE TABLE [orders] (
-  [id] integer PRIMARY KEY IDENTITY(1, 1),
-  [customer_id] integer,
-  [created] date,
-  [status] nvarchar(255),
-  [total_price] money
-)
-GO
-
 CREATE TABLE [orderDetails] (
   [product_id] integer,
   [order_id] integer,
@@ -120,6 +111,16 @@ CREATE TABLE [customerAddress] (
   [customer_id] integer,
   [address] nvarchar(255),
   PRIMARY KEY ([id])
+)
+GO
+
+CREATE TABLE [orders] (
+  [id] integer PRIMARY KEY IDENTITY(1, 1),
+  [customer_id] integer,
+  [created] date,
+  [status] nvarchar(255),
+  [total_price] money,
+  [address_id] integer foreign key references [customerAddress]([id])
 )
 GO
 

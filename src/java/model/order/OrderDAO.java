@@ -4,9 +4,11 @@
  */
 package model.order;
 
+import com.oracle.wls.shaded.org.apache.xpath.operations.Or;
 import model.DAO;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.sql.SQLException;
 import java.sql.ResultSet;
@@ -24,16 +26,17 @@ import java.time.LocalDate;
  */
 public class OrderDAO extends DBContext implements DAO<Order> {
 
-    public void addOrder(Customer customer, Cart cart) {
+    public void addOrder(Customer customer, Cart cart, int addressId) {
         LocalDate curDate = java.time.LocalDate.now();
         String date = curDate.toString();
         try {
-            String sql = "insert into [orders] values (?,?,?,?)";
+            String sql = "insert into [orders] values (?,?,?,?,?)";
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, customer.getId());
             st.setString(2, date);
             st.setString(3, "purchased-pending");
             st.setDouble(4, cart.getTotalMoney());
+            st.setInt(5, addressId);
             st.executeUpdate();
 
             String sql1 = "select top 1 id from [orders] order by id desc";
@@ -77,7 +80,21 @@ public class OrderDAO extends DBContext implements DAO<Order> {
 
     @Override
     public List<Order> getAll() {
-        return null;
+        String sql = "select * from orders";
+        List<Order> orderList = new ArrayList<>();
+        try{
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                Order order = new Order(resultSet.getInt("id"), resultSet.getInt("customer_id"),
+                        resultSet.getDate("created"), resultSet.getString("status"),
+                        resultSet.getDouble("total_price"), resultSet.getInt("address_id"));
+                orderList.add(order);
+            }
+        }catch (Exception e){
+            System.out.println("order getAll " + e);
+        }
+        return orderList;
     }
 
     public List<Order> getOrderForCustomer(int customerId) {
@@ -89,7 +106,7 @@ public class OrderDAO extends DBContext implements DAO<Order> {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Order order = new Order(resultSet.getInt("id"), customerId, resultSet.getDate("created"),
-                        resultSet.getString("status"), resultSet.getDouble("total_price"));
+                        resultSet.getString("status"), resultSet.getDouble("total_price"), resultSet.getInt("address_id"));
                 orderList.add(order);
             }
         } catch (SQLException e) {
@@ -108,7 +125,7 @@ public class OrderDAO extends DBContext implements DAO<Order> {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Order order = new Order(resultSet.getInt("id"), customerId, resultSet.getDate("created"),
-                        resultSet.getString("status"), resultSet.getDouble("total_price"));
+                        resultSet.getString("status"), resultSet.getDouble("total_price"), resultSet.getInt("address_id"));
                 orderList.add(order);
             }
         } catch (SQLException e) {
@@ -133,7 +150,7 @@ public class OrderDAO extends DBContext implements DAO<Order> {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
                 Order order = new Order(resultSet.getInt("id"), customerId, resultSet.getDate("created"),
-                        resultSet.getString("status"), resultSet.getDouble("total_price"));
+                        resultSet.getString("status"), resultSet.getDouble("total_price"), resultSet.getInt("address_id"));
                 orderList.add(order);
             }
         }catch (Exception e){
@@ -160,7 +177,6 @@ public class OrderDAO extends DBContext implements DAO<Order> {
         return orderDetails;
     }
 
-
     public void cancelOrderForUser(int orderId){
         String sql = "update orders set status = ? where id = ?";
         try{
@@ -171,5 +187,46 @@ public class OrderDAO extends DBContext implements DAO<Order> {
         }catch (SQLException e){
             System.out.println(e);
         }
+    }
+
+    public int getNumberOfOrdersByMonth(String date){
+        int total = 0;
+        String sql = "SELECT COUNT(*) as 'count'\n"
+                + "  FROM orders where MONTH(created) = MONTH(?)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, date);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                total = resultSet.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println("OrderDao numberOfOrder " + e);
+        }
+        return total;
+    }
+
+    public List<Order> getOrdersByDate(String date){
+        List<Order> orderList = new ArrayList<>();
+        String sql = "select orders.* from orders join dbo.customers c on c.id = orders.customer_id\n" +
+                "where created = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, date);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                Order order = new Order();
+                order.setId(resultSet.getInt("id"));
+                order.setCustomerId(resultSet.getInt("customer_id"));
+                order.setCreated(resultSet.getDate("created"));
+                order.setStatus(resultSet.getString("status"));
+                order.setTotalPrice(resultSet.getDouble("total_price"));
+                order.setAddress(resultSet.getInt("address_id"));
+                orderList.add(order);
+            }
+        }catch (SQLException e){
+            System.out.println("getOrdersByDate " + e);
+        }
+        return orderList;
     }
 }

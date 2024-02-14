@@ -167,6 +167,21 @@ public class CustomerDAO extends DBContext {
         }
     }
 
+    public String getAddress(int id){
+        String sql = "select * from customerAddress where id = ?";
+        try{
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getString("address");
+            }
+        }catch (Exception e){
+            System.out.println("getAddress " + e);
+        }
+        return null;
+    }
+
     public void removeAddress(int id){
         String sql = "Delete from customerAddress where id = ?";
         try{
@@ -176,5 +191,45 @@ public class CustomerDAO extends DBContext {
         }catch (Exception e){
             System.out.println(e);
         }
+    }
+
+    public List<Customer> getAllCustomer(){
+        String sql = "select * from customers";
+        List<Customer> customerList = new ArrayList<>();
+        try{
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                Customer customer = new Customer();
+                customer.setId(resultSet.getInt("id"));
+                customer.setUsername(resultSet.getString("username"));
+                customer.setPassword(resultSet.getString("password"));
+                customer.setFullName(resultSet.getString("full_name"));
+                customer.setPhoneNumber(resultSet.getString("phone_number"));
+                customer.setEmail(resultSet.getString("email"));
+                customer.setGender(resultSet.getString("gender"));
+                customer.setBirthday(resultSet.getDate("birthday"));
+                customer.setImage(resultSet.getString("image"));
+                customer.setRole(resultSet.getShort("role"));
+                customer.setCustomerAddresses(getAddressesListForCustomer(customer.getId()));
+                customerList.add(customer);
+            }
+        } catch (Exception e){
+            System.out.println("getAll Customer Dao " + e);
+        }
+        return customerList;
+    }
+
+    public void setAdmin(int customerId, int role){
+        String sql = "update customers set role= ? where id = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(2, customerId);
+            statement.setInt(1, role);
+            statement.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("setAdmin " + e);
+        }
+
     }
 }

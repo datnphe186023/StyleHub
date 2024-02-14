@@ -227,6 +227,7 @@
                                                 <p><span><strong>Total:</strong></span> <span>${total}</span></p>
                                             </div>
                                             <form action="checkout" method="get">
+                                                <input type="text" name="addressId" value="1" hidden="hidden">
                                                 <input type="submit" value="Check out">
                                             </form>
                                         </div>
