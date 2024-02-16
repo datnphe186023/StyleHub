@@ -1,9 +1,3 @@
-<%-- 
-    Document   : index
-    Created on : Oct 19, 2021, 11:22:48 PM
-    Author     : Khuong Hung
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -39,8 +33,8 @@
 
 
                 <!-- User Menu-->
-                <li><a class="app-nav__item" href="index.jsp"><i class='bx bx-log-out bx-rotate-180'></i> </a>
-                <li><a class="app-nav__item" href="login"><i class='bx bx-log-out bx-rotate-180'></i> </a>
+                <li><a class="app-nav__item" href="index.jsp"><i class='bx bx-log-out bx-rotate-180'></i> Home </a>
+                <li><a class="app-nav__item" href="login"><i class='bx bx-log-out bx-rotate-180'></i> Logout </a>
 
                 </li>
             </ul>

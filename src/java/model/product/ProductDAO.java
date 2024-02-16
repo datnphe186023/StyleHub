@@ -8,14 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import model.DAO;
-import model.category.Category;
-import model.customer.Customer;
-import model.order.Order;
-import model.review.Review;
 import model.review.ReviewDAO;
 import model.size.Size;
 import utils.DBContext;
@@ -41,7 +36,7 @@ public class ProductDAO extends DBContext implements DAO<Product> {
                 product.setDescription(resultSet.getString("description"));
                 List<Size> sizes = getSizeListForProduct(product.getId());
                 product.setSize(sizes);
-                List<Category> categories = getCategoryListForProduct(product.getId());
+                List<String> categories = getCategoryListForProduct(product.getId());
                 product.setCategories(categories);
                 List<String> images = getImagesListForProduct(product.getId());
                 product.setImages(images);
@@ -69,7 +64,7 @@ public class ProductDAO extends DBContext implements DAO<Product> {
                 product.setDescription(resultSet.getString("description"));
                 List<Size> sizes = getSizeListForProduct(product.getId());
                 product.setSize(sizes);
-                List<Category> categories = getCategoryListForProduct(product.getId());
+                List<String> categories = getCategoryListForProduct(product.getId());
                 product.setCategories(categories);
                 List<String> images = getImagesListForProduct(product.getId());
                 product.setImages(images);
@@ -127,7 +122,7 @@ public class ProductDAO extends DBContext implements DAO<Product> {
                 product.setDescription(resultSet.getString("description"));
                 List<Size> sizes = getSizeListForProduct(product.getId());
                 product.setSize(sizes);
-                List<Category> categories = getCategoryListForProduct(product.getId());
+                List<String> categories = getCategoryListForProduct(product.getId());
                 product.setCategories(categories);
                 List<String> images = getImagesListForProduct(product.getId());
                 product.setImages(images);
@@ -141,16 +136,15 @@ public class ProductDAO extends DBContext implements DAO<Product> {
         return productList;
     }
 
-    private List<Category> getCategoryListForProduct(int productId) throws SQLException {
-        List<Category> categories = new ArrayList<>();
+    private List<String> getCategoryListForProduct(int productId) throws SQLException {
+        List<String> categories = new ArrayList<>();
         String sql = "SELECT * FROM products_categories WHERE product_id = ?";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, productId);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Category category = new Category();
-                    category.setTitle(resultSet.getString("category_title"));
+                    String category = resultSet.getString("category_title");
                     categories.add(category);
                 }
             }
@@ -175,7 +169,7 @@ public class ProductDAO extends DBContext implements DAO<Product> {
         return images;
     }
 
-    private List<Size> getSizeListForProduct(int productId) throws SQLException {
+    public List<Size> getSizeListForProduct(int productId) throws SQLException {
         List<Size> sizes = new ArrayList<>();
         String sql = "SELECT * FROM size WHERE product_id = ? and stock > 0";
 
@@ -211,7 +205,7 @@ public class ProductDAO extends DBContext implements DAO<Product> {
                 product.setDescription(resultSet.getString("description"));
                 List<Size> sizes = getSizeListForProduct(product.getId());
                 product.setSize(sizes);
-                List<Category> categories = getCategoryListForProduct(product.getId());
+                List<String> categories = getCategoryListForProduct(product.getId());
                 product.setCategories(categories);
                 List<String> images = getImagesListForProduct(product.getId());
                 product.setImages(images);
@@ -266,5 +260,154 @@ public class ProductDAO extends DBContext implements DAO<Product> {
         return count;
     }
 
+    public List<String> getCategory() {
+        String sql = "select * from categories";
+        List<String> categoryList = new ArrayList<>();
+        try{
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                categoryList.add(resultSet.getString(1));
+            }
+        }catch (Exception e){
+            System.out.println("getCategory " + e);
+        }
+        return categoryList;
+    }
+
+
+    public String getCategoryByName(String name) {
+        String sql = "select * from categories where title = ?";
+        try{
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, name);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()){
+                return resultSet.getString(1);
+            }
+        }catch (Exception e){
+            System.out.println("getCatByName " + e);
+        }
+        return null;
+    }
+
+    public void addCategory(String name) {
+        String sql = "insert into categories values (?)";
+        try{
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, name);
+            statement.executeUpdate();
+        }catch (Exception e){
+            System.out.println("addCat " + e);
+        }
+    }
+
+    public void addProduct(String title, double inPrice, double outPrice, String description){
+        String sql = "insert into products values (?,?,?,?)";
+        try{
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, title);
+            statement.setDouble(2, inPrice);
+            statement.setDouble(3, outPrice);
+            statement.setString(4, description);
+            statement.executeUpdate();
+        }catch (Exception e){
+            System.out.println("add product " + e);
+        }
+    }
+
+    public void addItem(int productId, int size, int stock){
+        String sql = "insert into size values (?,?,?)";
+        try{
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, productId);
+            statement.setInt(2, size);
+            statement.setInt(3,stock);
+            statement.executeUpdate();
+        }catch (Exception e){
+            System.out.println("add item " + e);
+        }
+    }
+
+    public void deleteProduct(int id){
+        String sizeTableSql = "delete from size where product_id = ?";
+        String categoriesTableSql = "delete from products_categories where product_id = ?";
+        String imagesTableSql = "delete from products_image where product_id = ?";
+        String sql = "delete from products where id = ?";
+        try{
+            PreparedStatement statement = connection.prepareStatement(sizeTableSql);
+            statement.setInt(1, id);
+            statement.executeUpdate();
+            PreparedStatement statement1 = connection.prepareStatement(categoriesTableSql);
+            statement1.setInt(1, id);
+            statement1.executeUpdate();
+            PreparedStatement statement2 = connection.prepareStatement(imagesTableSql);
+            statement2.setInt(1, id);
+            statement2.executeUpdate();
+            PreparedStatement statement3 = connection.prepareStatement(sql);
+            statement3.setInt(1, id);
+            statement3.executeUpdate();
+        }catch (Exception e) {
+            System.out.println("delete product " + e);
+        }
+    }
+
+    public void updateItem(int productId, int size, int stock){
+        String sql = "update size set stock = ? where product_id = ? and size = ?";
+        try{
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, stock);
+            statement.setInt(2, productId);
+            statement.setInt(3, size);
+            statement.executeUpdate();
+        }catch (Exception e){
+            System.out.println("update item " + e);
+        }
+    }
+
+    public void updateItem(int productId, String imageURL){
+        String sql = "insert into products_image values (?,?)";
+        try{
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(2, productId);
+            statement.setString(1, imageURL);
+            statement.executeUpdate();
+        }catch (Exception e){
+            System.out.println("update url " + e);
+        }
+    }
+
+    public void updateCategoryForProduct(int productId, String[] category){
+        String deleteSql = "delete from products_categories where product_id = ?";
+        try{
+            PreparedStatement statement = connection.prepareStatement(deleteSql);
+            statement.setInt(1, productId);
+            statement.executeUpdate();
+            String addSql = "insert into products_categories values (?,?)";
+            PreparedStatement statement1 = connection.prepareStatement(addSql);
+            for (String s : category) {
+                statement1.setInt(1, productId);
+                statement1.setString(2, s);
+                statement1.executeUpdate();
+            }
+        }catch (Exception e){
+            System.out.println("update cat for product " + e);
+        }
+    }
+
+    public void updateProduct(int productId, String title, double inPrice, double outPrice, String description){
+        String sql = "update products set title = ?, inPrice = ?, outPrice = ? , description = ? where id = ?";
+        try{
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, title);
+            statement.setDouble(2, inPrice);
+            statement.setDouble(3, outPrice);
+            statement.setString(4, description);
+            statement.setInt(5, productId);
+            statement.executeUpdate();
+        }catch (Exception e){
+            System.out.println("update product " + e);
+        }
+    }
 }
 

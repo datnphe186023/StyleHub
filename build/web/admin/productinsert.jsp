@@ -194,39 +194,37 @@
                                 </div>
                             </div>
 
-                            <form class="row" action="productmanager?action=insertproduct" method="POST" enctype="multipart/form-data">
+                            <form class="row" action="productmanager?action=insertproduct" method="POST">
                                 <div class="form-group col-md-3">
-                                    <label class="control-label">Mã sản phẩm </label>
-                                    <input class="form-control" name="product_id" type="text" placeholder="">
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label for="exampleSelect1" class="control-label">Danh mục</label>
-                                    <select name="category_id" class="form-control" id="exampleSelect1">
-                                        <option>-- Chọn danh mục --</option>
-                                        <c:forEach items="${CategoryData}" var="cat">
-                                            <option value="${cat.category_id}">${cat.category_name}</option>
-                                        </c:forEach>
-                                    </select>
+                                    <label class="control-label">Bộ sưu tập</label>
+                                    <c:forEach items="${CategoryData}" var="cat">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="category" id="${cat}" value="${cat}">
+                                            <label class="form-check-label" for="${cat}">
+                                                    ${cat}
+                                            </label>
+                                        </div>
+                                    </c:forEach>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label class="control-label">Tên sản phẩm</label>
                                     <input class="form-control" name="product_name" type="text">
                                 </div>
                                 <div class="form-group  col-md-3">
+                                    <label class="control-label">Giá nhập</label>
+                                    <input class="form-control" name="inPrice" type="number">
+                                </div>
+                                <div class="form-group  col-md-3">
                                     <label class="control-label">Giá bán</label>
-                                    <input class="form-control" name="price" type="number">
+                                    <input class="form-control" name="outPrice" type="number">
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label class="control-label">Size</label>
-                                    <input class="form-control" name="size" type="text" placeholder="S,L,XL,...">
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label class="control-label">Màu</label>
-                                    <input class="form-control" placeholder="Blue,Gray,..." name="color" type="text">
+                                    <input class="form-control" name="size" type="text" placeholder="36,37,38,...,44">
                                 </div>
                                 <div class="form-group  col-md-3">
                                     <label class="control-label">Số lượng</label>
-                                    <input class="form-control" name="quantity" type="number">
+                                    <input class="form-control" name="stock" type="text">
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label class="control-label">Ảnh sản phẩm</label>
@@ -244,7 +242,7 @@
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label class="control-label">Mô tả sản phẩm</label>
-                                    <textarea class="form-control" name="describe" id="describe"></textarea>
+                                    <textarea class="form-control" name="description" id="describe"></textarea>
                                 </div>
                                 <button class="btn btn-save" type="submit">Lưu lại</button>
                                 &nbsp;
@@ -286,7 +284,7 @@
                                 <label class="control-label">Danh mục sản phẩm hiện đang có</label>
                                 <ul style="padding-left: 20px;">
                                     <c:forEach items="${CategoryData}" var="cat">
-                                        <li>${cat.category_name}</li>
+                                        <li>${cat}</li>
                                         </c:forEach>
                                 </ul>
                             </div>

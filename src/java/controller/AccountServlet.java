@@ -1,6 +1,5 @@
 package controller;
 
-import com.oracle.wls.shaded.org.apache.xpath.operations.Or;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -26,10 +25,6 @@ public class AccountServlet extends HttpServlet {
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } else {
             customer = (Customer) session.getAttribute("account");
-            if (customer.isAdmin()) {
-                response.sendRedirect("admin");
-                return;
-            }
             if (action == null) {
                 request.getRequestDispatcher("accountDetail.jsp").forward(request, response);
             } else if (action.equals("register")) {

@@ -5,7 +5,7 @@
 package model.product;
 
 import java.util.List;
-import model.category.Category;
+
 import model.review.Review;
 import model.size.Size;
 
@@ -20,14 +20,14 @@ public class Product {
     private double outPrice;
     private String description;
     private List<Size> size;
-    private List<Category> categories;
+    private List<String> categories;
     private List<String> images;
     private List<Review> reviews;
 
     public Product() {
     }
 
-    public Product(int id, String title, double inPrice, double outPrice, String description, List<Size> size, List<Category> categories, List<String> images, List<Review> reviews) {
+    public Product(int id, String title, double inPrice, double outPrice, String description, List<Size> size, List<String> categories, List<String> images, List<Review> reviews) {
         this.id = id;
         this.title = title;
         this.inPrice = inPrice;
@@ -79,11 +79,11 @@ public class Product {
         this.description = description;
     }
 
-    public List<Category> getCategories() {
+    public List<String> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<Category> categories) {
+    public void setCategories(List<String> categories) {
         this.categories = categories;
     }
 
