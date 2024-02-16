@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -191,7 +192,8 @@
                                     </div>
                                     <div class="one-eight text-center">
                                         <div class="display-tc">
-                                            <span class="price">${i.product.outPrice}</span>
+                                            <fmt:formatNumber value="${i.product.outPrice}" pattern="#,##0đ" var="outPrice"/>
+                                            <span class="price">${outPrice}</span>
                                         </div>
                                     </div>
                                     <div class="one-eight text-center">
@@ -224,12 +226,13 @@
                                     <div class="col-sm-4 text-center">
                                         <div class="total">
                                             <div class="grand-total">
-                                                <p><span><strong>Total:</strong></span> <span>${total}</span></p>
+                                                <fmt:formatNumber value="${total}" pattern="#,##0đ" var="totalFormated"/>
+                                                <p><span><strong>Total:</strong></span> <span>${totalFormated}</span></p>
                                             </div>
                                             <form action="checkout" method="get">
-                                                <input type="text" name="addressId" value="1" hidden="hidden">
                                                 <input type="submit" value="Check out">
                                             </form>
+
                                         </div>
                                     </div>
                                 </div>

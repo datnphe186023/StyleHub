@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -87,22 +88,79 @@
                             <th>Mã sản phẩm</th>
                             <th>Tên sản phẩm</th>
                             <th>Size</th>
-                            <th>Màu</th>
                             <th>Số lượng</th>
                             <th>Đơn giá</th>
+                            <th>Tính năng</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach items="${detail}" var="d">
+                        <jsp:useBean id="database" class="model.product.ProductDAO"/>
+                        <c:forEach items="${requestScope.detail}" var="d">
                             <tr>
-                                <td><img src="${d.product.img}" alt="" width="100px;"></td>
-                                <td>${d.product.product_id}</td>
-                                <td>${d.product.product_name}</td>
+                                <td><img src="<c:url value="/images/${database.get(d.productId).images.get(0)}"/>"
+                                         class="img-fluid"
+                                         alt="${database.get(d.productId).title}" width="100px"></td>
+                                <td>${d.productId}</td>
+                                <td>${database.get(d.productId).title}</td>
                                 <td>${d.size}</td>
-                                <td>${d.color}</td>
-                                <td>${d.quantity}</td>
-                                <td>${d.price}</td>
+                                <td>${d.amount}</td>
+                                <fmt:formatNumber value="${d.price}" pattern="#,##0đ" var="price"/>
+                                <td>${price}</td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"
+                                            id="show-emp"
+                                            data-toggle="modal" data-target="#ModalUP${d.orderId}"><i
+                                            class="fas fa-edit"></i>
+                                    </button>
+                                </td>
                             </tr>
+                            <!--
+                            MODAL
+                            -->
+                            <div class="modal fade" id="ModalUP${d.orderId}" tabindex="-1" role="dialog"
+                                 aria-hidden="true" data-backdrop="static"
+                                 data-keyboard="false">
+                                <form action="ordermanager?action=updateorder" method="POST">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="form-group  col-md-12">
+                                                                <span class="thong-tin-thanh-toan">
+                                                                    <h5>Chỉnh sửa tình trạng đơn hàng</h5>
+                                                                </span>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group col-md-6">
+                                                        <label class="control-label">Mã đơn hàng</label>
+                                                        <input class="form-control" type="text" readonly
+                                                               name="orderId" value="${d.orderId}">
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label class="control-label">Chọn tình trạng mới</label>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="status" id="shipped" value="Shipped">
+                                                            <label class="form-check-label" for="shipped">Shipped</label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="status" id="canceled" value="Canceled">
+                                                            <label class="form-check-label" for="canceled">Canceled</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <BR>
+                                                <button class="btn btn-save" type="submit">Lưu lại</button>
+                                                <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
+                                                <BR>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!--
+                            MODAL
+                            -->
                         </c:forEach>
                         </tbody>
                     </table>

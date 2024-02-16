@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -144,12 +145,17 @@
                                                     <td>${order.id}</td>
                                                     <td>${order.customerId}</td>
                                                     <td>(+84)${database.getCustomerById(order.customerId).phoneNumber}</td>
-                                                    <td>${database.getAddress(order.address)}</td>
+                                                    <td>
+                                                        <c:set var="addressParts" value="${fn:split(database.getAddress(order.address), '%')}"/>
+                                                        <c:forEach var="part" items="${addressParts}">
+                                                            ${part}<br>
+                                                        </c:forEach>
+                                                    </td>
                                                     <td>${order.created}</td>
                                                     <fmt:formatNumber value="${order.totalPrice}" pattern="#,##0đ" var="totalPrice"/>
                                                     <td>${totalPrice}</td>
                                                     <td><span class="badge bg-success">${order.status}</span></td>
-                                                    <td><a style=" color: rgb(245 157 57);background-color: rgb(251 226 197); padding: 5px;border-radius: 5px;" href="ordermanager?action=showdetail&bill_id=${b.bill_id}"><i class="fa"></i>Chi tiết đơn hàng</a></td>
+                                                    <td><a style=" color: rgb(245 157 57);background-color: rgb(251 226 197); padding: 5px;border-radius: 5px;" href="ordermanager?action=showdetail&orderId=${order.id}"><i class="fa"></i>Chi tiết đơn hàng</a></td>
                                                 </tr>
                                             </c:forEach>
 

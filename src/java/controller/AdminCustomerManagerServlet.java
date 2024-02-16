@@ -41,7 +41,7 @@ public class AdminCustomerManagerServlet extends HttpServlet {
             }
         }catch (Exception e){
             System.out.println("customer manager " + e);
-//            response.sendRedirect("404.jsp");
+            response.sendRedirect("404.jsp");
         }
     }
     @Override

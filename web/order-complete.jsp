@@ -179,138 +179,44 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <p class="bread"><span><a href="index.jsp">Home</a></span> / <span>Checkout</span></p>
+                    <p class="bread"><span><a href="index.html">Home</a></span> / <span>Purchase Complete</span></p>
                 </div>
             </div>
         </div>
     </div>
-    <div class="colorlib-product">
-        <form action="checkout" method="post" class="colorlib-form">
-            <div class="container">
-                <div class="row row-pb-lg">
-                    <div class="col-sm-10 offset-md-1">
-                        <div class="process-wrap">
-                            <div class="process text-center active">
-                                <p><span>01</span></p>
-                                <h3>Shopping Cart</h3>
-                            </div>
-                            <div class="process text-center active">
-                                <p><span>02</span></p>
-                                <h3>Checkout</h3>
-                            </div>
-                            <div class="process text-center">
-                                <p><span>03</span></p>
-                                <h3>Order Complete</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-8">
-                        <h2>Billing Details</h2>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div class="list-group">
-                                        <c:forEach items="${requestScope.addressList}" var="address">
-                                            <label class="list-group-item">
-                                                <input type="radio" name="addressId" value="${address[0]}">
-                                                <div>
-                                                    <h4 class="mb-1">Họ và tên người nhận: ${address[1]}</h4>
-                                                    <p class="mb-1">Số điện thoại: ${address[2]}</p>
-                                                    <p class="mb-1">Địa chỉ : ${address[3]}</p>
-                                                </div>
-                                            </label>
-                                        </c:forEach>
-                                    </div>
-                                    <a href="account?action=address-list" class="btn btn-primary mt-3">Thêm địa chỉ</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="cart-detail">
-                                    <h2>Cart Total</h2>
-                                    <c:set var="cart" value="${sessionScope.cart}"/>
-                                    <c:set var="total" value="0"/>
-                                    <ul>
-                                        <li>
-                                            <ul>
-                                                <c:forEach var="i" items="${cart.items}">
-                                                    <c:set var="total" value="${total+i.product.outPrice*i.quantity}"/>
-                                                    <fmt:formatNumber value="${i.product.outPrice}" pattern="#,##0đ"
-                                                                      var="outPrice"/>
-                                                    <li><span>${i.product.title}</span><span>${outPrice}</span></li>
-                                                </c:forEach>
-                                            </ul>
-                                        </li>
-                                        <fmt:formatNumber value="${total}" pattern="#,##0đ" var="totalFormated"/>
-                                        <li><span>Order Total</span> <span>${totalFormated}</span></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="w-100"></div>
-                            <div class="col-md-12">
-                                <div class="cart-detail">
-                                    <h2>Payment Method</h2>
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            <div class="radio">
-                                                <label><input type="radio" name="payment" value="COD">COD</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            <div class="radio">
-                                                <label><input type="radio" name="payment" value="BankTransfer">Chuyển khoản ngân hàng</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            <div class="radio">
-                                                <label><input type="radio" name="payment" value="VNPay">VNPay</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            <div class="checkbox">
-                                                <label><input type="checkbox" id="termsCheckbox" value=""> I have read and accept the terms
-                                                    and
-                                                    conditions</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 text-center">
-                                <button id="submitButton" type="submit" class="btn btn-primary" disabled>Place an order</button>
-                            </div>
-                        </div>
-                        <script>
-                            document.addEventListener("DOMContentLoaded", function () {
-                                var termsCheckbox = document.getElementById("termsCheckbox");
-                                var submitButton = document.getElementById("submitButton");
 
-                                termsCheckbox.addEventListener("change", function () {
-                                    if (termsCheckbox.checked) {
-                                        submitButton.disabled = false;
-                                    } else {
-                                        submitButton.disabled = true;
-                                    }
-                                });
-                            });
-                        </script>
+
+    <div class="colorlib-product">
+        <div class="container">
+            <div class="row row-pb-lg">
+                <div class="col-sm-10 offset-md-1">
+                    <div class="process-wrap">
+                        <div class="process text-center active">
+                            <p><span>01</span></p>
+                            <h3>Shopping Cart</h3>
+                        </div>
+                        <div class="process text-center active">
+                            <p><span>02</span></p>
+                            <h3>Checkout</h3>
+                        </div>
+                        <div class="process text-center active">
+                            <p><span>03</span></p>
+                            <h3>Order Complete</h3>
+                        </div>
                     </div>
                 </div>
             </div>
-        </form>
+            <div class="row">
+                <div class="col-sm-10 offset-sm-1 text-center">
+                    <p class="icon-addcart"><span><i class="icon-check"></i></span></p>
+                    <h2 class="mb-4">Thank you for purchasing, Your order is complete</h2>
+                    <p>
+                        <a href="index.jsp"class="btn btn-primary btn-outline-primary">Home</a>
+                        <a href="collections"class="btn btn-primary btn-outline-primary"><i class="icon-shopping-cart"></i> Continue Shopping</a>
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
     <footer id="colorlib-footer" role="contentinfo">
         <div class="container">
@@ -401,3 +307,4 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 </body>
 </html>
+

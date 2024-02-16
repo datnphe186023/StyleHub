@@ -172,7 +172,7 @@ public class OrderDAO extends DBContext implements DAO<Order> {
                 orderDetails.add(orderDetail);
             }
         } catch (SQLException e) {
-            System.out.println(e);
+            System.out.println("get order detail for order " + e);
         }
         return orderDetails;
     }
@@ -182,6 +182,30 @@ public class OrderDAO extends DBContext implements DAO<Order> {
         try{
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, "cancel-pending");
+            statement.setInt(2, orderId);
+            statement.executeUpdate();
+        }catch (SQLException e){
+            System.out.println(e);
+        }
+    }
+
+    public void cancelOrderForAdmin(int orderId){
+        String sql = "update orders set status = ? where id = ?";
+        try{
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, "cancelled");
+            statement.setInt(2, orderId);
+            statement.executeUpdate();
+        }catch (SQLException e){
+            System.out.println(e);
+        }
+    }
+
+    public void updateOrderForAdmin(int orderId){
+        String sql = "update orders set status = ? where id = ?";
+        try{
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, "shipped");
             statement.setInt(2, orderId);
             statement.executeUpdate();
         }catch (SQLException e){

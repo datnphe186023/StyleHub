@@ -1,5 +1,8 @@
+<%@ page import="model.order.Order" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -85,7 +88,6 @@
                     <tr>
                         <th>ID đơn hàng</th>
                         <th>Khách hàng</th>
-                        <th>Số điện thoại</th>
                         <th>Địa chỉ</th>
                         <th>Ngày mua</th>
                         <th>Tổng tiền</th>
@@ -94,19 +96,27 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${bill}" var="b">
+                    <jsp:useBean id="database" class="model.customer.CustomerDAO"/>
+                    <c:forEach items="${requestScope.order}" var="order">
                         <tr>
-                            <td>${b.bill_id}</td>
-                            <td>${b.user.user_name}</td>
-                            <td>(+84)${b.phone}</td>
-                            <td>${b.address}</td>
-                            <td>${b.date}</td>
-                            <td>${b.total}</td>
-                            <td><span class="badge bg-success">${b.payment}</span></td>
+                            <td>${order.id}</td>
+                            <td>${order.customerId}</td>
+                            <td>
+                                <c:set var="addressParts" value="${fn:split(database.getAddress(order.address), '%')}"/>
+                                <c:forEach var="part" items="${addressParts}">
+                                    ${part}<br>
+                                </c:forEach>
+                            </td>
+                            <td>${order.created}</td>
+                            <fmt:formatNumber value="${order.totalPrice}" pattern="#,##0đ" var="totalPrice"/>
+                            <td>${totalPrice}</td>
+                            <td><span class="badge bg-success">${order.status}</span></td>
                             <td>
                                 <a style=" color: rgb(245 157 57);background-color: rgb(251 226 197); padding: 5px;border-radius: 5px;"
-                                   href="ordermanager?action=showdetail&bill_id=${b.bill_id}"><i class="fa"></i>Chi tiết
-                                    đơn hàng</a></td>
+                                   href="ordermanager?action=showdetail&orderId=${order.id}">
+                                    <i class="fa"></i>Chi tiết đơn hàng
+                                </a>
+                            </td>
                         </tr>
                     </c:forEach>
                     </tbody>
