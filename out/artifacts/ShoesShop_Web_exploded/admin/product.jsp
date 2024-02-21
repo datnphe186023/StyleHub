@@ -86,7 +86,6 @@
                                     class="fas fa-print"></i> In dữ liệu</a>
                         </div>
                     </div>
-                    <%--                    <form action="test" method="POST">--%>
                     <table class="table table-hover table-bordered" id="sampleTable">
                         <thead>
                         <tr>

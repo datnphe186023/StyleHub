@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="jakarta.servlet.http.HttpSession" %>
+<%@ page import="model.customer.Customer" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -37,6 +39,41 @@
 
     <!-- Theme style  -->
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .user-account {
+            font-weight: 400;
+            font-family: 'Rokkitt', Georgia, serif;
+            text-transform: uppercase;
+            font-size: 15px;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+        }
+
+        .user-account a {
+            text-decoration: none;
+            color: black;
+            margin-right: 10px;
+        }
+
+        .admin-links {
+            display: none;
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+
+        .admin-links a {
+            display: block;
+            padding: 5px;
+        }
+
+        .user-account:hover .admin-links {
+            display: block;
+        }
+
+    </style>
 
 </head>
 <body>
@@ -61,20 +98,47 @@
                             </div>
                         </form>
                     </div>
-                    <div class="col-sm-2 col-md-2" style="font-weight: 400; font-family: 'Rokkitt', Georgia, serif; text-transform: uppercase; font-size: 15px; letter-spacing: 2px;">
+                    <%
+                        HttpSession session1 = request.getSession(false);
+                        Customer account = (Customer) session.getAttribute("account");
+                    %>
+                    <div class="user-account">
                         <%
-                            if (session.getAttribute("account") != null) {
+                            if (account != null) {
                         %>
-                        <a href="account">${sessionScope.account.fullName}</a>
+                        <a href="account" class="account-link"><%= account.getFullName() %>
+                        </a>
+                        <div class="admin-links">
+                            <a href="account">Account</a>
+                            <a href="admin">Admin</a>
+                        </div>
                         <%
-                            }else{
+                        } else {
                         %>
-                        <a href="account" style="margin-right: 10px;">Login</a>
-                        <a href="register.jsp">Register</a>
+                        <a href="account" class="login-link">Login</a>
+                        <a href="register.jsp" class="register-link">Register</a>
                         <%
                             }
                         %>
                     </div>
+
+                    <script>
+                        // JavaScript to show admin links on hover
+                        document.addEventListener("DOMContentLoaded", function () {
+                            var accountLink = document.querySelector(".col-sm-2 a[href='account']");
+                            var adminLinks = document.querySelector(".admin-links");
+
+                            if (accountLink && adminLinks) {
+                                accountLink.addEventListener("mouseenter", function () {
+                                    adminLinks.style.display = "block";
+                                });
+
+                                accountLink.addEventListener("mouseleave", function () {
+                                    adminLinks.style.display = "none";
+                                });
+                            }
+                        });
+                    </script>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 text-left menu-1">
@@ -101,8 +165,8 @@
                             </li>
                             <li><a href="collections?categories=BST THE UPGRADE">BST The Upgrade</a></li>
                             <li><a href="collections?categories=The Focus Project">The Focus Project</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="about.jsp">About</a></li>
+                            <li><a href="contact.jsp">Contact</a></li>
                             <li class="cart"><a href="cart.jsp"><i class="icon-shopping-cart"></i> Cart [${size}]</a>
                             </li>
                         </ul>
@@ -124,7 +188,8 @@
                                         <h1 class="head-1">The Focus</h1>
                                         <h2 class="head-3">Collection</h2>
                                         <p class="category"><span>New trending shoes</span></p>
-                                        <p><a href="collections?categories=The Focus Project" class="btn btn-primary">Shop Collection</a></p>
+                                        <p><a href="collections?categories=The Focus Project" class="btn btn-primary">Shop
+                                            Collection</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -159,7 +224,8 @@
                                         <h1 class="head-1">New Collection</h1>
                                         <h2 class="head-2">The Upgrade</h2>
                                         <p class="category"><span>New stylish shoes</span></p>
-                                        <p><a href="collections?categories=BST THE UPGRADE" class="btn btn-primary">Shop Collection</a></p>
+                                        <p><a href="collections?categories=BST THE UPGRADE" class="btn btn-primary">Shop
+                                            Collection</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -184,7 +250,8 @@
             <div class="row">
                 <div class="col-sm-6 text-center">
                     <div class="featured">
-                        <a href="collections?categories=Men" class="featured-img" style="background-image: url(images/men.jpg);"></a>
+                        <a href="collections?categories=Men" class="featured-img"
+                           style="background-image: url(images/men.jpg);"></a>
                         <div class="desc">
                             <h2><a href="collections?categories=Men">Shop Men's Collection</a></h2>
                         </div>
@@ -192,7 +259,8 @@
                 </div>
                 <div class="col-sm-6 text-center">
                     <div class="featured">
-                        <a href="collections?categories=Women" class="featured-img" style="background-image: url(images/women.png);"></a>
+                        <a href="collections?categories=Women" class="featured-img"
+                           style="background-image: url(images/women.png);"></a>
                         <div class="desc">
                             <h2><a href="collections?categories=Women">Shop Women's Collection</a></h2>
                         </div>
@@ -252,7 +320,7 @@
                     <ul class="colorlib-footer-links">
                         <li><a href="#">Contact</a></li>
                         <li><a href="tel://0705410751">Customer Services</a></li>
-                        <li><a href="https://maps.app.goo.gl/z7MAnSiKahsZu5V79">Site maps</a></li>
+                        <li><a href="https://maps.app.goo.gl/ij6UKJKGTrgLyaYHA">Site maps</a></li>
                     </ul>
                     </p>
                 </div>
@@ -260,7 +328,7 @@
                     <h4>Information</h4>
                     <p>
                     <ul class="colorlib-footer-links">
-                        <li><a href="about.html">About us</a></li>
+                        <li><a href="about.jsp">About us</a></li>
                         <li><a href="#">Privacy Policy</a></li>
                         <li><a href="#">Support</a></li>
                     </ul>
@@ -270,7 +338,7 @@
                 <div class="col footer-col">
                     <h4>Contact Information</h4>
                     <ul class="colorlib-footer-links">
-                        <li>Nhà trọ Hoàng Quân, <br> Phú Hữu Tân Xã Thạch Thất Hà Nội</li>
+                        <li>Nhà trọ Mỹ Linh, <br> Phú Hữu Tân Xã Thạch Thất Hà Nội</li>
                         <li><a href="tel://0705410751">+84 0705410751</a></li>
                         <li><a href="mailto:datnguyenphuong1810@gmail.com">datnguyenphuong1810@gmail.com</a></li>
                     </ul>

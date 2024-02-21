@@ -1,8 +1,4 @@
-<%@ page import="java.util.List" %>
 <%@ page import="model.customer.Customer" %>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -77,7 +73,7 @@
 
 </head>
 <body>
-<c:set var="size" value="${sessionScope.size}"/>
+
 <div class="colorlib-loader"></div>
 
 <div id="page">
@@ -174,56 +170,36 @@
             </div>
         </div>
     </nav>
-
-    <div class="colorlib-product">
+    <div class="breadcrumbs">
         <div class="container">
             <div class="row">
-                <div class="col-sm-8 offset-sm-2 text-center colorlib-heading colorlib-heading-sm">
-                    <h2>View All Products</h2>
-                </div>
-            </div>
-            <div class="row row-pb-md">
-                <c:set var="page" value="${requestScope.numberOfPage}"/>
-                <c:set var="products" value="${requestScope.productList}"/>
-                <c:forEach items="${products}" var="product">
-                    <div class="col-md-3 col-lg-3 mb-4 text-center">
-                        <div class="product-entry border">
-                            <a href="product?productId=${product.id}" class="prod-img">
-                                <img src="<c:url value="/images/${product.images.get(0)}"/>" class="img-fluid" alt="${product.title}"/>
-                            </a>
-                            <div class="desc">
-                                <h2><a href="product?productId=${product.id}">${product.title}</a></h2>
-                                <fmt:formatNumber value="${product.outPrice}" pattern="#,##0đ" var="outPrice"/>
-                                <span class="price">${outPrice}</span>
-                            </div>
-                        </div>
-                    </div>
-                </c:forEach>
-            </div>
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <div class="block-27">
-                        <ul>
-                            <li><a href="#"><i class="ion-ios-arrow-back"></i></a></li>
-                            <c:set var="collections" value="${requestScope.collections}"/>
-                            <c:forEach begin="${1}" end="${requestScope.numberOfPage}" var="i">
-                                <li>
-                                <a class="${i==page?"active":""}" href="?${collections}&page=${i}">${i}</a>
-                                </li>
-                            </c:forEach>
-<%--                            <li class="active"><span>1</span></li>--%>
-<%--                            <li><a href="#">2</a></li>--%>
-<%--                            <li><a href="#">3</a></li>--%>
-<%--                            <li><a href="#">4</a></li>--%>
-<%--                            <li><a href="#">5</a></li>--%>
-                            <li><a href="#"><i class="ion-ios-arrow-forward"></i></a></li>
-                        </ul>
-                    </div>
+                <div class="col">
+                    <p class="bread"><span><a href="index.jsp">Home</a></span> / <span>About</span></p>
                 </div>
             </div>
         </div>
     </div>
 
+
+    <div class="colorlib-about">
+        <div class="container">
+            <div class="row row-pb-lg">
+                <div class="col-sm-6 mb-3">
+                    <div class="video colorlib-video" style="background-image: url(images/about.png);">
+                        <a href="https://www.tiktok.com/@augustshoemaker/video/7256407658255650053?q=simple%20man%20august&t=1705831598607" class="popup-vimeo"><i class="icon-play3"></i></a>
+                        <div class="overlay"></div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="about-wrap">
+                        <h2>Footwear the leading eCommerce Store around the Globe</h2>
+                        <p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.</p>
+                        <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer id="colorlib-footer" role="contentinfo">
         <div class="container">
@@ -243,7 +219,7 @@
                     <ul class="colorlib-footer-links">
                         <li><a href="#">Contact</a></li>
                         <li><a href="tel://0705410751">Customer Services</a></li>
-                        <li><a href="https://maps.app.goo.gl/z7MAnSiKahsZu5V79">Site maps</a></li>
+                        <li><a href="https://maps.app.goo.gl/ij6UKJKGTrgLyaYHA">Site maps</a></li>
                     </ul>
                     </p>
                 </div>
@@ -261,7 +237,7 @@
                 <div class="col footer-col">
                     <h4>Contact Information</h4>
                     <ul class="colorlib-footer-links">
-                        <li>Nhà trọ Hoàng Quân, <br> Phú Hữu Tân Xã Thạch Thất Hà Nội</li>
+                        <li>Nhà trọ Mỹ Linh, <br> Phú Hữu Tân Xã Thạch Thất Hà Nội</li>
                         <li><a href="tel://0705410751">+84 0705410751</a></li>
                         <li><a href="mailto:datnguyenphuong1810@gmail.com">datnguyenphuong1810@gmail.com</a></li>
                     </ul>
@@ -273,7 +249,7 @@
                 <div class="col-sm-12 text-center">
                     <p>
 							<span>
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i
                                     class="icon-heart" aria-hidden="true"></i> by <a
                                     href="https://www.facebook.com/datphuong1810/" target="_blank">Đạt NP</a>
                                 </span>
@@ -314,3 +290,4 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 </body>
 </html>
+

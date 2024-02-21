@@ -1,9 +1,3 @@
-<%-- 
-    Document   : product
-    Created on : Oct 19, 2021, 11:23:29 PM
-    Author     : Khuong Hung
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -40,7 +34,8 @@
 
 
         <!-- User Menu-->
-        <li><a class="app-nav__item" href="dashboard"><i class='bx bx-log-out bx-rotate-180'></i> </a>
+        <li><a class="app-nav__item" href="index.jsp"><i class='bx bx-log-out bx-rotate-180'></i> Home </a>
+        <li><a class="app-nav__item" href="login"><i class='bx bx-log-out bx-rotate-180'></i> Logout </a>
 
         </li>
     </ul>
@@ -51,13 +46,13 @@
     <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="admin/images/user.png" width="50px"
                                         alt="User Image">
         <div>
-            <p class="app-sidebar__user-name"><b>${sessionScope.user.user_name}</b></p>
+            <p class="app-sidebar__user-name"><b>${sessionScope.account.fullName}</b></p>
             <p class="app-sidebar__user-designation">Chào mừng bạn trở lại</p>
         </div>
     </div>
     <hr>
     <ul class="app-menu">
-        <li><a class="app-menu__item" href="dashboard"><i class='app-menu__icon bx bx-tachometer'></i><span
+        <li><a class="app-menu__item" href="admin"><i class='app-menu__icon bx bx-tachometer'></i><span
                 class="app-menu__label">Bảng điều khiển</span></a></li>
         <li><a class="app-menu__item" href="customermanager"><i class='app-menu__icon bx bx-user-voice'></i><span
                 class="app-menu__label">Quản lý khách hàng</span></a></li>
@@ -91,63 +86,63 @@
                                     class="fas fa-print"></i> In dữ liệu</a>
                         </div>
                     </div>
-                    <form action="test" method="POST">
-                        <table class="table table-hover table-bordered" id="sampleTable">
-                            <thead>
+                    <table class="table table-hover table-bordered" id="sampleTable">
+                        <thead>
+                        <tr>
+                            <th>Mã sản phẩm</th>
+                            <th>Danh mục</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Giá Nhập</th>
+                            <th>Giá Bán</th>
+                            <th>Size</th>
+                            <th>Thông tin</th>
+                            <th>Ảnh</th>
+                            <th>Chức năng</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach items="${requestScope.ProductData}" var="p">
                             <tr>
-                                <th>Mã sản phẩm</th>
-                                <th>Danh mục</th>
-                                <th>Tên sản phẩm</th>
-                                <th>Giá Nhập</th>
-                                <th>Giá Bán</th>
-                                <th>Size</th>
-                                <th>Thông tin</th>
-                                <th>Ảnh</th>
-                                <th>Chức năng</th>
+                                <td>${p.id}</td>
+                                <td>
+                                    <c:forEach items="${p.categories}" var="cat">
+                                        ${cat}
+                                    </c:forEach>
+                                </td>
+                                <td>${p.title}</td>
+                                <fmt:formatNumber value="${p.inPrice}" pattern="#,##0đ" var="inPrice"/>
+                                <td>${inPrice}</td>
+                                <fmt:formatNumber value="${p.outPrice}" pattern="#,##0đ" var="outPrice"/>
+                                <td>${outPrice}</td>
+                                <td>
+                                    <c:forEach items="${p.size}" var="s">
+                                        ${s.size}:${s.stock}<br>
+                                    </c:forEach>
+                                </td>
+                                <td>${p.description}</td>
+                                <td><img src="<c:url value="/images/${p.images.get(0)}"/>" class="img-fluid"
+                                         alt="${p.title}}"></td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
+                                            value="${p.id}"><i
+                                            class="fas fa-trash-alt"></i>
+                                    </button>
+                                    <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"
+                                            id="show-emp"
+                                            data-toggle="modal" data-target="#ModalUP${p.id}"><i
+                                            class="fas fa-edit"></i>
+                                    </button>
+                                </td>
                             </tr>
-                            </thead>
-                            <tbody>
-                            <c:forEach items="${requestScope.ProductData}" var="p">
-                                <tr>
-                                    <td>${p.id}</td>
-                                    <td>
-                                        <c:forEach items="${p.categories}" var="cat">
-                                            ${cat}
-                                        </c:forEach>
-                                    </td>
-                                    <td>${p.title}</td>
-                                    <fmt:formatNumber value="${p.inPrice}" pattern="#,##0đ" var="inPrice"/>
-                                    <td>${inPrice}</td>
-                                    <fmt:formatNumber value="${p.outPrice}" pattern="#,##0đ" var="outPrice"/>
-                                    <td>${outPrice}</td>
-                                    <td>
-                                        <c:forEach items="${p.size}" var="s">
-                                            ${s.size}:${s.stock}<br>
-                                        </c:forEach>
-                                    </td>
-                                    <td>${p.description}</td>
-                                    <td><img src="<c:url value="/images/${p.images.get(0)}"/>" class="img-fluid"
-                                             alt="${p.title}}"></td>
-                                    <td>
-                                        <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                                value="${p.id}"><i
-                                                class="fas fa-trash-alt"></i>
-                                        </button>
-                                        <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"
-                                                id="show-emp"
-                                                data-toggle="modal" data-target="#ModalUP${p.id}"><i
-                                                class="fas fa-edit"></i>
-                                        </button>
-                                    </td>
-                                </tr>
 
-                                <!--
-                                MODAL
-                                -->
+                            <!--
+                            MODAL
+                            -->
 
-                                <div class="modal fade" id="ModalUP${p.id}" tabindex="-1" role="dialog"
-                                     aria-hidden="true" data-backdrop="static"
-                                     data-keyboard="false">
+                            <div class="modal fade" id="ModalUP${p.id}" tabindex="-1" role="dialog"
+                                 aria-hidden="true" data-backdrop="static"
+                                 data-keyboard="false">
+                                <form action="productmanager?action=updateproduct" method="POST">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-body">
@@ -168,7 +163,8 @@
                                                         <label class="control-label">Bộ sưu tập</label>
                                                         <c:forEach items="${requestScope.CategoryData}" var="cat">
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox" name="category" id="${cat}" value="${cat}">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                       name="category" id="${cat}" value="${cat}">
                                                                 <label class="form-check-label" for="${cat}">
                                                                         ${cat}
                                                                 </label>
@@ -193,11 +189,13 @@
                                                     <c:forEach var="size" items="${p.size}">
                                                         <div class="form-group col-md-3">
                                                             <label class="control-label">Size</label>
-                                                            <input class="form-control" type="text" name="size" value="${size.size}">
+                                                            <input class="form-control" type="text" name="size"
+                                                                   value="${size.size}">
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label class="control-label">Stock</label>
-                                                            <input class="form-control" type="text" name="stock" value="${size.stock}">
+                                                            <input class="form-control" type="text" name="stock"
+                                                                   value="${size.stock}">
                                                         </div>
                                                     </c:forEach>
                                                     <div class=" form-group col-md-6">
@@ -232,14 +230,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!--
-                                MODAL
-                                -->
-                            </c:forEach>
-                            </tbody>
-                        </table>
-                    </form>
+                                </form>
+                            </div>
+                            <!--
+                            MODAL
+                            -->
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                    <%--                    </form>--%>
                 </div>
             </div>
         </div>
@@ -313,7 +312,7 @@
                 buttons: ["Hủy bỏ", "Đồng ý"],
             }).then((willDelete) => {
                 if (willDelete) {
-                    window.location = "productmanager?action=deleteproduct&product_id=" + $(this).attr("value");
+                    window.location = "productmanager?action=deleteproduct&productId=" + $(this).attr("value");
                     swal("Đã xóa thành công.!", {});
                 }
             });

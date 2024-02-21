@@ -1,3 +1,4 @@
+<%@ page import="model.customer.Customer" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -39,6 +40,39 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
+        .user-account {
+            font-weight: 400;
+            font-family: 'Rokkitt', Georgia, serif;
+            text-transform: uppercase;
+            font-size: 15px;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+        }
+
+        .user-account a {
+            text-decoration: none;
+            color: black;
+            margin-right: 10px;
+        }
+
+        .admin-links {
+            display: none;
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+
+        .admin-links a {
+            display: block;
+            padding: 5px;
+        }
+
+        .user-account:hover .admin-links {
+            display: block;
+        }
+
         .account-center-heading {
             font-size: 36px;
             text-align: center;
@@ -106,6 +140,7 @@
         .total-price {
             margin-left: auto;
         }
+
         .cancel-btn {
             background-color: #dc3545;
             color: white;
@@ -198,21 +233,47 @@
                             </div>
                         </form>
                     </div>
-                    <div class="col-sm-2 col-md-2"
-                         style="font-weight: 400; font-family: 'Rokkitt', Georgia, serif; text-transform: uppercase; font-size: 15px; letter-spacing: 2px;">
+                    <%
+                        HttpSession session1 = request.getSession(false);
+                        Customer account = (Customer) session.getAttribute("account");
+                    %>
+                    <div class="user-account">
                         <%
-                            if (session.getAttribute("account") != null) {
+                            if (account != null) {
                         %>
-                        <a href="accountDetail.jsp">${sessionScope.account.fullName}</a>
+                        <a href="account" class="account-link"><%= account.getFullName() %>
+                        </a>
+                        <div class="admin-links">
+                            <a href="account">Account</a>
+                            <a href="admin">Admin</a>
+                        </div>
                         <%
                         } else {
                         %>
-                        <a href="account" style="margin-right: 10px;">Login</a>
-                        <a href="register.jsp">Register</a>
+                        <a href="account" class="login-link">Login</a>
+                        <a href="register.jsp" class="register-link">Register</a>
                         <%
                             }
                         %>
                     </div>
+
+                    <script>
+                        // JavaScript to show admin links on hover
+                        document.addEventListener("DOMContentLoaded", function () {
+                            var accountLink = document.querySelector(".col-sm-2 a[href='account']");
+                            var adminLinks = document.querySelector(".admin-links");
+
+                            if (accountLink && adminLinks) {
+                                accountLink.addEventListener("mouseenter", function () {
+                                    adminLinks.style.display = "block";
+                                });
+
+                                accountLink.addEventListener("mouseleave", function () {
+                                    adminLinks.style.display = "none";
+                                });
+                            }
+                        });
+                    </script>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 text-left menu-1">
@@ -239,8 +300,8 @@
                             </li>
                             <li><a href="collections?categories=BST THE UPGRADE">BST The Upgrade</a></li>
                             <li><a href="collections?categories=The Focus Project">The Focus Project</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="about.jsp">About</a></li>
+                            <li><a href="contact.jsp">Contact</a></li>
                             <li class="cart"><a href="cart.jsp"><i class="icon-shopping-cart"></i> Cart [${size}]</a>
                             </li>
                         </ul>
@@ -267,7 +328,8 @@
                             <li><a href="account?action=order-list" id="allTab">All</a></li>
                             <li><a href="account?action=order-list&status=pending" id="pendingTab">Processing</a></li>
                             <li><a href="account?action=order-list&status=canceled" id="canceledTab">Canceled</a></li>
-                            <li><a href="account?action=order-list&status=delivered" id="deliveredTab">Delivered</a></li>
+                            <li><a href="account?action=order-list&status=delivered" id="deliveredTab">Delivered</a>
+                            </li>
                         </ul>
                         <script>
                             // Function to set active class based on current status parameter
@@ -290,6 +352,7 @@
                                     document.getElementById('deliveredTab').classList.add('active');
                                 }
                             }
+
                             window.addEventListener('load', setActiveTab);
                         </script>
                         <div class="search-bar">
@@ -320,20 +383,26 @@
                                                 <div class="product-details">
                                                     <div class="product-name">${database.get(orderDetailItem.productId).title}</div>
                                                     <div class="product-size">Size: ${orderDetailItem.size}</div>
-                                                    <div class="product-quantity">Quantity: ${orderDetailItem.amount}</div>
-                                                    <fmt:formatNumber value="${database.get(orderDetailItem.productId).outPrice}"
-                                                                      pattern="#,##0đ" var="outPrice"/>
-                                                    <div class="product-price">Price: <span class="bold">${outPrice}</span></div>
+                                                    <div class="product-quantity">
+                                                        Quantity: ${orderDetailItem.amount}</div>
+                                                    <fmt:formatNumber
+                                                            value="${database.get(orderDetailItem.productId).outPrice}"
+                                                            pattern="#,##0đ" var="outPrice"/>
+                                                    <div class="product-price">Price: <span
+                                                            class="bold">${outPrice}</span></div>
                                                 </div>
                                             </div>
                                         </c:forEach>
-                                        <fmt:formatNumber value="${order.totalPrice}" pattern="#,##0đ" var="totalPrice"/>
-                                        <div class="total-price">Total Price: <span class="bold">${totalPrice}</span></div>
+                                        <fmt:formatNumber value="${order.totalPrice}" pattern="#,##0đ"
+                                                          var="totalPrice"/>
+                                        <div class="total-price">Total Price: <span class="bold">${totalPrice}</span>
+                                        </div>
                                         <c:if test="${!order.status.equals('finished')}">
                                             <form id="cancelForm_${order.id}" action="account" method="get">
                                                 <input type="hidden" name="orderId" value="${order.id}">
                                                 <input type="text" name="action" value="cancelOrder" hidden="hidden"/>
-                                                <input type="submit" value="Cancel Order" class="cancel-btn" onclick="return canCancel(${order.id}, '${order.status}');">
+                                                <input type="submit" value="Cancel Order" class="cancel-btn"
+                                                       onclick="return canCancel(${order.id}, '${order.status}');">
                                             </form>
                                         </c:if>
                                         <script>
@@ -382,7 +451,7 @@
                     <h4>Information</h4>
                     <p>
                     <ul class="colorlib-footer-links">
-                        <li><a href="about.html">About us</a></li>
+                        <li><a href="about.jsp">About us</a></li>
                         <li><a href="#">Privacy Policy</a></li>
                         <li><a href="#">Support</a></li>
                     </ul>

@@ -1,4 +1,4 @@
-<%--
+<%@ page import="model.customer.Customer" %><%--
   Created by IntelliJ IDEA.
   User: datng
   Date: 1/21/2024
@@ -42,10 +42,44 @@
 
     <!-- Theme style  -->
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .user-account {
+            font-weight: 400;
+            font-family: 'Rokkitt', Georgia, serif;
+            text-transform: uppercase;
+            font-size: 15px;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+        }
+
+        .user-account a {
+            text-decoration: none;
+            color: black;
+            margin-right: 10px;
+        }
+
+        .admin-links {
+            display: none;
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+
+        .admin-links a {
+            display: block;
+            padding: 5px;
+        }
+
+        .user-account:hover .admin-links {
+            display: block;
+        }
+
+    </style>
 </head>
 <body>
-<%--<div class="colorlib-loader"></div>--%>
-
+<div class="colorlib-loader"></div>
 <div id="page">
     <nav class="colorlib-nav" role="navigation">
         <div class="top-menu">
@@ -63,20 +97,47 @@
                             </div>
                         </form>
                     </div>
-                    <div class="col-sm-2 col-md-2" style="font-weight: 400; font-family: 'Rokkitt', Georgia, serif; text-transform: uppercase; font-size: 15px; letter-spacing: 2px;">
+                    <%
+                        HttpSession session1 = request.getSession(false);
+                        Customer account = (Customer) session.getAttribute("account");
+                    %>
+                    <div class="user-account">
                         <%
-                            if (session.getAttribute("account") != null) {
+                            if (account != null) {
                         %>
-                        <a href="accountDetail.jsp">${sessionScope.account.fullName}</a>
+                        <a href="account" class="account-link"><%= account.getFullName() %>
+                        </a>
+                        <div class="admin-links">
+                            <a href="account">Account</a>
+                            <a href="admin">Admin</a>
+                        </div>
                         <%
-                        }else{
+                        } else {
                         %>
-                        <a href="account" style="margin-right: 10px;">Login</a>
-                        <a href="register.jsp">Register</a>
+                        <a href="account" class="login-link">Login</a>
+                        <a href="register.jsp" class="register-link">Register</a>
                         <%
                             }
                         %>
                     </div>
+
+                    <script>
+                        // JavaScript to show admin links on hover
+                        document.addEventListener("DOMContentLoaded", function () {
+                            var accountLink = document.querySelector(".col-sm-2 a[href='account']");
+                            var adminLinks = document.querySelector(".admin-links");
+
+                            if (accountLink && adminLinks) {
+                                accountLink.addEventListener("mouseenter", function () {
+                                    adminLinks.style.display = "block";
+                                });
+
+                                accountLink.addEventListener("mouseleave", function () {
+                                    adminLinks.style.display = "none";
+                                });
+                            }
+                        });
+                    </script>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 text-left menu-1">
@@ -103,8 +164,8 @@
                             </li>
                             <li><a href="collections?categories=BST THE UPGRADE">BST The Upgrade</a></li>
                             <li><a href="collections?categories=The Focus Project">The Focus Project</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="about.jsp">About</a></li>
+                            <li><a href="contact.jsp">Contact</a></li>
                             <li class="cart"><a href="cart.jsp"><i class="icon-shopping-cart"></i> Cart [${size}]</a>
                             </li>
                         </ul>
@@ -141,64 +202,66 @@
                 </c:forEach>
             </div>
 
-    <footer id="colorlib-footer" role="contentinfo">
-        <div class="container">
-            <div class="row row-pb-md">
-                <div class="col footer-col colorlib-widget">
-                    <h4>About Style Hub</h4>
-                    <p>A man needs his own style</p>
-                    <p>
-                    <ul class="colorlib-social-icons">
-                        <li><a href="https://www.facebook.com/datphuong1810/"><i class="icon-facebook"></i></a></li>
-                    </ul>
-                    </p>
-                </div>
-                <div class="col footer-col colorlib-widget">
-                    <h4>Customer Care</h4>
-                    <p>
-                    <ul class="colorlib-footer-links">
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="tel://0705410751">Customer Services</a></li>
-                        <li><a href="https://maps.app.goo.gl/z7MAnSiKahsZu5V79">Site maps</a></li>
-                    </ul>
-                    </p>
-                </div>
-                <div class="col footer-col colorlib-widget">
-                    <h4>Information</h4>
-                    <p>
-                    <ul class="colorlib-footer-links">
-                        <li><a href="about.html">About us</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Support</a></li>
-                    </ul>
-                    </p>
-                </div>
+            <footer id="colorlib-footer" role="contentinfo">
+                <div class="container">
+                    <div class="row row-pb-md">
+                        <div class="col footer-col colorlib-widget">
+                            <h4>About Style Hub</h4>
+                            <p>A man needs his own style</p>
+                            <p>
+                            <ul class="colorlib-social-icons">
+                                <li><a href="https://www.facebook.com/datphuong1810/"><i class="icon-facebook"></i></a>
+                                </li>
+                            </ul>
+                            </p>
+                        </div>
+                        <div class="col footer-col colorlib-widget">
+                            <h4>Customer Care</h4>
+                            <p>
+                            <ul class="colorlib-footer-links">
+                                <li><a href="#">Contact</a></li>
+                                <li><a href="tel://0705410751">Customer Services</a></li>
+                                <li><a href="https://maps.app.goo.gl/z7MAnSiKahsZu5V79">Site maps</a></li>
+                            </ul>
+                            </p>
+                        </div>
+                        <div class="col footer-col colorlib-widget">
+                            <h4>Information</h4>
+                            <p>
+                            <ul class="colorlib-footer-links">
+                                <li><a href="about.jsp">About us</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Support</a></li>
+                            </ul>
+                            </p>
+                        </div>
 
-                <div class="col footer-col">
-                    <h4>Contact Information</h4>
-                    <ul class="colorlib-footer-links">
-                        <li>Nhà trọ Hoàng Quân, <br> Phú Hữu Tân Xã Thạch Thất Hà Nội</li>
-                        <li><a href="tel://0705410751">+84 0705410751</a></li>
-                        <li><a href="mailto:datnguyenphuong1810@gmail.com">datnguyenphuong1810@gmail.com</a></li>
-                    </ul>
+                        <div class="col footer-col">
+                            <h4>Contact Information</h4>
+                            <ul class="colorlib-footer-links">
+                                <li>Nhà trọ Hoàng Quân, <br> Phú Hữu Tân Xã Thạch Thất Hà Nội</li>
+                                <li><a href="tel://0705410751">+84 0705410751</a></li>
+                                <li><a href="mailto:datnguyenphuong1810@gmail.com">datnguyenphuong1810@gmail.com</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="copy">
-            <div class="row">
-                <div class="col-sm-12 text-center">
-                    <p>
+                <div class="copy">
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <p>
 							<span>
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i
                                     class="icon-heart" aria-hidden="true"></i> by <a
                                     href="https://www.facebook.com/datphuong1810/" target="_blank">Đạt NP</a>
                                 </span>
-                    </p>
+                            </p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </footer>
+            </footer>
 
-</div>
+        </div>
 </body>
 </html>

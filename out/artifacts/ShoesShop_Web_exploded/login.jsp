@@ -1,3 +1,4 @@
+<%@ page import="model.customer.Customer" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -59,6 +60,39 @@
             clear: both;
             display: table;
         }
+
+        .user-account {
+            font-weight: 400;
+            font-family: 'Rokkitt', Georgia, serif;
+            text-transform: uppercase;
+            font-size: 15px;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+        }
+
+        .user-account a {
+            text-decoration: none;
+            color: black;
+            margin-right: 10px;
+        }
+
+        .admin-links {
+            display: none;
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+
+        .admin-links a {
+            display: block;
+            padding: 5px;
+        }
+
+        .user-account:hover .admin-links {
+            display: block;
+        }
     </style>
 
 </head>
@@ -83,20 +117,47 @@
                             </div>
                         </form>
                     </div>
-                    <div class="col-sm-2 col-md-2" style="font-weight: 400; font-family: 'Rokkitt', Georgia, serif; text-transform: uppercase; font-size: 15px; letter-spacing: 2px;">
+                    <%
+                        HttpSession session1 = request.getSession(false);
+                        Customer account = (Customer) session.getAttribute("account");
+                    %>
+                    <div class="user-account">
                         <%
-                            if (session.getAttribute("account") != null) {
+                            if (account != null) {
                         %>
-                        <a href="accountDetail.jsp">${sessionScope.account.fullName}</a>
+                        <a href="account" class="account-link"><%= account.getFullName() %>
+                        </a>
+                        <div class="admin-links">
+                            <a href="account">Account</a>
+                            <a href="admin">Admin</a>
+                        </div>
                         <%
-                        }else{
+                        } else {
                         %>
-                        <a href="account" style="margin-right: 10px;">Login</a>
-                        <a href="register.jsp">Register</a>
+                        <a href="account" class="login-link">Login</a>
+                        <a href="register.jsp" class="register-link">Register</a>
                         <%
                             }
                         %>
                     </div>
+
+                    <script>
+                        // JavaScript to show admin links on hover
+                        document.addEventListener("DOMContentLoaded", function () {
+                            var accountLink = document.querySelector(".col-sm-2 a[href='account']");
+                            var adminLinks = document.querySelector(".admin-links");
+
+                            if (accountLink && adminLinks) {
+                                accountLink.addEventListener("mouseenter", function () {
+                                    adminLinks.style.display = "block";
+                                });
+
+                                accountLink.addEventListener("mouseleave", function () {
+                                    adminLinks.style.display = "none";
+                                });
+                            }
+                        });
+                    </script>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 text-left menu-1">
@@ -123,8 +184,8 @@
                             </li>
                             <li><a href="collections?categories=BST THE UPGRADE">BST The Upgrade</a></li>
                             <li><a href="collections?categories=The Focus Project">The Focus Project</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="about.jsp">About</a></li>
+                            <li><a href="contact.jsp">Contact</a></li>
                             <li class="cart"><a href="cart.jsp"><i class="icon-shopping-cart"></i> Cart [${size}]</a>
                             </li>
                         </ul>
@@ -145,9 +206,11 @@
             <div class="col-md-6">
                 <form action="login" method="post">
                     <label for="user">Username</label> <br/>
-                    <input type="text" name="user" id="user" class="form-control" placeholder="Nhập tên tài khoản" required autofocus><br/>
+                    <input type="text" name="user" id="user" class="form-control" placeholder="Nhập tên tài khoản"
+                           required autofocus><br/>
                     <label for="pass">Password</label><br/>
-                    <input type="password" name="pass" id="pass" class="form-control" placeholder="Nhập mật khẩu" required>
+                    <input type="password" name="pass" id="pass" class="form-control" placeholder="Nhập mật khẩu"
+                           required>
                     <div class="form-group">
                         <input name="remember" value="1" type="checkbox" id="remember">
                         <label for="remember">Remember me</label>
@@ -184,7 +247,7 @@
                     <h4>Information</h4>
                     <p>
                     <ul class="colorlib-footer-links">
-                        <li><a href="about.html">About us</a></li>
+                        <li><a href="about.jsp">About us</a></li>
                         <li><a href="#">Privacy Policy</a></li>
                         <li><a href="#">Support</a></li>
                     </ul>

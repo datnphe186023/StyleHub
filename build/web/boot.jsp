@@ -73,8 +73,8 @@
                             <li><a href="derby.jsp">Derby</a></li>
                             <li><a href="loafer.jsp">Loafer</a></li>
                             <li><a href="the-upgrade.jsp">BST The Upgrade</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="about.jsp">About</a></li>
+                            <li><a href="contact.jsp">Contact</a></li>
                             <li class="cart"><a href="cart.html"><i class="icon-shopping-cart"></i> Cart [${size}]</a></li>
                         </ul>
                     </div>

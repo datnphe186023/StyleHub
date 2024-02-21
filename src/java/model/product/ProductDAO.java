@@ -409,5 +409,22 @@ public class ProductDAO extends DBContext implements DAO<Product> {
             System.out.println("update product " + e);
         }
     }
+
+    public int getStockForSize(int productId, int size){
+        String sql = "select stock from size where product_id = ? and size = ?";
+        int stock = 0;
+        try{
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, productId);
+            statement.setInt(2, size);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()){
+                stock = resultSet.getInt(1);
+            }
+        }catch (Exception e){
+            System.out.println("get stock for size " + e);
+        }
+        return stock;
+    }
 }
 

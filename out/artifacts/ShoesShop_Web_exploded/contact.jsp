@@ -1,14 +1,21 @@
-<%@ page import="java.util.List" %>
 <%@ page import="model.customer.Customer" %>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE HTML>
 <html>
 <head>
     <title>Style Hub</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Facebook and Twitter integration -->
+    <meta property="og:title" content=""/>
+    <meta property="og:image" content=""/>
+    <meta property="og:url" content=""/>
+    <meta property="og:site_name" content=""/>
+    <meta property="og:description" content=""/>
+    <meta name="twitter:title" content="" />
+    <meta name="twitter:image" content="" />
+    <meta name="twitter:url" content="" />
+    <meta name="twitter:card" content="" />
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Rokkitt:100,300,400,700" rel="stylesheet">
@@ -77,7 +84,7 @@
 
 </head>
 <body>
-<c:set var="size" value="${sessionScope.size}"/>
+
 <div class="colorlib-loader"></div>
 
 <div id="page">
@@ -175,65 +182,106 @@
         </div>
     </nav>
 
-    <div class="colorlib-product">
+    <div class="breadcrumbs">
         <div class="container">
             <div class="row">
-                <div class="col-sm-8 offset-sm-2 text-center colorlib-heading colorlib-heading-sm">
-                    <h2>View All Products</h2>
-                </div>
-            </div>
-            <div class="row row-pb-md">
-                <c:set var="page" value="${requestScope.numberOfPage}"/>
-                <c:set var="products" value="${requestScope.productList}"/>
-                <c:forEach items="${products}" var="product">
-                    <div class="col-md-3 col-lg-3 mb-4 text-center">
-                        <div class="product-entry border">
-                            <a href="product?productId=${product.id}" class="prod-img">
-                                <img src="<c:url value="/images/${product.images.get(0)}"/>" class="img-fluid" alt="${product.title}"/>
-                            </a>
-                            <div class="desc">
-                                <h2><a href="product?productId=${product.id}">${product.title}</a></h2>
-                                <fmt:formatNumber value="${product.outPrice}" pattern="#,##0đ" var="outPrice"/>
-                                <span class="price">${outPrice}</span>
-                            </div>
-                        </div>
-                    </div>
-                </c:forEach>
-            </div>
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <div class="block-27">
-                        <ul>
-                            <li><a href="#"><i class="ion-ios-arrow-back"></i></a></li>
-                            <c:set var="collections" value="${requestScope.collections}"/>
-                            <c:forEach begin="${1}" end="${requestScope.numberOfPage}" var="i">
-                                <li>
-                                <a class="${i==page?"active":""}" href="?${collections}&page=${i}">${i}</a>
-                                </li>
-                            </c:forEach>
-<%--                            <li class="active"><span>1</span></li>--%>
-<%--                            <li><a href="#">2</a></li>--%>
-<%--                            <li><a href="#">3</a></li>--%>
-<%--                            <li><a href="#">4</a></li>--%>
-<%--                            <li><a href="#">5</a></li>--%>
-                            <li><a href="#"><i class="ion-ios-arrow-forward"></i></a></li>
-                        </ul>
-                    </div>
+                <div class="col">
+                    <p class="bread"><span><a href="index.jsp">Home</a></span> / <span>Contact</span></p>
                 </div>
             </div>
         </div>
     </div>
 
 
+    <div id="colorlib-contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3>Contact Information</h3>
+                    <div class="row contact-info-wrap">
+                        <div class="col-md-3">
+                            <p><span><i class="icon-location"></i></span> 198 West 21th Street, <br> Suite 721 New York NY 10016</p>
+                        </div>
+                        <div class="col-md-3">
+                            <p><span><i class="icon-phone3"></i></span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+                        </div>
+                        <div class="col-md-3">
+                            <p><span><i class="icon-paperplane"></i></span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+                        </div>
+                        <div class="col-md-3">
+                            <p><span><i class="icon-globe"></i></span> <a href="#">yoursite.com</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="contact-wrap">
+                        <h3>Get In Touch</h3>
+                        <form action="#" class="contact-form">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="fname">First Name</label>
+                                        <input type="text" id="fname" class="form-control" placeholder="Your firstname">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="lname">Last Name</label>
+                                        <input type="text" id="lname" class="form-control" placeholder="Your lastname">
+                                    </div>
+                                </div>
+                                <div class="w-100"></div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="text" id="email" class="form-control" placeholder="Your email address">
+                                    </div>
+                                </div>
+                                <div class="w-100"></div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="subject">Subject</label>
+                                        <input type="text" id="subject" class="form-control" placeholder="Your subject of this message">
+                                    </div>
+                                </div>
+                                <div class="w-100"></div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="message">Message</label>
+                                        <textarea name="message" id="message" cols="30" rows="10" class="form-control" placeholder="Say something about us"></textarea>
+                                    </div>
+                                </div>
+                                <div class="w-100"></div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <input type="submit" value="Send Message" class="btn btn-primary">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div id="map" class="colorlib-map"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <footer id="colorlib-footer" role="contentinfo">
         <div class="container">
             <div class="row row-pb-md">
                 <div class="col footer-col colorlib-widget">
-                    <h4>About Style Hub</h4>
-                    <p>A man needs his own style</p>
+                    <h4>About Footwear</h4>
+                    <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life</p>
                     <p>
                     <ul class="colorlib-social-icons">
-                        <li><a href="https://www.facebook.com/datphuong1810/"><i class="icon-facebook"></i></a></li>
+                        <li><a href="#"><i class="icon-twitter"></i></a></li>
+                        <li><a href="#"><i class="icon-facebook"></i></a></li>
+                        <li><a href="#"><i class="icon-linkedin"></i></a></li>
+                        <li><a href="#"><i class="icon-dribbble"></i></a></li>
                     </ul>
                     </p>
                 </div>
@@ -242,8 +290,12 @@
                     <p>
                     <ul class="colorlib-footer-links">
                         <li><a href="#">Contact</a></li>
-                        <li><a href="tel://0705410751">Customer Services</a></li>
-                        <li><a href="https://maps.app.goo.gl/z7MAnSiKahsZu5V79">Site maps</a></li>
+                        <li><a href="#">Returns/Exchange</a></li>
+                        <li><a href="#">Gift Voucher</a></li>
+                        <li><a href="#">Wishlist</a></li>
+                        <li><a href="#">Special</a></li>
+                        <li><a href="#">Customer Services</a></li>
+                        <li><a href="#">Site maps</a></li>
                     </ul>
                     </p>
                 </div>
@@ -251,19 +303,31 @@
                     <h4>Information</h4>
                     <p>
                     <ul class="colorlib-footer-links">
-                        <li><a href="about.jsp">About us</a></li>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Delivery Information</a></li>
                         <li><a href="#">Privacy Policy</a></li>
                         <li><a href="#">Support</a></li>
+                        <li><a href="#">Order Tracking</a></li>
                     </ul>
                     </p>
                 </div>
 
                 <div class="col footer-col">
+                    <h4>News</h4>
+                    <ul class="colorlib-footer-links">
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Exhibitions</a></li>
+                    </ul>
+                </div>
+
+                <div class="col footer-col">
                     <h4>Contact Information</h4>
                     <ul class="colorlib-footer-links">
-                        <li>Nhà trọ Hoàng Quân, <br> Phú Hữu Tân Xã Thạch Thất Hà Nội</li>
-                        <li><a href="tel://0705410751">+84 0705410751</a></li>
-                        <li><a href="mailto:datnguyenphuong1810@gmail.com">datnguyenphuong1810@gmail.com</a></li>
+                        <li>291 South 21th Street, <br> Suite 721 New York NY 10016</li>
+                        <li><a href="tel://1234567920">+ 1235 2355 98</a></li>
+                        <li><a href="mailto:info@yoursite.com">info@yoursite.com</a></li>
+                        <li><a href="#">yoursite.com</a></li>
                     </ul>
                 </div>
             </div>
@@ -272,11 +336,10 @@
             <div class="row">
                 <div class="col-sm-12 text-center">
                     <p>
-							<span>
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i
-                                    class="icon-heart" aria-hidden="true"></i> by <a
-                                    href="https://www.facebook.com/datphuong1810/" target="_blank">Đạt NP</a>
-                                </span>
+							<span><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></span>
+                        <span class="block">Demo Images: <a href="http://unsplash.co/" target="_blank">Unsplash</a> , <a href="http://pexels.com/" target="_blank">Pexels.com</a></span>
                     </p>
                 </div>
             </div>
@@ -309,8 +372,12 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="js/bootstrap-datepicker.js"></script>
 <!-- Stellar Parallax -->
 <script src="js/jquery.stellar.min.js"></script>
+<!-- Google Map -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script>
+<script src="js/google_map.js"></script>
 <!-- Main -->
 <script src="js/main.js"></script>
 
 </body>
 </html>
+

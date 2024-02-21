@@ -26,21 +26,25 @@ public class ProcessServlet extends HttpServlet {
         String num_raw = request.getParameter("num").trim();
         String id_raw = request.getParameter("id").trim();
         String psize_raw = request.getParameter("psize");
-        int id, amount, psize;
+        String currentQuantityRaw = request.getParameter("currentQuantity");
+        int id, amount, psize, currentQuantity;
         try {
             id = Integer.parseInt(id_raw);
             amount = Integer.parseInt(num_raw);
             psize = Integer.parseInt(psize_raw);
-            if (cart.getQuantity(id,psize) + amount == 0) {
-                cart.removeItem(id, psize);
-                int size = (int) session.getAttribute("size");
-                session.setAttribute("size", size - 1);
-            } else {
-                ProductDAO productDAO = new ProductDAO();
-                Product product = productDAO.get(id);
-                double price = product.getOutPrice();
-                Item item = new Item(product, amount, price, psize);
-                cart.addItem(item);
+            currentQuantity = Integer.parseInt(currentQuantityRaw);
+            ProductDAO productDAO = new ProductDAO();
+            if (currentQuantity + amount <= productDAO.getStockForSize(id, psize)) {
+                if (cart.getQuantity(id, psize) + amount == 0) {
+                    cart.removeItem(id, psize);
+                    int size = (int) session.getAttribute("size");
+                    session.setAttribute("size", size - 1);
+                } else {
+                    Product product = productDAO.get(id);
+                    double price = product.getOutPrice();
+                    Item item = new Item(product, amount, price, psize);
+                    cart.addItem(item);
+                }
             }
         } catch (NumberFormatException e) {
             System.out.println(e);

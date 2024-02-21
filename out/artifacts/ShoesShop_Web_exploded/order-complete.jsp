@@ -165,8 +165,8 @@
                             </li>
                             <li><a href="collections?categories=BST THE UPGRADE">BST The Upgrade</a></li>
                             <li><a href="collections?categories=The Focus Project">The Focus Project</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="about.jsp">About</a></li>
+                            <li><a href="contact.jsp">Contact</a></li>
                             <li class="cart"><a href="cart.jsp"><i class="icon-shopping-cart"></i> Cart [${size}]</a>
                             </li>
                         </ul>
@@ -179,7 +179,7 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <p class="bread"><span><a href="index.html">Home</a></span> / <span>Purchase Complete</span></p>
+                    <p class="bread"><span><a href="index.jsp">Home</a></span> / <span>Purchase Complete</span></p>
                 </div>
             </div>
         </div>
@@ -244,7 +244,7 @@
                     <h4>Information</h4>
                     <p>
                     <ul class="colorlib-footer-links">
-                        <li><a href="about.html">About us</a></li>
+                        <li><a href="about.jsp">About us</a></li>
                         <li><a href="#">Privacy Policy</a></li>
                         <li><a href="#">Support</a></li>
                     </ul>

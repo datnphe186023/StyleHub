@@ -102,11 +102,15 @@ public class AdminProductManagerServlet extends HttpServlet {
                         int[] stock = Arrays.stream(stockRaw).mapToInt(Integer::parseInt).toArray();
                         int productId = Integer.parseInt(productIdRaw);
                         productDAO.updateProduct(productId, productTitle, inPrice, outPrice, description);
-                        productDAO.updateCategoryForProduct(productId, category);
+                        if (category != null) {
+                            productDAO.updateCategoryForProduct(productId, category);
+                        }
                         for (int i = 0; i < size.length; i++) {
                             productDAO.updateItem(productId, size[i], stock[i]);
                         }
-                        productDAO.updateItem(productId, image);
+                        if (image.equals(" ")) {
+                            productDAO.updateItem(productId, image);
+                        }
                     } catch (Exception e) {
                         System.out.println("update product servlet " + e);
                     }

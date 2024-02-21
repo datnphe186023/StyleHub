@@ -4,13 +4,11 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import model.customer.Customer;
-import model.customer.CustomerDAO;
 import model.order.Order;
 import model.order.OrderDAO;
 import model.order.OrderDetail;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "AdminOrderManagerServlet", value = "/ordermanager")

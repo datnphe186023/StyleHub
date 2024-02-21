@@ -1,3 +1,4 @@
+<%@ page import="model.customer.Customer" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -37,6 +38,41 @@
 
         <!-- Theme style  -->
         <link rel="stylesheet" href="css/style.css">
+        <style>
+            .user-account {
+                font-weight: 400;
+                font-family: 'Rokkitt', Georgia, serif;
+                text-transform: uppercase;
+                font-size: 15px;
+                letter-spacing: 2px;
+                display: flex;
+                align-items: center;
+            }
+
+            .user-account a {
+                text-decoration: none;
+                color: black;
+                margin-right: 10px;
+            }
+
+            .admin-links {
+                display: none;
+                position: absolute;
+                background-color: white;
+                border: 1px solid #ccc;
+                padding: 5px;
+            }
+
+            .admin-links a {
+                display: block;
+                padding: 5px;
+            }
+
+            .user-account:hover .admin-links {
+                display: block;
+            }
+
+        </style>
 
     </head>
     <body>
@@ -49,7 +85,7 @@
                 <div class="top-menu">
                     <div class="container">
                         <div class="row">
-                            <div class="col-sm-7 col-md-9">
+                            <div class="col-sm-5 col-md-7">
                                 <div id="colorlib-logo"><a href="index.jsp">Style Hub</a></div>
                             </div>
                             <div class="col-sm-5 col-md-3">
@@ -61,34 +97,75 @@
                                     </div>
                                 </form>
                             </div>
+                            <%
+                                HttpSession session1 = request.getSession(false);
+                                Customer account = (Customer) session.getAttribute("account");
+                            %>
+                            <div class="user-account">
+                                <%
+                                    if (account != null) {
+                                %>
+                                <a href="account" class="account-link"><%= account.getFullName() %>
+                                </a>
+                                <div class="admin-links">
+                                    <a href="account">Account</a>
+                                    <a href="admin">Admin</a>
+                                </div>
+                                <%
+                                } else {
+                                %>
+                                <a href="account" class="login-link">Login</a>
+                                <a href="register.jsp" class="register-link">Register</a>
+                                <%
+                                    }
+                                %>
+                            </div>
+
+                            <script>
+                                // JavaScript to show admin links on hover
+                                document.addEventListener("DOMContentLoaded", function () {
+                                    var accountLink = document.querySelector(".col-sm-2 a[href='account']");
+                                    var adminLinks = document.querySelector(".admin-links");
+
+                                    if (accountLink && adminLinks) {
+                                        accountLink.addEventListener("mouseenter", function () {
+                                            adminLinks.style.display = "block";
+                                        });
+
+                                        accountLink.addEventListener("mouseleave", function () {
+                                            adminLinks.style.display = "none";
+                                        });
+                                    }
+                                });
+                            </script>
                         </div>
                         <div class="row">
                             <div class="col-sm-12 text-left menu-1">
                                 <ul>
                                     <li class="active"><a href="index.jsp">Home</a></li>
                                     <li class="has-dropdown">
-                                        <a href="men.jsp">Men</a>
+                                        <a href="collections?categories=Men">Men</a>
                                         <ul class="dropdown">
-                                            <li><a href="men-boot.jsp">Boot</a></li>
-                                            <li><a href="men-derby.jsp">Derby</a></li>
-                                            <li><a href="men-loafer.jsp">Loafer</a></li>
+                                            <li><a href="collections?categories=Men&categories=Boot">Boot</a></li>
+                                            <li><a href="collections?categories=Men&categories=Derby">Derby</a></li>
+                                            <li><a href="collections?categories=Men&categories=Loafer">Loafer</a></li>
                                         </ul>
                                     </li>
                                     <li class="has-dropdown">
-                                        <a href="women.jsp">Women</a>
+                                        <a href="collections?categories=Women">Women</a>
                                         <ul class="dropdown">
-                                            <li><a href="women-boot.jsp">Boot</a></li>
-                                            <li><a href="women-derby.jsp">Derby</a></li>
-                                            <li><a href="women-loafer.jsp">loafer</a></li>
-                                            <li><a href="slipper.jsp">Slipper</a></li>
-                                            <li><a href="sandal.jsp">Sandal</a></li>
-                                            <li><a href="flip-flop.jsp">Flip Flop</a></li>
+                                            <li><a href="collections?categories=Women&categories=Boot">Boot</a></li>
+                                            <li><a href="collections?categories=Women&categories=Derby">Derby</a></li>
+                                            <li><a href="collections?categories=Women&categories=Loafer">loafer</a></li>
+                                            <li><a href="collections?categories=Women&categories=Slipper">Slipper</a></li>
+                                            <li><a href="collections?categories=Women&categories=Sandal">Sandal</a></li>
+                                            <li><a href="collections?categories=Women&categories=Flip Flop">Flip Flop</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="the-upgrade.jsp">BST The Upgrade</a></li>
-                                    <li><a href="the-focus.jsp">The Focus Project</a></li>
-                                    <li><a href="about.html">About</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
+                                    <li><a href="collections?categories=BST THE UPGRADE">BST The Upgrade</a></li>
+                                    <li><a href="collections?categories=The Focus Project">The Focus Project</a></li>
+                                    <li><a href="about.jsp">About</a></li>
+                                    <li><a href="contact.jsp">Contact</a></li>
                                     <li class="cart"><a href="cart.jsp"><i class="icon-shopping-cart"></i> Cart [${size}]</a>
                                     </li>
                                 </ul>
@@ -197,7 +274,6 @@
                         </div>
                     </div>
                     </form>
-
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="row">
@@ -365,7 +441,7 @@
                             <h4>Information</h4>
                             <p>
                             <ul class="colorlib-footer-links">
-                                <li><a href="about.html">About us</a></li>
+                                <li><a href="about.jsp">About us</a></li>
                                 <li><a href="#">Privacy Policy</a></li>
                                 <li><a href="#">Support</a></li>
                             </ul>
