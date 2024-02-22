@@ -211,11 +211,6 @@
                                 <a class="${i==page?"active":""}" href="?${collections}&page=${i}">${i}</a>
                                 </li>
                             </c:forEach>
-<%--                            <li class="active"><span>1</span></li>--%>
-<%--                            <li><a href="#">2</a></li>--%>
-<%--                            <li><a href="#">3</a></li>--%>
-<%--                            <li><a href="#">4</a></li>--%>
-<%--                            <li><a href="#">5</a></li>--%>
                             <li><a href="#"><i class="ion-ios-arrow-forward"></i></a></li>
                         </ul>
                     </div>
@@ -243,7 +238,7 @@
                     <ul class="colorlib-footer-links">
                         <li><a href="#">Contact</a></li>
                         <li><a href="tel://0705410751">Customer Services</a></li>
-                        <li><a href="https://maps.app.goo.gl/z7MAnSiKahsZu5V79">Site maps</a></li>
+                        <li><a href="https://maps.app.goo.gl/ij6UKJKGTrgLyaYHA">Site maps</a></li>
                     </ul>
                     </p>
                 </div>
@@ -261,7 +256,7 @@
                 <div class="col footer-col">
                     <h4>Contact Information</h4>
                     <ul class="colorlib-footer-links">
-                        <li>Nhà trọ Hoàng Quân, <br> Phú Hữu Tân Xã Thạch Thất Hà Nội</li>
+                        <li>Nhà trọ Mỹ Linh, <br> Phú Hữu Tân Xã Thạch Thất Hà Nội</li>
                         <li><a href="tel://0705410751">+84 0705410751</a></li>
                         <li><a href="mailto:datnguyenphuong1810@gmail.com">datnguyenphuong1810@gmail.com</a></li>
                     </ul>
@@ -273,7 +268,7 @@
                 <div class="col-sm-12 text-center">
                     <p>
 							<span>
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i
                                     class="icon-heart" aria-hidden="true"></i> by <a
                                     href="https://www.facebook.com/datphuong1810/" target="_blank">Đạt NP</a>
                                 </span>

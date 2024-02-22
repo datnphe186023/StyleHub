@@ -211,11 +211,6 @@
                                 <a class="${i==page?"active":""}" href="?${collections}&page=${i}">${i}</a>
                                 </li>
                             </c:forEach>
-<%--                            <li class="active"><span>1</span></li>--%>
-<%--                            <li><a href="#">2</a></li>--%>
-<%--                            <li><a href="#">3</a></li>--%>
-<%--                            <li><a href="#">4</a></li>--%>
-<%--                            <li><a href="#">5</a></li>--%>
                             <li><a href="#"><i class="ion-ios-arrow-forward"></i></a></li>
                         </ul>
                     </div>

@@ -79,8 +79,7 @@
     </style>
 </head>
 <body>
-<%--<div class="colorlib-loader"></div>--%>
-
+<div class="colorlib-loader"></div>
 <div id="page">
     <nav class="colorlib-nav" role="navigation">
         <div class="top-menu">
@@ -203,64 +202,67 @@
                 </c:forEach>
             </div>
 
-    <footer id="colorlib-footer" role="contentinfo">
-        <div class="container">
-            <div class="row row-pb-md">
-                <div class="col footer-col colorlib-widget">
-                    <h4>About Style Hub</h4>
-                    <p>A man needs his own style</p>
-                    <p>
-                    <ul class="colorlib-social-icons">
-                        <li><a href="https://www.facebook.com/datphuong1810/"><i class="icon-facebook"></i></a></li>
-                    </ul>
-                    </p>
-                </div>
-                <div class="col footer-col colorlib-widget">
-                    <h4>Customer Care</h4>
-                    <p>
-                    <ul class="colorlib-footer-links">
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="tel://0705410751">Customer Services</a></li>
-                        <li><a href="https://maps.app.goo.gl/z7MAnSiKahsZu5V79">Site maps</a></li>
-                    </ul>
-                    </p>
-                </div>
-                <div class="col footer-col colorlib-widget">
-                    <h4>Information</h4>
-                    <p>
-                    <ul class="colorlib-footer-links">
-                        <li><a href="about.jsp">About us</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Support</a></li>
-                    </ul>
-                    </p>
-                </div>
+            <footer id="colorlib-footer" role="contentinfo">
+                <div class="container">
+                    <div class="row row-pb-md">
+                        <div class="col footer-col colorlib-widget">
+                            <h4>About Style Hub</h4>
+                            <p>A man needs his own style</p>
+                            <p>
+                            <ul class="colorlib-social-icons">
+                                <li><a href="https://www.facebook.com/datphuong1810/"><i class="icon-facebook"></i></a>
+                                </li>
+                            </ul>
+                            </p>
+                        </div>
+                        <div class="col footer-col colorlib-widget">
+                            <h4>Customer Care</h4>
+                            <p>
+                            <ul class="colorlib-footer-links">
+                                <li><a href="#">Contact</a></li>
+                                <li><a href="tel://0705410751">Customer Services</a></li>
+                                <li><a href="https://maps.app.goo.gl/z7MAnSiKahsZu5V79">Site maps</a></li>
+                            </ul>
+                            </p>
+                        </div>
+                        <div class="col footer-col colorlib-widget">
+                            <h4>Information</h4>
+                            <p>
+                            <ul class="colorlib-footer-links">
+                                <li><a href="about.jsp">About us</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Support</a></li>
+                            </ul>
+                            </p>
+                        </div>
 
-                <div class="col footer-col">
-                    <h4>Contact Information</h4>
-                    <ul class="colorlib-footer-links">
-                        <li>Nhà trọ Hoàng Quân, <br> Phú Hữu Tân Xã Thạch Thất Hà Nội</li>
-                        <li><a href="tel://0705410751">+84 0705410751</a></li>
-                        <li><a href="mailto:datnguyenphuong1810@gmail.com">datnguyenphuong1810@gmail.com</a></li>
-                    </ul>
+                        <div class="col footer-col">
+                            <h4>Contact Information</h4>
+                            <ul class="colorlib-footer-links">
+                                <li>Nhà trọ Hoàng Quân, <br> Phú Hữu Tân Xã Thạch Thất Hà Nội</li>
+                                <li><a href="tel://0705410751">+84 0705410751</a></li>
+                                <li><a href="mailto:datnguyenphuong1810@gmail.com">datnguyenphuong1810@gmail.com</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="copy">
-            <div class="row">
-                <div class="col-sm-12 text-center">
-                    <p>
+                <div class="copy">
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <p>
 							<span>
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i
                                     class="icon-heart" aria-hidden="true"></i> by <a
                                     href="https://www.facebook.com/datphuong1810/" target="_blank">Đạt NP</a>
                                 </span>
-                    </p>
+                            </p>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </footer>
         </div>
-    </footer>
 
-</div>
+    </div>
 </body>
 </html>

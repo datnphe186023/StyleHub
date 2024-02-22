@@ -265,14 +265,7 @@
                                     <div class="form-group">
                                         <div class="col-md-12">
                                             <div class="radio">
-                                                <label><input type="radio" name="payment" value="BankTransfer">Chuyển khoản ngân hàng</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            <div class="radio">
-                                                <label><input type="radio" name="payment" value="VNPay">VNPay</label>
+                                                <label><input type="radio" name="payment" value="Momo">Momo</label>
                                             </div>
                                         </div>
                                     </div>

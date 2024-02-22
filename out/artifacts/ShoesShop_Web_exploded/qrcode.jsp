@@ -1,7 +1,13 @@
-<%@ page import="model.customer.Customer" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: datng
+  Date: 2/22/2024
+  Time: 10:24 AM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="model.customer.Customer" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -38,29 +44,7 @@
 
     <!-- Theme style  -->
     <link rel="stylesheet" href="css/style.css">
-
     <style>
-        #login-title, #login-form {
-            width: 50%;
-            float: left;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        #login-title h1, #login-title a {
-            margin-bottom: 20px;
-        }
-
-        #login-form {
-            padding-left: 40px;
-        }
-
-        .clearfix::after {
-            content: "";
-            clear: both;
-            display: table;
-        }
-
         .user-account {
             font-weight: 400;
             font-family: 'Rokkitt', Georgia, serif;
@@ -93,13 +77,24 @@
         .user-account:hover .admin-links {
             display: block;
         }
+        .error_section {
+            border: none;
+        }
+
+        .error_form {
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+        }
+
+
+
     </style>
 
 </head>
 <body>
-<c:set var="size" value="${sessionScope.size}"/>
 <div class="colorlib-loader"></div>
-
 <div id="page">
     <nav class="colorlib-nav" role="navigation">
         <div class="top-menu">
@@ -194,30 +189,24 @@
             </div>
         </div>
     </nav>
-    <div class="container">
-        <div class="row mt-5">
-            <div class="col-md-6">
-                <div>
-                    <h1>Đăng nhập</h1>
-                    <h6>or</h6>
-                    <h1><a href="<c:url value="/register.jsp"/>">Đăng ký</a></h1>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <form action="login" method="post">
-                    <label for="user">Username</label> <br/>
-                    <input type="text" name="user" id="user" class="form-control" placeholder="Nhập tên tài khoản"
-                           required autofocus><br/>
-                    <label for="pass">Password</label><br/>
-                    <input type="password" name="pass" id="pass" class="form-control" placeholder="Nhập mật khẩu"
-                           required>
-                    <div class="form-group">
-                        <input name="remember" value="1" type="checkbox" id="remember">
-                        <label for="remember">Remember me</label>
+    <div class="error_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="error_form">
+                        <h2 class="text-center text-dark">Thanh toán hoá đơn: #${requestScope.orderId}!</h2>
+                        <fmt:formatNumber value="${requestScope.total}" pattern="#,##0đ" var="total"/>
+                        <h4 class="text-center">Số tiền thanh toán: ${total} VND</h4>
+                        <h4 class="text-center">Vui lòng viết ghi chú: </h4>
+                        <h5 class="text-center" style="color: red">" #${requestScope.orderId} "</h5>
+                        <h6 class="text-center">Chúng tôi sẽ kiểm tra và thông báo đến bạn khi thanh toán hoàn tất !</h6>
+                        <div class="text-center">
+                            <iframe style="align-content: center; border: none;"height="650px" width="450px" src="https://nhantien.momo.vn/0705410751/${total}"></iframe>
+                        </div>
+                        <a href="index.jsp" style="display: block; margin: 10px auto; text-align: center; color: #007bff; text-decoration: none;
+                        padding: 5px 10px; background-color: #f8f9fa; border: 1px solid #007bff; border-radius: 5px;">Tiếp tục mua hàng</a>
                     </div>
-                    <button type="submit" class="btn btn-primary">Đăng nhập</button>
-                </form>
-                <h5>${requestScope.error}</h5>
+                </div>
             </div>
         </div>
     </div>
@@ -310,3 +299,5 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 </body>
 </html>
+
+

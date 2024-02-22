@@ -27,31 +27,39 @@ public class CheckoutServlet extends HttpServlet {
             request.setAttribute("addressList", addressList);
             request.getRequestDispatcher("checkOut.jsp").forward(request, response);
         } catch (Exception e) {
-            System.out.println("check out servlet post " + e);
+            System.out.println("check out servlet get " + e);
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String payment = request.getParameter("payment");
-        if (payment.equals("COD")){
+        try {
             HttpSession session = request.getSession(true);
             Cart cart = (Cart) session.getAttribute("cart");
             Customer customer = (Customer) session.getAttribute("account");
             OrderDAO orderDAO = new OrderDAO();
             String addressRaw = request.getParameter("addressId");
             int addressId;
-            try{
+            try {
                 addressId = Integer.parseInt(addressRaw);
                 orderDAO.addOrder(customer, cart, addressId);
                 CartDAO cartDAO = new CartDAO();
                 cartDAO.removeCart(customer.getId());
                 session.removeAttribute("cart");
                 session.setAttribute("size", 0);
-                request.getRequestDispatcher("order-complete.jsp").forward(request,response);
-            }catch (NumberFormatException e){
+                if (payment.equals("Momo")) {
+                    request.setAttribute("orderId", orderDAO.getAll().size());
+                    request.setAttribute("total", cart.getTotalMoney());
+                    request.getRequestDispatcher("qrcode.jsp").forward(request, response);
+                } else if (payment.equals("COD")) {
+                    request.getRequestDispatcher("order-complete.jsp").forward(request, response);
+                }
+            } catch (NumberFormatException e) {
                 System.out.println("check out " + e);
             }
+        } catch (Exception e) {
+            System.out.println("check out final" + e);
         }
     }
 }
