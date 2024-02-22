@@ -214,7 +214,7 @@ public class OrderDAO extends DBContext implements DAO<Order> {
     public int getNumberOfOrdersByMonth(String date){
         int total = 0;
         String sql = "SELECT COUNT(*) as 'count'\n"
-                + "  FROM orders where MONTH(created) = MONTH(?)";
+                + "  FROM orders where MONTH(created) = MONTH(?) AND status = 'shipped'";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, date);
@@ -231,7 +231,7 @@ public class OrderDAO extends DBContext implements DAO<Order> {
     public List<Order> getOrdersByDate(String date){
         List<Order> orderList = new ArrayList<>();
         String sql = "select orders.* from orders join dbo.customers c on c.id = orders.customer_id\n" +
-                "where created = ?";
+                "where created = ? AND status = 'shipped'";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, date);
@@ -255,7 +255,7 @@ public class OrderDAO extends DBContext implements DAO<Order> {
     public List<Order> getOrdersByMonth(int year, int month) {
         List<Order> orderList = new ArrayList<>();
         String sql = "SELECT orders.* FROM orders JOIN dbo.customers c ON c.id = orders.customer_id " +
-                "WHERE YEAR(created) = ? AND MONTH(created) = ?";
+                "WHERE YEAR(created) = ? AND MONTH(created) = ? AND status = 'shipped'";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, year);

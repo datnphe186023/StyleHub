@@ -397,7 +397,7 @@
                                                           var="totalPrice"/>
                                         <div class="total-price">Total Price: <span class="bold">${totalPrice}</span>
                                         </div>
-                                        <c:if test="${!order.status.equals('finished')}">
+                                        <c:if test="${!order.status.equals('shipped') && !order.status.equals('cancelled')}">
                                             <form id="cancelForm_${order.id}" action="account" method="get">
                                                 <input type="hidden" name="orderId" value="${order.id}">
                                                 <input type="text" name="action" value="cancelOrder" hidden="hidden"/>
