@@ -256,6 +256,37 @@ public class ProductDAO extends DBContext implements DAO<Product> {
         return count;
     }
 
+    public List<Product> getLowStockProduct(){
+        String sql = "SELECT distinct products.id, products.title, inPrice, outPrice, description\n" +
+                "FROM products join dbo.size s on products.id = s.product_id where stock < 10\n" +
+                "group by products.id, products.title, inPrice, outPrice, description";
+        List<Product> productList = new ArrayList<>();
+        try{
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Product product = new Product();
+                product.setId(resultSet.getInt("id"));
+                product.setTitle(resultSet.getString("title"));
+                product.setInPrice(resultSet.getDouble("inPrice"));
+                product.setOutPrice(resultSet.getDouble("outPrice"));
+                product.setDescription(resultSet.getString("description"));
+                List<Size> sizes = getSizeListForProduct(product.getId());
+                product.setSize(sizes);
+                List<String> categories = getCategoryListForProduct(product.getId());
+                product.setCategories(categories);
+                List<String> images = getImagesListForProduct(product.getId());
+                product.setImages(images);
+                ReviewDAO reviewDAO = new ReviewDAO();
+                product.setReviews(reviewDAO.getReviewsForProduct(resultSet.getInt("id")));
+                productList.add(product);
+            }
+        }catch (Exception e){
+            System.out.println("getLowStockProduct " + e);
+        }
+        return productList;
+    }
+
     public int countTotalProduct(){
         int count = 0;
         String sql = "SELECT COUNT(*) as 'count'\n"

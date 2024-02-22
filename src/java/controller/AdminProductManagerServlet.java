@@ -115,6 +115,13 @@ public class AdminProductManagerServlet extends HttpServlet {
                         System.out.println("update product servlet " + e);
                     }
                     response.sendRedirect("productmanager");
+                } else if (action.equals("lowProduct")) {
+                    ProductDAO productDAO = new ProductDAO();
+                    List<Product> productList = productDAO.getLowStockProduct();
+                    List<String> category = productDAO.getCategory();
+                    request.setAttribute("CategoryData", category);
+                    request.setAttribute("ProductData", productList);
+                    request.getRequestDispatcher("/admin/product.jsp").forward(request, response);
                 }
             } else {
                 response.sendRedirect("404.jsp");
