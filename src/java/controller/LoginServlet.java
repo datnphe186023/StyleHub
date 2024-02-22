@@ -24,6 +24,7 @@ public class LoginServlet extends HttpServlet {
         session.removeAttribute("account");
         session.removeAttribute("cart");
         session.removeAttribute("size");
+        session.removeAttribute("originalURL");
         response.sendRedirect("index.jsp");
     }
 

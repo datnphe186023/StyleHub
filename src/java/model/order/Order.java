@@ -4,7 +4,10 @@
  */
 package model.order;
 
+import model.product.ProductDAO;
+
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -76,5 +79,16 @@ public class Order {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public double calculateProfit() {
+        OrderDetailDAO orderDetailDAO = new OrderDetailDAO();
+        ProductDAO productDAO = new ProductDAO();
+        double cost = 0.0;
+        List<OrderDetail> orderDetails = orderDetailDAO.getByOrderId(getId());
+        for (OrderDetail item : orderDetails){
+            cost += productDAO.get(item.getProductId()).getInPrice();
+        }
+        return getTotalPrice() - cost;
     }
 }

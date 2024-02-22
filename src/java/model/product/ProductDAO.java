@@ -89,6 +89,18 @@ public class ProductDAO extends DBContext implements DAO<Product> {
         return getProductsFromDatabase(sql);
     }
 
+    public List<Product> getSale(double discount){
+        String sql = "select * from products where inPrice = 0.5 * products.outPrice";
+        List<Product> productList = new ArrayList<>();
+        try{
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+        }catch (Exception e){
+            System.out.println("get sale DAO " + e);
+        }
+        return getProductsFromDatabase(sql);
+    }
+
     public List<Product> getProductByCategory(String[] categoryList){
         if (categoryList == null || categoryList.length == 0) {
             return getAll();

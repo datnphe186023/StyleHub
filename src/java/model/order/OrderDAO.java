@@ -4,11 +4,9 @@
  */
 package model.order;
 
-import com.oracle.wls.shaded.org.apache.xpath.operations.Or;
 import model.DAO;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.sql.SQLException;
 import java.sql.ResultSet;
@@ -250,6 +248,31 @@ public class OrderDAO extends DBContext implements DAO<Order> {
             }
         }catch (SQLException e){
             System.out.println("getOrdersByDate " + e);
+        }
+        return orderList;
+    }
+
+    public List<Order> getOrdersByMonth(int year, int month) {
+        List<Order> orderList = new ArrayList<>();
+        String sql = "SELECT orders.* FROM orders JOIN dbo.customers c ON c.id = orders.customer_id " +
+                "WHERE YEAR(created) = ? AND MONTH(created) = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, year);
+            statement.setInt(2, month);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Order order = new Order();
+                order.setId(resultSet.getInt("id"));
+                order.setCustomerId(resultSet.getInt("customer_id"));
+                order.setCreated(resultSet.getDate("created"));
+                order.setStatus(resultSet.getString("status"));
+                order.setTotalPrice(resultSet.getDouble("total_price"));
+                order.setAddress(resultSet.getInt("address_id"));
+                orderList.add(order);
+            }
+        } catch (SQLException e) {
+            System.out.println("getOrdersByMonth " + e);
         }
         return orderList;
     }

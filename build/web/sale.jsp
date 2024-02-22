@@ -1,8 +1,8 @@
+<%@ page import="java.util.List" %>
+<%@ page import="model.customer.Customer" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page import="jakarta.servlet.http.HttpSession" %>
-<%@ page import="model.customer.Customer" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -78,7 +78,6 @@
 </head>
 <body>
 <c:set var="size" value="${sessionScope.size}"/>
-<jsp:useBean id="database" class="model.product.ProductDAO"/>
 <div class="colorlib-loader"></div>
 
 <div id="page">
@@ -175,120 +174,29 @@
             </div>
         </div>
     </nav>
-    <aside id="colorlib-hero">
-        <div class="flexslider">
-            <ul class="slides">
-                <li style="background-image: url(images/banner_1.jpg);">
-                    <div class="overlay"></div>
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-sm-6 offset-sm-3 text-center slider-text">
-                                <div class="slider-text-inner">
-                                    <div class="desc">
-                                        <h1 class="head-1">The Focus</h1>
-                                        <h2 class="head-3">Collection</h2>
-                                        <p class="category"><span>New trending shoes</span></p>
-                                        <p><a href="collections?categories=The Focus Project" class="btn btn-primary">Shop
-                                            Collection</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li style="background-image: url(images/banner-2.jpg);">
-                    <div class="overlay"></div>
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-sm-6 offset-sm-3 text-center slider-text">
-                                <div class="slider-text-inner">
-                                    <div class="desc">
-                                        <h1 class="head-1">Huge</h1>
-                                        <h2 class="head-2">Sale</h2>
-                                        <h2 class="head-3"><strong class="font-weight-bold">50%</strong> Off</h2>
-                                        <p class="category"><span>New Year - New Big Sale</span></p>
-                                        <p><a href="sale?discount=0.5" class="btn btn-primary">Shop Collection</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li style="background-image: url(images/banner-3.jpg);">
-                    <div class="overlay"></div>
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-sm-6 offset-sm-3 text-center slider-text">
-                                <div class="slider-text-inner">
-                                    <div class="desc">
-                                        <h1 class="head-1">New Collection</h1>
-                                        <h2 class="head-2">The Upgrade</h2>
-                                        <p class="category"><span>New stylish shoes</span></p>
-                                        <p><a href="collections?categories=BST THE UPGRADE" class="btn btn-primary">Shop
-                                            Collection</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </aside>
-    <div class="colorlib-intro">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 text-center">
-                    <h2 class="intro">It started with a simple idea: Create quality, well-designed products that I
-                        wanted myself.</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="colorlib-product">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-6 text-center">
-                    <div class="featured">
-                        <a href="collections?categories=Men" class="featured-img"
-                           style="background-image: url(images/men.jpg);"></a>
-                        <div class="desc">
-                            <h2><a href="collections?categories=Men">Shop Men's Collection</a></h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 text-center">
-                    <div class="featured">
-                        <a href="collections?categories=Women" class="featured-img"
-                           style="background-image: url(images/women.png);"></a>
-                        <div class="desc">
-                            <h2><a href="collections?categories=Women">Shop Women's Collection</a></h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="colorlib-product">
         <div class="container">
             <div class="row">
-                <div class="col-sm-8 offset-sm-2 text-center colorlib-heading">
-                    <h2>Best Sellers</h2>
+                <div class="col-sm-8 offset-sm-2 text-center colorlib-heading colorlib-heading-sm">
+                    <h2>View All Products</h2>
                 </div>
             </div>
             <div class="row row-pb-md">
-                <c:forEach items="${database.bestSeller}" var="products">
-                    <div class="col-lg-3 mb-4 text-center">
+                <c:set var="page" value="${requestScope.numberOfPage}"/>
+                <c:set var="products" value="${requestScope.productList}"/>
+                <c:forEach items="${products}" var="product">
+                    <div class="col-md-3 col-lg-3 mb-4 text-center">
                         <div class="product-entry border">
-                            <a href="product?productId=${products.id}" class="prod-img">
-                                <img src="<c:url value="/images/${products.images.get(0)}"/>" class="img-fluid"
-                                     alt="${products.title}}">
+                            <a href="product?productId=${product.id}" class="prod-img">
+                                <img src="<c:url value="/images/${product.images.get(0)}"/>" class="img-fluid" alt="${product.title}"/>
                             </a>
                             <div class="desc">
-                                <h2><a href="product?productId=${products.id}">${products.title}</a></h2>
-                                <fmt:formatNumber value="${products.outPrice}" pattern="#,##0đ" var="outPrice"/>
-                                <span class="price">${outPrice}</span>
+                                <h2><a href="product?productId=${product.id}">${product.title}</a></h2>
+                                <fmt:formatNumber value="${product.outPrice}" pattern="#,##0đ" var="outPrice"/>
+                                <fmt:formatNumber value="${product.inPrice}" pattern="#,##0đ" var="inPrice"/>
+                                <span class="price">${inPrice}</span>
+                                <span class="old-price" style="text-decoration: line-through">${outPrice}</span>
                             </div>
                         </div>
                     </div>
@@ -296,11 +204,23 @@
             </div>
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <p><a href="collections" class="btn btn-primary btn-lg">Shop All Products</a></p>
+                    <div class="block-27">
+                        <ul>
+                            <li><a href="#"><i class="ion-ios-arrow-back"></i></a></li>
+                            <c:set var="discount" value="${requestScope.discount}"/>
+                            <c:forEach begin="${1}" end="${requestScope.numberOfPage}" var="i">
+                                <li>
+                                    <a class="${i==page?"active":""}" href="?${discount}&page=${i}">${i}</a>
+                                </li>
+                            </c:forEach>
+                            <li><a href="#"><i class="ion-ios-arrow-forward"></i></a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 
     <footer id="colorlib-footer" role="contentinfo">
         <div class="container">
@@ -391,4 +311,3 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 </body>
 </html>
-

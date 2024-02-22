@@ -207,7 +207,7 @@
                                         <h2 class="head-2">Sale</h2>
                                         <h2 class="head-3"><strong class="font-weight-bold">50%</strong> Off</h2>
                                         <p class="category"><span>New Year - New Big Sale</span></p>
-                                        <p><a href="sale.jsp" class="btn btn-primary">Shop Collection</a></p>
+                                        <p><a href="sale?discount=0.5" class="btn btn-primary">Shop Collection</a></p>
                                     </div>
                                 </div>
                             </div>
