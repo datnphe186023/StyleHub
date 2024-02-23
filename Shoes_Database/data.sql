@@ -1493,12 +1493,12 @@ INSERT INTO [customers] VALUES
 
 
 INSERT INTO [customerAddress] VALUES
-(3, 'Jane Smith%0975643829%Xã Hưng Chính Thành Phố Vinh Nghệ An'),
-(3, 'Jane Smith%0975643829%Nhà trọ Hoàng Quân Phú Hữu Tân Xã'),
-(1, 'Admin%0977565429%Đại học FPT'),
-(4, 'Okis Adgraham%0997543829%Thanh Xuân Hà Nội'),
-(5, 'Olamai Yesir%0975643900%Xã Hưng Mỹ Huyện Hưng Nguyên Nghệ An'),
-(2, 'Siu Siu%0975643999%Xã Đại Đồng Huyện Thanh Chương Nghệ An');
+(3, 'Jane Smith%0975643829%Xã Hưng Chính Thành Phố Vinh Nghệ An','active'),
+(3, 'Jane Smith%0975643829%Nhà trọ Hoàng Quân Phú Hữu Tân Xã','active'),
+(1, 'Admin%0977565429%Đại học FPT','active'),
+(4, 'Okis Adgraham%0997543829%Thanh Xuân Hà Nội','active'),
+(5, 'Olamai Yesir%0975643900%Xã Hưng Mỹ Huyện Hưng Nguyên Nghệ An','active'),
+(2, 'Siu Siu%0975643999%Xã Đại Đồng Huyện Thanh Chương Nghệ An','active');
 
 
 INSERT INTO [reviews] VALUES

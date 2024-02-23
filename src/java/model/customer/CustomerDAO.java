@@ -100,7 +100,7 @@ public class CustomerDAO extends DBContext {
 
     private List<String> getAddressesListForCustomer(int customerId) throws SQLException {
         List<String> addresses = new ArrayList<>();
-        String sql = "SELECT * FROM customerAddress WHERE customer_id = ?";
+        String sql = "SELECT * FROM customerAddress WHERE customer_id = ? and status = 'active'";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, customerId);
@@ -156,18 +156,19 @@ public class CustomerDAO extends DBContext {
 
     public void addAddress(int customerId, String address){
         Customer customer = getCustomerById(customerId);
-        String sql = "Insert into customerAddress values (?,?)";
+        String sql = "Insert into customerAddress values (?,?,?)";
         try{
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, customerId);
             statement.setString(2, address);
+            statement.setString(3, "active");
             statement.executeUpdate();
         }catch (Exception e){
             System.out.println(e);
         }
     }
 
-    public String getAddress(int id){
+    public String getAddressForAdmin(int id){
         String sql = "select * from customerAddress where id = ?";
         try{
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -183,7 +184,7 @@ public class CustomerDAO extends DBContext {
     }
 
     public void removeAddress(int id){
-        String sql = "Delete from customerAddress where id = ?";
+        String sql = "update customerAddress set status = 'deactivate' where id = ?";
         try{
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);

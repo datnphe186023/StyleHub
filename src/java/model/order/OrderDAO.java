@@ -73,6 +73,20 @@ public class OrderDAO extends DBContext implements DAO<Order> {
 
     @Override
     public Order get(int id) {
+        String sql = "select * from orders where id = ?";
+        try{
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()){
+                Order order = new Order(resultSet.getInt("id"), resultSet.getInt("customer_id"),
+                        resultSet.getDate("created"), resultSet.getString("status"),
+                        resultSet.getDouble("total_price"), resultSet.getInt("address_id"));
+                return order;
+            }
+        }catch (Exception e){
+            System.out.println("order get " + e);
+        }
         return null;
     }
 

@@ -257,7 +257,7 @@
                                         <td>(+84)${database.getCustomerById(order.customerId).phoneNumber}</td>
                                         <td>
                                             <c:set var="addressParts"
-                                                   value="${fn:split(database.getAddress(order.address), '%')}"/>
+                                                   value="${fn:split(database.getAddressForAdmin(order.address), '%')}"/>
                                             <c:forEach var="part" items="${addressParts}">
                                                 ${part}<br>
                                             </c:forEach>

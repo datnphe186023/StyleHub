@@ -107,11 +107,12 @@
                                 <fmt:formatNumber value="${d.price}" pattern="#,##0đ" var="price"/>
                                 <td>${price}</td>
                                 <td>
-                                    <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"
-                                            id="show-emp"
-                                            data-toggle="modal" data-target="#ModalUP${d.orderId}"><i
-                                            class="fas fa-edit"></i>
-                                    </button>
+                                    <c:if test="${!requestScope.status.equals('shipped') && !requestScope.status.equals('cancelled')}">
+                                        <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp"
+                                                data-toggle="modal" data-target="#ModalUP${d.orderId}">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </c:if>
                                 </td>
                             </tr>
                             <!--

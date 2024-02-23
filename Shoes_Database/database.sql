@@ -110,6 +110,7 @@ CREATE TABLE [customerAddress] (
   [id] integer IDENTITY(1, 1),
   [customer_id] integer,
   [address] nvarchar(255),
+  status nvarchar(255),
   PRIMARY KEY ([id])
 )
 GO
@@ -120,7 +121,7 @@ CREATE TABLE [orders] (
   [created] date,
   [status] nvarchar(255),
   [total_price] money,
-  [address_id] integer foreign key references [customerAddress]([id])
+  [address_id] integer
 )
 GO
 

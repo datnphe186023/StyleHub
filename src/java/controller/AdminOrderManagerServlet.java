@@ -34,6 +34,7 @@ public class AdminOrderManagerServlet extends HttpServlet {
                         String orderIdRaw = request.getParameter("orderId");
                         int orderId = Integer.parseInt(orderIdRaw);
                         List<OrderDetail> orderDetailList = orderDAO.getOrderDetailForOrder(orderId);
+                        request.setAttribute("status", orderDAO.get(orderId).getStatus());
                         request.setAttribute("detail", orderDetailList);
                         request.getRequestDispatcher("admin/orderdetail.jsp").forward(request,response);
                     }catch (Exception e){
