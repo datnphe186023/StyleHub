@@ -8,7 +8,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import model.review.Review;
@@ -114,8 +117,8 @@ public class CustomerDAO extends DBContext {
         return addresses;
     }
 
-    public boolean updateCustomer(int customerId, String newName, String newPhone, String newEmail, String newGender, String newBirthday) {
-        String sql = "UPDATE customers set full_name = ?, phone_number = ?, email = ?, gender = ?, birthday = ? " +
+    public boolean updateCustomer(int customerId, String newName, String newPhone, String newEmail, String newGender, String newBirthday, String newImage) {
+        String sql = "UPDATE customers set full_name = ?, phone_number = ?, email = ?, gender = ?, birthday = ? , image = ? " +
                 "where customers.id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -125,11 +128,12 @@ public class CustomerDAO extends DBContext {
             statement.setString(3, newEmail);
             statement.setString(4, newGender);
             statement.setString(5, newBirthday);
-            statement.setInt(6, customerId);
+            statement.setString(6, newImage);
+            statement.setInt(7, customerId);
             statement.executeUpdate();
             return true;
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("updateCustomer " + e);
         }
         return false;
     }
@@ -232,5 +236,62 @@ public class CustomerDAO extends DBContext {
             System.out.println("setAdmin " + e);
         }
 
+    }
+
+    private boolean isExisted(String username){
+        String sql = "select * from customers where username =?";
+        try{
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, username);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println("isExisted " + e);
+        }
+        return false;
+    }
+    public void addCustomer(Customer customer){
+        String sql = "insert into customers values (?,?,?,?,?,?,?,?,?)";
+        if (isExisted(customer.getUsername())) {
+            return;
+        }
+        try{
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, customer.getUsername());
+            statement.setString(2, customer.getPassword());
+            statement.setString(3, customer.getFullName());
+            statement.setString(4, customer.getPhoneNumber());
+            statement.setString(5, customer.getEmail());
+            statement.setString(6, customer.getGender());
+            Date birthday = customer.getBirthday();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String formattedBirthday = dateFormat.format(birthday);
+            statement.setString(7, formattedBirthday);
+            statement.setString(8, customer.getImage());
+            statement.setShort(9, customer.getRole());
+            statement.executeUpdate();
+        }catch (Exception e){
+            System.out.println("addCustomer " + e);
+        }
+    }
+
+    public void addComment(int customerId, int productId, int review, String detail, int orderId){
+        String sql = "insert into reviews values (?,?,?,?,?,?)";
+        try{
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, customerId);
+            statement.setInt(2, productId);
+            statement.setInt(3, orderId);
+            statement.setInt(4, review);
+            LocalDate curDate = java.time.LocalDate.now();
+            String date = curDate.toString();
+            statement.setString(5, date);
+            statement.setString(6, detail);
+            statement.executeUpdate();
+        }catch (Exception e){
+            System.out.println("addComment " + e);
+        }
     }
 }

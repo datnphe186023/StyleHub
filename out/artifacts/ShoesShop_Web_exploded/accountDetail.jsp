@@ -78,6 +78,47 @@
         .user-account:hover .admin-links {
             display: block;
         }
+
+        .avatar-container {
+            position: relative;
+            width: 150px; /* Adjust width and height as needed */
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .avatar-img-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .upload-button {
+            display: none;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 5px 10px;
+            background-color: #666d69; /* Button background color */
+            color: #fff; /* Button text color */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .avatar-container:hover .upload-button {
+            display: block;
+        }
+
+
     </style>
 
 
@@ -116,13 +157,15 @@
                         </a>
                         <div class="admin-links">
                             <a href="account">Account</a>
-                            <a href="admin">Admin</a>
+                            <c:if test="<%=account.isAdmin()%>">
+                                <a href="admin">Admin</a>
+                            </c:if>
                         </div>
                         <%
                         } else {
                         %>
                         <a href="account" class="login-link">Login</a>
-                        <a href="register.jsp" class="register-link">Register</a>
+                        <a href="register" class="register-link">Register</a>
                         <%
                             }
                         %>
@@ -197,6 +240,32 @@
                     <div class="row">
                         <div class="container ml-md-3">
                             <form action="account" method="post">
+                                <div class="avatar-container">
+                                    <div class="avatar-img-container">
+                                        <img src="images/${account.image}" alt="Avatar" class="avatar-img">
+                                        <input type="file" id="uploadfile" name="image" style="display: none;"
+                                              value="${account.image}" onchange="previewImage(this);" accept="image/*">
+                                        <button class="upload-button" onclick="chooseFile()">Upload New Image</button>
+                                    </div>
+                                </div>
+                                <script>
+                                    function chooseFile() {
+                                        var fileInput = document.getElementById('uploadfile');
+                                        fileInput.click(); // Trigger click event on file input
+                                    }
+                                    function previewImage(input) {
+                                        var avatarImg = document.querySelector('.avatar-img');
+                                        if (input.files && input.files[0]) {
+                                            var reader = new FileReader();
+
+                                            reader.onload = function (e) {
+                                                avatarImg.src = e.target.result;
+                                            };
+
+                                            reader.readAsDataURL(input.files[0]);
+                                        }
+                                    }
+                                </script>
                                 <div class="form-group">
                                     <label for="full-name">Họ và tên</label>
                                     <input type="text" class="form-control" name="full-name" id="full-name"
@@ -261,7 +330,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

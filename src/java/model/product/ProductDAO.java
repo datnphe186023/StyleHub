@@ -469,5 +469,19 @@ public class ProductDAO extends DBContext implements DAO<Product> {
         }
         return stock;
     }
+
+    public String isCommentedByCustomer(int customerId, int productId, int orderId){
+        String sql = "select * from reviews where customer_id = " + customerId + " and product_id = " + productId + " and order_id = " + orderId;
+        try{
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return "true";
+            }
+        }catch (Exception e){
+            System.out.println("isCommentedyCustomer " + e);
+        }
+        return "false";
+    }
 }
 

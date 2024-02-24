@@ -15,8 +15,8 @@ import java.util.List;
 
 @WebServlet(name = "AccountServlet", value = "/account")
 public class AccountServlet extends HttpServlet {
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         HttpSession session = request.getSession(true);
         CustomerDAO customerDAO = new CustomerDAO();
@@ -27,8 +27,6 @@ public class AccountServlet extends HttpServlet {
             customer = (Customer) session.getAttribute("account");
             if (action == null) {
                 request.getRequestDispatcher("accountDetail.jsp").forward(request, response);
-            } else if (action.equals("register")) {
-                request.getRequestDispatcher("register.jsp").forward(request, response);
             } else if (action.equals("address-list")) {
                 try {
                     List<String> addressListRaw = customer.getCustomerAddresses();
@@ -88,8 +86,9 @@ public class AccountServlet extends HttpServlet {
                 String newEmail = request.getParameter("email");
                 String newGender = request.getParameter("gender");
                 String newBirthday = request.getParameter("birthday");
+                String newImage = request.getParameter("image");
                 try {
-                    boolean result = customerDAO.updateCustomer(customer.getId(), newName, newPhone, newEmail, newGender, newBirthday);
+                    boolean result = customerDAO.updateCustomer(customer.getId(), newName, newPhone, newEmail, newGender, newBirthday, newImage);
                     Customer updatedCustomer = customerDAO.getCustomerById(customer.getId());
                     session.setAttribute("account", updatedCustomer);
                     if (result) {
@@ -99,6 +98,7 @@ public class AccountServlet extends HttpServlet {
                     }
                     request.getRequestDispatcher("accountDetail.jsp").forward(request, response);
                 } catch (Exception e) {
+                    System.out.println("updateInfo " + e);
                     response.sendRedirect("account");
                 }
             } else if (action.equals("order-list")) {
@@ -153,10 +153,14 @@ public class AccountServlet extends HttpServlet {
             }
         }
     }
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        processRequest(request,response);
+    }
 
     @Override
     //this is for updating account information
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        processRequest(request,response);
     }
 }

@@ -1500,10 +1500,3 @@ INSERT INTO [customerAddress] VALUES
 (5, 'Olamai Yesir%0975643900%Xã Hưng Mỹ Huyện Hưng Nguyên Nghệ An','active'),
 (2, 'Siu Siu%0975643999%Xã Đại Đồng Huyện Thanh Chương Nghệ An','active');
 
-
-INSERT INTO [reviews] VALUES
-(1, 12, 4, '2024-01-15', 'Great product! Very satisfied with my purchase.'),
-(2, 14, 5, '2024-01-16', 'Excellent quality. Would highly recommend.'),
-(3, 1, 3, '2024-01-17', 'Average product. Could be better.'),
-(4, 34, 4, '2024-01-18', 'Happy with the purchase. Good value for money.'),
-(5, 23, 2, '2024-01-19', 'Disappointed. Product did not meet expectations.');

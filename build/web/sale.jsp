@@ -115,7 +115,7 @@
                         } else {
                         %>
                         <a href="account" class="login-link">Login</a>
-                        <a href="register.jsp" class="register-link">Register</a>
+                        <a href="register" class="register-link">Register</a>
                         <%
                             }
                         %>

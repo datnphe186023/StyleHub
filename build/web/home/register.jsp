@@ -69,7 +69,7 @@
                         }else{
                         %>
                         <a href="account" style="margin-right: 10px;">Login</a>
-                        <a href="register.jsp">Register</a>
+                        <a href="register">Register</a>
                         <%
                             }
                         %>

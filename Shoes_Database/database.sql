@@ -129,6 +129,7 @@ CREATE TABLE [reviews] (
   [id] integer PRIMARY KEY IDENTITY(1, 1),
   [customer_id] integer,
   [product_id] integer,
+  [order_id] integer,
   [review] integer,
   [reviewDate] date,
   [detail] text

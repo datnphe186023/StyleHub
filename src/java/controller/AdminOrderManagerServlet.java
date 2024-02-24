@@ -7,6 +7,10 @@ import model.customer.Customer;
 import model.order.Order;
 import model.order.OrderDAO;
 import model.order.OrderDetail;
+import model.product.Product;
+import model.product.ProductDAO;
+import model.review.Review;
+import model.review.ReviewDAO;
 
 import java.io.IOException;
 import java.util.List;
@@ -34,6 +38,7 @@ public class AdminOrderManagerServlet extends HttpServlet {
                         String orderIdRaw = request.getParameter("orderId");
                         int orderId = Integer.parseInt(orderIdRaw);
                         List<OrderDetail> orderDetailList = orderDAO.getOrderDetailForOrder(orderId);
+                        request.setAttribute("orderId", orderId);
                         request.setAttribute("status", orderDAO.get(orderId).getStatus());
                         request.setAttribute("detail", orderDetailList);
                         request.getRequestDispatcher("admin/orderdetail.jsp").forward(request,response);

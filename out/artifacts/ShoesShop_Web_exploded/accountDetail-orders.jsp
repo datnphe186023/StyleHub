@@ -245,13 +245,15 @@
                         </a>
                         <div class="admin-links">
                             <a href="account">Account</a>
-                            <a href="admin">Admin</a>
+                            <c:if test="<%=account.isAdmin()%>">
+                                <a href="admin">Admin</a>
+                            </c:if>
                         </div>
                         <%
                         } else {
                         %>
                         <a href="account" class="login-link">Login</a>
-                        <a href="register.jsp" class="register-link">Register</a>
+                        <a href="register" class="register-link">Register</a>
                         <%
                             }
                         %>
@@ -392,6 +394,23 @@
                                                             class="bold">${outPrice}</span></div>
                                                 </div>
                                             </div>
+                                            <c:if test="${order.status.equals('shipped') && database.isCommentedByCustomer(order.customerId, orderDetailItem.productId, order.id).equals('false')}">
+                                                <form action="comment" method="post">
+                                                    <div class="star-rating">
+                                                        <input type="radio" id="star1" name="review" value="1" /><label for="star5">1</label>
+                                                        <input type="radio" id="star2" name="review" value="2" /><label for="star4">2</label>
+                                                        <input type="radio" id="star3" name="review" value="3" /><label for="star3">3</label>
+                                                        <input type="radio" id="star4" name="review" value="4" /><label for="star2">4</label>
+                                                        <input type="radio" id="star5" name="review" value="5" /><label for="star1">5</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        Add Your Comment: <input type="text" name="comment"></input>
+                                                    </div>
+                                                    <input type="text" hidden="hidden" name="productId" value="${orderDetailItem.productId}">
+                                                    <input type="text" hidden="hidden" name="orderId" value="${order.id}">
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                </form>
+                                            </c:if>
                                         </c:forEach>
                                         <fmt:formatNumber value="${order.totalPrice}" pattern="#,##0đ"
                                                           var="totalPrice"/>

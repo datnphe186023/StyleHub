@@ -1,5 +1,6 @@
 package model.review;
 
+import com.sun.security.jgss.GSSUtil;
 import model.customer.Customer;
 import model.customer.CustomerDAO;
 import utils.DBContext;
@@ -51,5 +52,28 @@ public class ReviewDAO extends DBContext {
             System.out.println(e);
         }
         return count;
+    }
+
+    public Review getReviewForAdmin(int orderId, int productId){
+        String sql = "select * from reviews where order_id = " + orderId + " and product_id = " + productId;
+        try{
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                Review review = new Review();
+                CustomerDAO customerDAO = new CustomerDAO();
+                Customer customer = customerDAO.getCustomerById(resultSet.getInt("customer_id"));
+                review.setCustomer(customer);
+                review.setProductId(resultSet.getInt("product_id"));
+                review.setReview(resultSet.getInt("review"));
+                review.setReviewDate(resultSet.getDate("reviewDate"));
+                review.setDetail(resultSet.getString("detail"));
+                review.setId(resultSet.getInt("id"));
+                return review;
+            }
+        }catch (Exception e){
+            System.out.println("getReviewForAdmin " + e);
+        }
+        return null;
     }
 }
