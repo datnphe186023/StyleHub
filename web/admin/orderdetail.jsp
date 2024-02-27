@@ -43,7 +43,7 @@
 <!-- Sidebar menu-->
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 <aside class="app-sidebar">
-    <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="admin/images/user.png" width="50px"
+    <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="images/${account.image}" width="50px"
                                         alt="User Image">
         <div>
             <p class="app-sidebar__user-name"><b>${sessionScope.account.fullName}</b></p>
@@ -61,6 +61,10 @@
         </li>
         <li><a class="app-menu__item" href="ordermanager"><i class='app-menu__icon bx bx-task'></i><span
                 class="app-menu__label">Quản lý đơn hàng</span></a></li>
+        <li><a class="app-menu__item"
+               href="https://docs.google.com/spreadsheets/d/1fOvH-dHByIxizCOyuNf8Jkk0aNm1e-jIQw3ObxfjrWw"
+               target="_blank"><i class='app-menu__icon bx bx-task'></i><span
+                class="app-menu__label">Kiểm tra phản hồi</span></a></li>
     </ul>
 </aside>
 <main class="app-content">

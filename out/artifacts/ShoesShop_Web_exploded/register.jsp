@@ -196,7 +196,7 @@
                     <label for="phone">Số điện thoại</label><br/>
                     <input type="text" name="phone" id="phone" class="form-control" placeholder="Nhập số điện thoại" required>
                     <label for="email">Email</label><br/>
-                    <input type="text" name="email" id="email" class="form-control" placeholder="Nhập email" required>
+                    <input type="email" name="email" id="email" class="form-control" placeholder="Nhập email" required>
                     <div class="form-group">
                         <label>Giới tính</label>
                         <div class="form-check">

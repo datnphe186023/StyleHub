@@ -115,13 +115,20 @@ CREATE TABLE [customerAddress] (
 )
 GO
 
+CREATE TABLE [discount] (
+	[code] nvarchar(255) PRIMARY KEY,
+	[value] float
+)
+GO
+
 CREATE TABLE [orders] (
   [id] integer PRIMARY KEY IDENTITY(1, 1),
   [customer_id] integer,
   [created] date,
   [status] nvarchar(255),
   [total_price] money,
-  [address_id] integer
+  [address_id] integer,
+  [discount_code] nvarchar(255) foreign key references discount ([code])
 )
 GO
 
@@ -144,6 +151,8 @@ CREATE TABLE [items] (
 	[price] integer,
 	PRIMARY KEY ([customer_id], [product_id], [size])
 )
+GO
+
 
 ALTER TABLE [products_image] ADD FOREIGN KEY ([product_id]) REFERENCES [products] ([id])
 GO

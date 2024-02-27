@@ -189,7 +189,7 @@
             <div class="row row-pb-lg">
                 <div class="col-sm-6 mb-3">
                     <div class="video colorlib-video" style="background-image: url(images/about.png);">
-                        <a href="https://www.tiktok.com/@augustshoemaker/video/7256407658255650053?q=simple%20man%20august&t=1705831598607" class="popup-vimeo"><i class="icon-play3"></i></a>
+                        <a href="https://www.youtube.com/watch?v=VuXr7YQxYJQ&ab_channel=Ng%C6%B0%E1%BB%9DiCh%C6%A1i%C4%90%E1%BB%93" class="popup-vimeo"><i class="icon-play3"></i></a>
                         <div class="overlay"></div>
                     </div>
                 </div>

@@ -45,7 +45,7 @@
 <!-- Sidebar menu-->
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 <aside class="app-sidebar">
-    <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="admin/images/user.png" width="50px"
+    <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="images/${account.image}" width="50px"
                                         alt="User Image">
         <div>
             <p class="app-sidebar__user-name"><b>${sessionScope.account.fullName}</b></p>
@@ -63,6 +63,10 @@
         </li>
         <li><a class="app-menu__item" href="ordermanager"><i class='app-menu__icon bx bx-task'></i><span
                 class="app-menu__label">Quản lý đơn hàng</span></a></li>
+        <li><a class="app-menu__item"
+               href="https://docs.google.com/spreadsheets/d/1fOvH-dHByIxizCOyuNf8Jkk0aNm1e-jIQw3ObxfjrWw"
+               target="_blank"><i class='app-menu__icon bx bx-task'></i><span
+                class="app-menu__label">Kiểm tra phản hồi</span></a></li>
     </ul>
 </aside>
 <main class="app-content">
@@ -92,11 +96,13 @@
                         <th>Ngày mua</th>
                         <th>Tổng tiền</th>
                         <th>Thanh Toán</th>
+                        <th>Discount</th>
                         <th>Tính năng</th>
                     </tr>
                     </thead>
                     <tbody>
                     <jsp:useBean id="database" class="model.customer.CustomerDAO"/>
+                    <jsp:useBean id="productDAO" class="model.product.ProductDAO"/>
                     <c:forEach items="${requestScope.order}" var="order">
                         <tr>
                             <td>${order.id}</td>
@@ -111,6 +117,7 @@
                             <fmt:formatNumber value="${order.totalPrice}" pattern="#,##0đ" var="totalPrice"/>
                             <td>${totalPrice}</td>
                             <td><span class="badge bg-success">${order.status}</span></td>
+                            <td>${productDAO.getDiscountCode(order.id)}</td>
                             <td>
                                 <a style=" color: rgb(245 157 57);background-color: rgb(251 226 197); padding: 5px;border-radius: 5px;"
                                    href="ordermanager?action=showdetail&orderId=${order.id}">

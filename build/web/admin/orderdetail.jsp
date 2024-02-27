@@ -43,7 +43,7 @@
 <!-- Sidebar menu-->
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 <aside class="app-sidebar">
-    <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="admin/images/user.png" width="50px"
+    <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="images/${account.image}" width="50px"
                                         alt="User Image">
         <div>
             <p class="app-sidebar__user-name"><b>${sessionScope.account.fullName}</b></p>
@@ -61,6 +61,10 @@
         </li>
         <li><a class="app-menu__item" href="ordermanager"><i class='app-menu__icon bx bx-task'></i><span
                 class="app-menu__label">Quản lý đơn hàng</span></a></li>
+        <li><a class="app-menu__item"
+               href="https://docs.google.com/spreadsheets/d/1fOvH-dHByIxizCOyuNf8Jkk0aNm1e-jIQw3ObxfjrWw"
+               target="_blank"><i class='app-menu__icon bx bx-task'></i><span
+                class="app-menu__label">Kiểm tra phản hồi</span></a></li>
     </ul>
 </aside>
 <main class="app-content">
@@ -87,6 +91,7 @@
                             <th>Ảnh</th>
                             <th>Mã sản phẩm</th>
                             <th>Tên sản phẩm</th>
+                            <th>Đánh giá</th>
                             <th>Size</th>
                             <th>Số lượng</th>
                             <th>Đơn giá</th>
@@ -95,6 +100,7 @@
                         </thead>
                         <tbody>
                         <jsp:useBean id="database" class="model.product.ProductDAO"/>
+                        <jsp:useBean id="reviewDAO" class="model.review.ReviewDAO"/>
                         <c:forEach items="${requestScope.detail}" var="d">
                             <tr>
                                 <td><img src="<c:url value="/images/${database.get(d.productId).images.get(0)}"/>"
@@ -102,6 +108,21 @@
                                          alt="${database.get(d.productId).title}" width="100px"></td>
                                 <td>${d.productId}</td>
                                 <td>${database.get(d.productId).title}</td>
+                                <td>
+                                    <c:set var="review" value="${reviewDAO.getReviewForAdmin(requestScope.orderId, d.productId)}" />
+                                    <c:choose>
+                                        <c:when test="${not empty review}">
+                                            Customer: ${review.customer.username}<br>
+                                            Product ID: ${review.productId}<br>
+                                            Review: ${review.review}/5<br>
+                                            Review Date: ${review.reviewDate}<br>
+                                            Detail: ${review.detail}
+                                        </c:when>
+                                        <c:otherwise>
+                                            No review available
+                                        </c:otherwise>
+                                    </c:choose>
+                                </td>
                                 <td>${d.size}</td>
                                 <td>${d.amount}</td>
                                 <fmt:formatNumber value="${d.price}" pattern="#,##0đ" var="price"/>

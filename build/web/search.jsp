@@ -1,12 +1,9 @@
-<%@ page import="model.customer.Customer" %><%--
-  Created by IntelliJ IDEA.
-  User: datng
-  Date: 1/21/2024
-  Time: 4:42 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="jakarta.servlet.http.HttpSession" %>
+<%@ page import="model.customer.Customer" %>
+<!DOCTYPE HTML>
 <html>
 <head>
     <title>Style Hub</title>
@@ -77,9 +74,13 @@
         }
 
     </style>
+
 </head>
 <body>
+<c:set var="size" value="${sessionScope.size}"/>
+<jsp:useBean id="database" class="model.product.ProductDAO"/>
 <div class="colorlib-loader"></div>
+
 <div id="page">
     <nav class="colorlib-nav" role="navigation">
         <div class="top-menu">
@@ -109,7 +110,9 @@
                         </a>
                         <div class="admin-links">
                             <a href="account">Account</a>
-                            <a href="admin">Admin</a>
+                            <c:if test="<%=account.isAdmin()%>">
+                                <a href="admin">Admin</a>
+                            </c:if>
                         </div>
                         <%
                         } else {
@@ -201,67 +204,95 @@
                     </div>
                 </c:forEach>
             </div>
+        </div>
+    </div>
 
-            <footer id="colorlib-footer" role="contentinfo">
-                <div class="container">
-                    <div class="row row-pb-md">
-                        <div class="col footer-col colorlib-widget">
-                            <h4>About Style Hub</h4>
-                            <p>A man needs his own style</p>
-                            <p>
-                            <ul class="colorlib-social-icons">
-                                <li><a href="https://www.facebook.com/datphuong1810/"><i class="icon-facebook"></i></a>
-                                </li>
-                            </ul>
-                            </p>
-                        </div>
-                        <div class="col footer-col colorlib-widget">
-                            <h4>Customer Care</h4>
-                            <p>
-                            <ul class="colorlib-footer-links">
-                                <li><a href="#">Contact</a></li>
-                                <li><a href="tel://0705410751">Customer Services</a></li>
-                                <li><a href="https://maps.app.goo.gl/z7MAnSiKahsZu5V79">Site maps</a></li>
-                            </ul>
-                            </p>
-                        </div>
-                        <div class="col footer-col colorlib-widget">
-                            <h4>Information</h4>
-                            <p>
-                            <ul class="colorlib-footer-links">
-                                <li><a href="about.jsp">About us</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Support</a></li>
-                            </ul>
-                            </p>
-                        </div>
-
-                        <div class="col footer-col">
-                            <h4>Contact Information</h4>
-                            <ul class="colorlib-footer-links">
-                                <li>Nhà trọ Hoàng Quân, <br> Phú Hữu Tân Xã Thạch Thất Hà Nội</li>
-                                <li><a href="tel://0705410751">+84 0705410751</a></li>
-                                <li><a href="mailto:datnguyenphuong1810@gmail.com">datnguyenphuong1810@gmail.com</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+    <footer id="colorlib-footer" role="contentinfo">
+        <div class="container">
+            <div class="row row-pb-md">
+                <div class="col footer-col colorlib-widget">
+                    <h4>About Style Hub</h4>
+                    <p>A man needs his own style</p>
+                    <p>
+                    <ul class="colorlib-social-icons">
+                        <li><a href="https://www.facebook.com/datphuong1810/"><i class="icon-facebook"></i></a></li>
+                    </ul>
+                    </p>
                 </div>
-                <div class="copy">
-                    <div class="row">
-                        <div class="col-sm-12 text-center">
-                            <p>
+                <div class="col footer-col colorlib-widget">
+                    <h4>Customer Care</h4>
+                    <p>
+                    <ul class="colorlib-footer-links">
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="tel://0705410751">Customer Services</a></li>
+                        <li><a href="https://maps.app.goo.gl/ij6UKJKGTrgLyaYHA">Site maps</a></li>
+                    </ul>
+                    </p>
+                </div>
+                <div class="col footer-col colorlib-widget">
+                    <h4>Information</h4>
+                    <p>
+                    <ul class="colorlib-footer-links">
+                        <li><a href="about.jsp">About us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                    </p>
+                </div>
+
+                <div class="col footer-col">
+                    <h4>Contact Information</h4>
+                    <ul class="colorlib-footer-links">
+                        <li>Nhà trọ Mỹ Linh, <br> Phú Hữu Tân Xã Thạch Thất Hà Nội</li>
+                        <li><a href="tel://0705410751">+84 0705410751</a></li>
+                        <li><a href="mailto:datnguyenphuong1810@gmail.com">datnguyenphuong1810@gmail.com</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="copy">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <p>
 							<span>
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i
                                     class="icon-heart" aria-hidden="true"></i> by <a
                                     href="https://www.facebook.com/datphuong1810/" target="_blank">Đạt NP</a>
                                 </span>
-                            </p>
-                        </div>
-                    </div>
+                    </p>
                 </div>
-            </footer>
-
+            </div>
         </div>
+    </footer>
+</div>
+
+<div class="gototop js-top">
+    <a href="#" class="js-gotop"><i class="ion-ios-arrow-up"></i></a>
+</div>
+
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script>
+<!-- popper -->
+<script src="js/popper.min.js"></script>
+<!-- bootstrap 4.1 -->
+<script src="js/bootstrap.min.js"></script>
+<!-- jQuery easing -->
+<script src="js/jquery.easing.1.3.js"></script>
+<!-- Waypoints -->
+<script src="js/jquery.waypoints.min.js"></script>
+<!-- Flexslider -->
+<script src="js/jquery.flexslider-min.js"></script>
+<!-- Owl carousel -->
+<script src="js/owl.carousel.min.js"></script>
+<!-- Magnific Popup -->
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/magnific-popup-options.js"></script>
+<!-- Date Picker -->
+<script src="js/bootstrap-datepicker.js"></script>
+<!-- Stellar Parallax -->
+<script src="js/jquery.stellar.min.js"></script>
+<!-- Main -->
+<script src="js/main.js"></script>
+
 </body>
 </html>

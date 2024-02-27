@@ -108,7 +108,9 @@
                         </a>
                         <div class="admin-links">
                             <a href="account">Account</a>
-                            <a href="admin">Admin</a>
+                            <c:if test="<%=account.isAdmin()%>">
+                                <a href="admin">Admin</a>
+                            </c:if>
                         </div>
                         <%
                         } else {
@@ -183,7 +185,8 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <form action="account" method="get">
+                <h3 style="color: red">${requestScope.error}</h3>
+                <form action="register" method="post">
                     <label for="user">Username</label> <br/>
                     <input type="text" name="user" id="user" class="form-control" placeholder="Nhập tên tài khoản" required autofocus><br/>
                     <label for="pass">Password</label><br/>
@@ -193,7 +196,7 @@
                     <label for="phone">Số điện thoại</label><br/>
                     <input type="text" name="phone" id="phone" class="form-control" placeholder="Nhập số điện thoại" required>
                     <label for="email">Email</label><br/>
-                    <input type="text" name="email" id="email" class="form-control" placeholder="Nhập email" required>
+                    <input type="email" name="email" id="email" class="form-control" placeholder="Nhập email" required>
                     <div class="form-group">
                         <label>Giới tính</label>
                         <div class="form-check">
@@ -209,9 +212,26 @@
                     </div>
                     <div class="form-group">
                         <label for="birthday">Birthday</label>
-                        <input type="date" class="form-control" id="birthday" name="birthday">
+                        <input type="date" class="form-control" id="birthday" name="birthday" required>
                     </div>
-                    <input type="text" name="action" value="register" hidden="hidden">
+                    <div class="form-group col-md-12">
+                        <label class="control-label">Ảnh sản phẩm</label>
+                        <div id="myfileupload">
+                            <input type="file" id="uploadfile" name="image"
+                                   value=""
+                                   onchange="readURL(this);"/>
+                        </div>
+                        <div id="thumbbox">
+                            <img height="450" width="400" alt="Thumb image"
+                                 id="thumbimage" style="display: none"/>
+                            <a class="removeimg" href="javascript:"></a>
+                        </div>
+                        <div id="boxchoice">
+                            <a href="javascript:" class="Choicefile"><i
+                                    class="fas fa-cloud-upload-alt"></i> Chọn ảnh</a>
+                            <p style="clear:both"></p>
+                        </div>
+                    </div>
                     <button type="submit" class="btn btn-primary">Đăng ký</button>
                 </form>
             </div>

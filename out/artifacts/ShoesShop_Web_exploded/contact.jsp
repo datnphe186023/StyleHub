@@ -1,4 +1,5 @@
 <%@ page import="model.customer.Customer" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -202,16 +203,16 @@
                     <h3>Contact Information</h3>
                     <div class="row contact-info-wrap">
                         <div class="col-md-3">
-                            <p><span><i class="icon-location"></i></span> 198 West 21th Street, <br> Suite 721 New York NY 10016</p>
+                            <p><span><i class="icon-location"></i></span> NHÀ TRỌ MỸ LINH, PHÚ HỮU TÂN XÃ THẠCH THẤT HÀ NỘI</p>
                         </div>
                         <div class="col-md-3">
-                            <p><span><i class="icon-phone3"></i></span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+                            <p><span><i class="icon-phone3"></i></span> <a href="tel://0705410751">+84 705 410 751</a></p>
                         </div>
                         <div class="col-md-3">
-                            <p><span><i class="icon-paperplane"></i></span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+                            <p><span><i class="icon-paperplane"></i></span> <a href="mailto:datnguyenphuong1810@gmail.com">datnguyenphuong1810@gmail.com</a></p>
                         </div>
                         <div class="col-md-3">
-                            <p><span><i class="icon-globe"></i></span> <a href="#">yoursite.com</a></p>
+                            <p><span><i class="icon-globe"></i></span> <a href="index.jsp">Style Hub</a></p>
                         </div>
                     </div>
                 </div>
@@ -220,32 +221,26 @@
                 <div class="col-md-6">
                     <div class="contact-wrap">
                         <h3>Get In Touch</h3>
-                        <form action="#" class="contact-form">
+                        <form action="https://script.google.com/macros/s/AKfycbzGFJfkUyyGxN2BiM2o0qsQvWVdgJlhf0Xc_XoJpSTElnnoYOzTXRNrUri-t2JPCckg/exec" method="post" class="contact-form">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="fname">First Name</label>
-                                        <input type="text" id="fname" class="form-control" placeholder="Your firstname">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="lname">Last Name</label>
-                                        <input type="text" id="lname" class="form-control" placeholder="Your lastname">
+                                        <label for="full-name">Full Name</label>
+                                        <input type="text" id="full-name" name="fullName" class="form-control" placeholder="Your Full Name">
                                     </div>
                                 </div>
                                 <div class="w-100"></div>
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label for="email">Email</label>
-                                        <input type="text" id="email" class="form-control" placeholder="Your email address">
+                                        <input type="email" id="email" name="email" class="form-control" placeholder="Your email address">
                                     </div>
                                 </div>
                                 <div class="w-100"></div>
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label for="subject">Subject</label>
-                                        <input type="text" id="subject" class="form-control" placeholder="Your subject of this message">
+                                        <input type="text" id="subject" name="subject" class="form-control" placeholder="Your subject of this message">
                                     </div>
                                 </div>
                                 <div class="w-100"></div>

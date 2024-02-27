@@ -394,7 +394,7 @@
                                                             class="bold">${outPrice}</span></div>
                                                 </div>
                                             </div>
-                                            <c:if test="${order.status.equals('shipped') && database.isCommentedByCustomer(order.customerId, orderDetailItem.productId, order.id).equals('false')}">
+                                            <c:if test="${order.status.equals('finished') && database.isCommentedByCustomer(order.customerId, orderDetailItem.productId, order.id).equals('false')}">
                                                 <form action="comment" method="post">
                                                     <div class="star-rating">
                                                         <input type="radio" id="star1" name="review" value="1" /><label for="star5">1</label>
@@ -416,12 +416,19 @@
                                                           var="totalPrice"/>
                                         <div class="total-price">Total Price: <span class="bold">${totalPrice}</span>
                                         </div>
-                                        <c:if test="${!order.status.equals('shipped') && !order.status.equals('cancelled')}">
+                                        <c:if test="${!order.status.equals('shipped') && !order.status.equals('cancelled') && !order.status.equals('finished')}">
                                             <form id="cancelForm_${order.id}" action="account" method="get">
                                                 <input type="hidden" name="orderId" value="${order.id}">
                                                 <input type="text" name="action" value="cancelOrder" hidden="hidden"/>
                                                 <input type="submit" value="Cancel Order" class="cancel-btn"
                                                        onclick="return canCancel(${order.id}, '${order.status}');">
+                                            </form>
+                                        </c:if>
+                                        <c:if test="${order.status.equals('shipped')}">
+                                            <form id="cancelForm_${order.id}" action="account" method="get">
+                                                <input type="hidden" name="orderId" value="${order.id}">
+                                                <input type="text" name="action" value="finishOrder" hidden="hidden"/>
+                                                <input type="submit" value="Finish Order" class="cancel-btn">
                                             </form>
                                         </c:if>
                                         <script>

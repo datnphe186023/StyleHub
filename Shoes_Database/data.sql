@@ -1485,11 +1485,11 @@ INSERT INTO [products_image] VALUES (N'53 (4).jpg',53),
 
 
 INSERT INTO [customers] VALUES
-('john_doe', 'password123', 'John Doe', '1234567890', 'john.doe@email.com', 'Male', '1990-05-15', 'profile_pic1.jpg', 1),
-('jane_smith', 'pass456', 'Jane Smith', '9876543210', 'jane.smith@email.com', 'Female', '1985-08-20', 'profile_pic2.jpg', 1),
-('admin_user', 'adminpass', 'Admin User', '5551234567', 'admin.user@email.com', 'Male', '1980-12-10', 'admin_pic.jpg', 0),
-('alice_green', 'alicepass', 'Alice Green', '1112223333', 'alice.green@email.com', 'Female', '1995-03-25', 'alice_pic.jpg', 1),
-('bob_jones', 'bobpass', 'Bob Jones', '4445556666', 'bob.jones@email.com', 'Male', '1988-07-05', 'bob_pic.jpg', 1);
+('john_doe', '1', 'John Doe', '1234567890', 'john.doe@email.com', 'Male', '1990-05-15', 'profile_pic1.jpg', 1),
+('jane_smith', '1', 'Jane Smith', '9876543210', 'jane.smith@email.com', 'Female', '1985-08-20', 'profile_pic2.jpg', 1),
+('admin_user', '1', 'Admin User', '5551234567', 'admin.user@email.com', 'Male', '1980-12-10', 'admin_pic.jpg', 0),
+('alice_green', '1', 'Alice Green', '1112223333', 'alice.green@email.com', 'Female', '1995-03-25', 'alice_pic.jpg', 1),
+('bob_jones', '1', 'Bob Jones', '4445556666', 'bob.jones@email.com', 'Male', '1988-07-05', 'bob_pic.jpg', 1);
 
 
 INSERT INTO [customerAddress] VALUES
@@ -1499,4 +1499,13 @@ INSERT INTO [customerAddress] VALUES
 (4, 'Okis Adgraham%0997543829%Thanh Xuân Hà Nội','active'),
 (5, 'Olamai Yesir%0975643900%Xã Hưng Mỹ Huyện Hưng Nguyên Nghệ An','active'),
 (2, 'Siu Siu%0975643999%Xã Đại Đồng Huyện Thanh Chương Nghệ An','active');
+
+
+INSERT INTO discount VALUES
+('DISCOUNT10', 0.1),
+('SAVE20', 0.2),
+('HALFPRICE', 0.5),
+('LUCKY15', 0.15),
+('FAMILY', 1),
+('SPRINGSALE', 0.3);
 

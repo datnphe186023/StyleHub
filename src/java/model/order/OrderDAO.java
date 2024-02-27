@@ -24,17 +24,18 @@ import java.time.LocalDate;
  */
 public class OrderDAO extends DBContext implements DAO<Order> {
 
-    public void addOrder(Customer customer, Cart cart, int addressId) {
+    public void addOrder(Customer customer, Cart cart, int addressId, String discountCode, double finalPrice) {
         LocalDate curDate = java.time.LocalDate.now();
         String date = curDate.toString();
         try {
-            String sql = "insert into [orders] values (?,?,?,?,?)";
+            String sql = "insert into [orders] values (?,?,?,?,?,?)";
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, customer.getId());
             st.setString(2, date);
             st.setString(3, "purchased-pending");
-            st.setDouble(4, cart.getTotalMoney());
+            st.setDouble(4, finalPrice);
             st.setInt(5, addressId);
+            st.setString(6, discountCode);
             st.executeUpdate();
 
             String sql1 = "select top 1 id from [orders] order by id desc";
@@ -228,7 +229,7 @@ public class OrderDAO extends DBContext implements DAO<Order> {
     public int getNumberOfOrdersByMonth(String date){
         int total = 0;
         String sql = "SELECT COUNT(*) as 'count'\n"
-                + "  FROM orders where MONTH(created) = MONTH(?) AND status = 'shipped'";
+                + "  FROM orders where MONTH(created) = MONTH(?) AND status = 'finished'";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, date);
@@ -245,7 +246,7 @@ public class OrderDAO extends DBContext implements DAO<Order> {
     public List<Order> getOrdersByDate(String date){
         List<Order> orderList = new ArrayList<>();
         String sql = "select orders.* from orders join dbo.customers c on c.id = orders.customer_id\n" +
-                "where created = ? AND status = 'shipped'";
+                "where created = ? AND status = 'finished'";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, date);
@@ -269,7 +270,7 @@ public class OrderDAO extends DBContext implements DAO<Order> {
     public List<Order> getOrdersByMonth(int year, int month) {
         List<Order> orderList = new ArrayList<>();
         String sql = "SELECT orders.* FROM orders JOIN dbo.customers c ON c.id = orders.customer_id " +
-                "WHERE YEAR(created) = ? AND MONTH(created) = ? AND status = 'shipped'";
+                "WHERE YEAR(created) = ? AND MONTH(created) = ? AND status = 'finished'";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, year);
@@ -289,5 +290,17 @@ public class OrderDAO extends DBContext implements DAO<Order> {
             System.out.println("getOrdersByMonth " + e);
         }
         return orderList;
+    }
+
+    public void finishOrder(int orderId) {
+        String sql = "update orders set status = ? where id = ?";
+        try{
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, "finished");
+            statement.setInt(2, orderId);
+            statement.executeUpdate();
+        }catch (SQLException e){
+            System.out.println(e);
+        }
     }
 }

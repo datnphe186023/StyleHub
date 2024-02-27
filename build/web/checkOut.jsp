@@ -110,7 +110,9 @@
                         </a>
                         <div class="admin-links">
                             <a href="account">Account</a>
-                            <a href="admin">Admin</a>
+                            <c:if test="<%=account.isAdmin()%>">
+                                <a href="admin">Admin</a>
+                            </c:if>
                         </div>
                         <%
                         } else {
@@ -259,13 +261,6 @@
                                         <div class="col-md-12">
                                             <div class="radio">
                                                 <label><input type="radio" name="payment" value="COD">COD</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            <div class="radio">
-                                                <label><input type="radio" name="payment" value="Momo">Momo</label>
                                             </div>
                                         </div>
                                     </div>

@@ -236,11 +236,9 @@
                     </div>
                     <c:set var="cart" value="${sessionScope.cart}"/>
                     <c:set var="t" value="0"/>
-                    <c:set var="total" value="0"/>
                     <jsp:useBean id="database" class="model.product.ProductDAO"/>
                     <c:forEach items="${cart.items}" var="i">
                         <c:set var="t" value="${t+1}"/>
-                        <c:set var="total" value="${total+i.product.outPrice*i.quantity}"/>
                         <div class="product-cart d-flex">
                             <div class="one-forth">
                                 <c:set var="image" value="images/${i.product.images.get(0)}"/>
@@ -292,14 +290,34 @@
                     <div class="total-wrap">
                         <div class="row">
                             <div class="col-sm-8">
+                                <form action="discount" method="post">
+                                    <div class="row form-group">
+                                        <div class="col-sm-9">
+                                            <input type="text" name="discountCode" class="form-control input-number" placeholder="Your Coupon Number...">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input type="submit" value="Apply Coupon" class="btn btn-primary">
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                             <div class="col-sm-4 text-center">
                                 <div class="total">
+                                    <div class="sub">
+                                        <fmt:formatNumber value="${cart.getTotalMoney()}" pattern="#,##0đ" var="subTotal"/>
+                                        <p><span>Subtotal:</span> <span>${subTotal}</span></p>
+                                        <p><span>Delivery:</span> <span>0.00đ</span></p>
+                                        <fmt:formatNumber value="${requestScope.discount}" pattern="#,##0đ" var="discount"/>
+                                        <p><span>Discount:</span> <span>${discount}</span></p>
+                                    </div>
                                     <div class="grand-total">
-                                        <fmt:formatNumber value="${total}" pattern="#,##0đ" var="totalFormated"/>
-                                        <p><span><strong>Total:</strong></span> <span>${totalFormated}</span></p>
+                                        <fmt:formatNumber value="${requestScope.finalPrice}" pattern="#,##0đ" var="finalPrice"/>
+                                        <p><span><strong>Total:</strong></span> <span>${finalPrice}</span></p>
                                     </div>
                                     <form action="checkout" method="get">
+                                        <input name="discountCode" value="${requestScope.discountCode}" hidden="hidden">
+                                        <input name="discount" value="${requestScope.discount}" hidden="hidden">
+                                        <input name="finalPrice" value="${requestScope.finalPrice}" hidden="hidden">
                                         <input type="submit" value="Check out">
                                     </form>
                                 </div>

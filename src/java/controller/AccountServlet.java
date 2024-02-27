@@ -150,6 +150,18 @@ public class AccountServlet extends HttpServlet {
                     System.out.println(e);
                     response.sendRedirect("account");
                 }
+            } else if (action.equals("finishOrder")) {
+                String orderIdRaw = request.getParameter("orderId");
+                int orderId;
+                try {
+                    orderId = Integer.parseInt(orderIdRaw);
+                    OrderDAO orderDAO = new OrderDAO();
+                    orderDAO.finishOrder(orderId);
+                    response.sendRedirect("account?action=order-list");
+                } catch (Exception e) {
+                    System.out.println(e);
+                    response.sendRedirect("account");
+                }
             }
         }
     }

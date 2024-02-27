@@ -236,20 +236,23 @@
                                 <div class="cart-detail">
                                     <h2>Cart Total</h2>
                                     <c:set var="cart" value="${sessionScope.cart}"/>
-                                    <c:set var="total" value="0"/>
                                     <ul>
                                         <li>
+                                            <fmt:formatNumber value="${cart.getTotalMoney()}" pattern="#,##0đ" var="subTotal"/>
+                                            <span>Subtotal</span> <span>${subTotal}</span>
                                             <ul>
                                                 <c:forEach var="i" items="${cart.items}">
-                                                    <c:set var="total" value="${total+i.product.outPrice*i.quantity}"/>
                                                     <fmt:formatNumber value="${i.product.outPrice}" pattern="#,##0đ"
                                                                       var="outPrice"/>
                                                     <li><span>${i.product.title}</span><span>${outPrice}</span></li>
                                                 </c:forEach>
                                             </ul>
                                         </li>
-                                        <fmt:formatNumber value="${total}" pattern="#,##0đ" var="totalFormated"/>
-                                        <li><span>Order Total</span> <span>${totalFormated}</span></li>
+                                        <fmt:formatNumber value="${requestScope.discount}" pattern="#,##0đ" var="discount"/>
+                                        <li><span>Shipping</span> <span>${discount}</span></li>
+                                        <li><span>Shipping</span> <span>0.00đ</span></li>
+                                        <fmt:formatNumber value="${requestScope.finalPrice}" pattern="#,##0đ" var="finalPrice"/>
+                                        <li><span>Order Total</span> <span>${finalPrice}</span></li>
                                     </ul>
                                 </div>
                             </div>
@@ -261,13 +264,6 @@
                                         <div class="col-md-12">
                                             <div class="radio">
                                                 <label><input type="radio" name="payment" value="COD">COD</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            <div class="radio">
-                                                <label><input type="radio" name="payment" value="Momo">Momo</label>
                                             </div>
                                         </div>
                                     </div>
@@ -285,6 +281,8 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12 text-center">
+                                <input type="text" name="finalPrice" value="${requestScope.finalPrice}" hidden="hidden">
+                                <input  type="text" name="discountCode" value="${requestScope.discountCode}" hidden="hidden">
                                 <button id="submitButton" type="submit" class="btn btn-primary" disabled>Place an order</button>
                             </div>
                         </div>

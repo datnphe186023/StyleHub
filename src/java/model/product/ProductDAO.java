@@ -483,5 +483,38 @@ public class ProductDAO extends DBContext implements DAO<Product> {
         }
         return "false";
     }
+
+    public double getDiscount(String code){
+        double discount = 0;
+        String sql = "select * from discount where code = ?";
+        try{
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, code);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                discount = resultSet.getDouble("value");
+            }
+        }catch (Exception e){
+            System.out.println("getDiscount " + e);
+        }
+        return discount;
+    }
+
+    public String getDiscountCode(int orderId){
+        String sql = "select * from discount join orders on orders.discount_code = discount.code where orders.id = ?";
+        String code = null;
+        try{
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, orderId);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                code = resultSet.getString("code");
+            }
+        }catch (Exception e){
+            System.out.println("getDiscount " + e);
+        }
+        return code;
+    }
+
 }
 
