@@ -64,7 +64,7 @@ public class CheckoutServlet extends HttpServlet {
                 String content = "Mã đơn hàng: " + orderDAO.getAll().size() + "\n" +
                         "Xin chào " + customer.getFullName() + ",\n" +
                         "\n" +
-                        "Chúng tôi xin được thông báo rằng đơn hàng của bạn đã được xác nhận thành công\n" +
+                        "Chúng tôi xin được thông báo rằng đơn hàng của bạn đã được xác nhận thành công.\n" +
                         "\n" +
                         "Nếu bạn có bất kỳ câu hỏi nào, vui lòng liên hệ với chúng tôi tại đây hoặc gọi cho chúng tôi theo số [+84 705 410 751]!\n" +
                         "\n" +
@@ -72,6 +72,7 @@ public class CheckoutServlet extends HttpServlet {
                         "\n" +
                         "Chúc bạn một ngày tốt lành!";
                 Email.sendEmail(customer.getEmail(), subject, content);
+                request.setAttribute("orderId", orderDAO.getAll().size());
                 request.getRequestDispatcher("order-complete.jsp").forward(request, response);
             } catch (NumberFormatException e) {
                 System.out.println("check out " + e);

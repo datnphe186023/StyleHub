@@ -293,7 +293,7 @@
                                 <form action="discount" method="post">
                                     <div class="row form-group">
                                         <div class="col-sm-9">
-                                            <input type="text" name="discountCode" class="form-control input-number" placeholder="Your Coupon Number...">
+                                            <input type="text" name="discountCode" class="form-control input-number" placeholder="Your Coupon Number..." value="${requestScope.discountCode}">
                                         </div>
                                         <div class="col-sm-3">
                                             <input type="submit" value="Apply Coupon" class="btn btn-primary">
@@ -306,11 +306,17 @@
                                     <div class="sub">
                                         <fmt:formatNumber value="${cart.getTotalMoney()}" pattern="#,##0đ" var="subTotal"/>
                                         <p><span>Subtotal:</span> <span>${subTotal}</span></p>
-                                        <p><span>Delivery:</span> <span>0.00đ</span></p>
-                                        <fmt:formatNumber value="${requestScope.discount}" pattern="#,##0đ" var="discount"/>
+                                        <p><span>Delivery:</span> <span>0đ</span></p>
+                                        <c:if test="${empty requestScope.discount}">
+                                            <c:set var="discount" value="0"/>
+                                        </c:if>
+                                        <fmt:formatNumber value="${discount}" pattern="#,##0đ" var="discount"/>
                                         <p><span>Discount:</span> <span>${discount}</span></p>
                                     </div>
                                     <div class="grand-total">
+                                        <c:if test="${empty requestScope.finalPrice}">
+                                            <p><span><strong>Total:</strong></span> <span>${subTotal}</span></p>
+                                        </c:if>
                                         <fmt:formatNumber value="${requestScope.finalPrice}" pattern="#,##0đ" var="finalPrice"/>
                                         <p><span><strong>Total:</strong></span> <span>${finalPrice}</span></p>
                                     </div>
@@ -322,58 +328,6 @@
                                     </form>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-8 offset-sm-2 text-center colorlib-heading colorlib-heading-sm">
-                    <h2>Related Products</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3 col-lg-3 mb-4 text-center">
-                    <div class="product-entry border">
-                        <a href="#" class="prod-img">
-                            <img src="images/item-1.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                        </a>
-                        <div class="desc">
-                            <h2><a href="#">Women's Boots Shoes Maca</a></h2>
-                            <span class="price">$139.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-lg-3 mb-4 text-center">
-                    <div class="product-entry border">
-                        <a href="#" class="prod-img">
-                            <img src="images/item-2.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                        </a>
-                        <div class="desc">
-                            <h2><a href="#">Women's Minam Meaghan</a></h2>
-                            <span class="price">$139.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-lg-3 mb-4 text-center">
-                    <div class="product-entry border">
-                        <a href="#" class="prod-img">
-                            <img src="images/item-3.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                        </a>
-                        <div class="desc">
-                            <h2><a href="#">Men's Taja Commissioner</a></h2>
-                            <span class="price">$139.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-lg-3 mb-4 text-center">
-                    <div class="product-entry border">
-                        <a href="#" class="prod-img">
-                            <img src="images/item-4.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                        </a>
-                        <div class="desc">
-                            <h2><a href="#">Russ Men's Sneakers</a></h2>
-                            <span class="price">$139.00</span>
                         </div>
                     </div>
                 </div>

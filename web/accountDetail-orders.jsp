@@ -380,10 +380,12 @@
                                     <div class="order-details">
                                         <c:forEach var="orderDetailItem" items="${orderDetails[i]}">
                                             <div class="order-product">
-                                                <img src="images/${database.get(orderDetailItem.productId).images.get(0)}"
-                                                     alt="Product Image" class="product-img">
+                                                <a href="product?productId=${orderDetailItem.productId}">
+                                                    <img src="images/${database.get(orderDetailItem.productId).images.get(0)}"
+                                                         alt="Product Image" class="product-img">
+                                                </a>
                                                 <div class="product-details">
-                                                    <div class="product-name">${database.get(orderDetailItem.productId).title}</div>
+                                                    <a href="product?productId=${orderDetailItem.productId}"><div class="product-name">${database.get(orderDetailItem.productId).title}</div></a>
                                                     <div class="product-size">Size: ${orderDetailItem.size}</div>
                                                     <div class="product-quantity">
                                                         Quantity: ${orderDetailItem.amount}</div>
