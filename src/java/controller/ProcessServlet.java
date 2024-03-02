@@ -49,7 +49,7 @@ public class ProcessServlet extends HttpServlet {
         } catch (NumberFormatException e) {
             System.out.println(e);
         }
-        request.getRequestDispatcher("cart.jsp").forward(request, response);
+        request.getRequestDispatcher("cart").forward(request, response);
     }
 
     @Override

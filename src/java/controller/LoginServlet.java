@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet {
         session.removeAttribute("cart");
         session.removeAttribute("size");
         session.removeAttribute("originalURL");
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("home");
     }
 
     @Override
@@ -53,7 +53,7 @@ public class LoginServlet extends HttpServlet {
                     session.removeAttribute("originalURL");
                     response.sendRedirect(originalURL);
                 } else {
-                    response.sendRedirect("index.jsp");
+                    response.sendRedirect("home");
                 }
             }
         }catch (Exception e){

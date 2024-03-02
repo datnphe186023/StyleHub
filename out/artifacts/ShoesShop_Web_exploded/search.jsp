@@ -87,7 +87,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-5 col-md-7">
-                        <div id="colorlib-logo"><a href="index.jsp">Style Hub</a></div>
+                        <div id="colorlib-logo"><a href="home">Style Hub</a></div>
                     </div>
                     <div class="col-sm-5 col-md-3">
                         <form action="search" class="search-wrap">
@@ -145,7 +145,7 @@
                 <div class="row">
                     <div class="col-sm-12 text-left menu-1">
                         <ul>
-                            <li class="active"><a href="index.jsp">Home</a></li>
+                            <li class="active"><a href="home">Home</a></li>
                             <li class="has-dropdown">
                                 <a href="collections?categories=Men">Men</a>
                                 <ul class="dropdown">
@@ -167,9 +167,9 @@
                             </li>
                             <li><a href="collections?categories=BST THE UPGRADE">BST The Upgrade</a></li>
                             <li><a href="collections?categories=The Focus Project">The Focus Project</a></li>
-                            <li><a href="about.jsp">About</a></li>
-                            <li><a href="contact.jsp">Contact</a></li>
-                            <li class="cart"><a href="cart.jsp"><i class="icon-shopping-cart"></i> Cart [${size}]</a>
+                            <li><a href="about">About</a></li>
+                            <li><a href="contact">Contact</a></li>
+                            <li class="cart"><a href="cart"><i class="icon-shopping-cart"></i> Cart [${size}]</a>
                             </li>
                         </ul>
                     </div>
@@ -233,7 +233,7 @@
                     <h4>Information</h4>
                     <p>
                     <ul class="colorlib-footer-links">
-                        <li><a href="about.jsp">About us</a></li>
+                        <li><a href="about">About us</a></li>
                         <li><a href="#">Privacy Policy</a></li>
                         <li><a href="#">Support</a></li>
                     </ul>

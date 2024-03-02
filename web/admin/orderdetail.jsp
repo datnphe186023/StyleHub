@@ -34,7 +34,7 @@
 
 
         <!-- User Menu-->
-        <li><a class="app-nav__item" href="index.jsp"><i class='bx bx-log-out bx-rotate-180'></i> Home </a>
+        <li><a class="app-nav__item" href="home"><i class='bx bx-log-out bx-rotate-180'></i> Home </a>
         <li><a class="app-nav__item" href="login"><i class='bx bx-log-out bx-rotate-180'></i> Logout </a>
 
         </li>
