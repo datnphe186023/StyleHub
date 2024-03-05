@@ -10,13 +10,8 @@ import java.io.IOException;
 
 @WebServlet(name = "DiscountServlet", value = "/discount")
 public class DiscountServlet extends HttpServlet {
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String discountCode = request.getParameter("discountCode");
         try{
             HttpSession session = request.getSession();
@@ -31,5 +26,14 @@ public class DiscountServlet extends HttpServlet {
         }catch (Exception e){
             System.out.println("discount servlet " + e);
         }
+    }
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        processRequest(request,response);
     }
 }

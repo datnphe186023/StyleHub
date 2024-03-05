@@ -33,7 +33,11 @@ public class CheckoutServlet extends HttpServlet {
             request.setAttribute("discount", discount);
             request.setAttribute("finalPrice", finalPrice);
             request.setAttribute("addressList", addressList);
-            request.setAttribute("discountCode", discountCode);
+            if (discountCode != null){
+                request.setAttribute("discountCode", discountCode);
+            } else {
+                request.setAttribute("discountCode", "");
+            }
             request.getRequestDispatcher("checkOut.jsp").forward(request, response);
         } catch (Exception e) {
             System.out.println("check out servlet get " + e);

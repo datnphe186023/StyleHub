@@ -249,7 +249,7 @@
                                             </ul>
                                         </li>
                                         <fmt:formatNumber value="${requestScope.discount}" pattern="#,##0đ" var="discount"/>
-                                        <li><span>Shipping</span> <span>${discount}</span></li>
+                                        <li><span>Discount</span> <span>${discount}</span></li>
                                         <li><span>Shipping</span> <span>0.00đ</span></li>
                                         <fmt:formatNumber value="${requestScope.finalPrice}" pattern="#,##0đ" var="finalPrice"/>
                                         <li><span>Order Total</span> <span>${finalPrice}</span></li>

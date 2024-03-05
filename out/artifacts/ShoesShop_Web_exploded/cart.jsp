@@ -290,7 +290,7 @@
                     <div class="total-wrap">
                         <div class="row">
                             <div class="col-sm-8">
-                                <form action="discount" method="post">
+                                <form action="discount" method="get">
                                     <div class="row form-group">
                                         <div class="col-sm-9">
                                             <input type="text" name="discountCode" class="form-control input-number" placeholder="Your Coupon Number..." value="${requestScope.discountCode}">
@@ -310,20 +310,33 @@
                                         <c:if test="${empty requestScope.discount}">
                                             <c:set var="discount" value="0"/>
                                         </c:if>
-                                        <fmt:formatNumber value="${discount}" pattern="#,##0đ" var="discount"/>
-                                        <p><span>Discount:</span> <span>${discount}</span></p>
+                                        <c:if test="${!empty requestScope.discount}">
+                                            <c:set var="discount" value="${requestScope.discount}"/>
+                                        </c:if>
+                                        <fmt:formatNumber value="${discount}" pattern="#,##0đ" var="discountFormatted"/>
+                                        <p><span>Discount:</span> <span>${discountFormatted}</span></p>
                                     </div>
                                     <div class="grand-total">
                                         <c:if test="${empty requestScope.finalPrice}">
                                             <p><span><strong>Total:</strong></span> <span>${subTotal}</span></p>
+                                            <c:set value="${cart.getTotalMoney()}" var="finalPrice"/>
                                         </c:if>
-                                        <fmt:formatNumber value="${requestScope.finalPrice}" pattern="#,##0đ" var="finalPrice"/>
-                                        <p><span><strong>Total:</strong></span> <span>${finalPrice}</span></p>
+                                        <c:if test="${!empty requestScope.finalPrice}">
+                                            <fmt:formatNumber value="${requestScope.finalPrice}" pattern="#,##0đ" var="finalPrice"/>
+                                            <p><span><strong>Total:</strong></span> <span>${finalPrice}</span></p>
+                                            <c:set var="finalPrice" value="${requestScope.finalPrice}"/>
+                                        </c:if>
                                     </div>
+                                    <c:if test="${empty requestScope.discountCode}">
+                                        <c:set value="NONE" var="discountCode"/>
+                                    </c:if>
+                                    <c:if test="${!empty requestScope.discountCode}">
+                                        <c:set value="${requestScope.discountCode}" var="discountCode"/>
+                                    </c:if>
                                     <form action="checkout" method="get">
-                                        <input name="discountCode" value="${requestScope.discountCode}" hidden="hidden">
-                                        <input name="discount" value="${requestScope.discount}" hidden="hidden">
-                                        <input name="finalPrice" value="${requestScope.finalPrice}" hidden="hidden">
+                                        <input name="discountCode" value="${discountCode}" hidden="hidden">
+                                        <input name="discount" value="${discount}" hidden="hidden">
+                                        <input name="finalPrice" value="${finalPrice}" hidden="hidden">
                                         <input type="submit" value="Check out">
                                     </form>
                                 </div>
